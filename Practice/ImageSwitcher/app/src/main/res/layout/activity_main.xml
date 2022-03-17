@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         >
 
-        <Button
+        <android.widget.Button
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/sel_prev"
