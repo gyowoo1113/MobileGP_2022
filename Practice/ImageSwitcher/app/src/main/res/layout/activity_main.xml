@@ -14,6 +14,7 @@
         >
 
         <android.widget.Button
+            android:id="@+id/prevButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitCenter"
@@ -30,6 +31,7 @@
             android:gravity="center"
             />
         <android.widget.Button
+            android:id="@+id/nextButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitCenter"

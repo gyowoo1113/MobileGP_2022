@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView pageTextView;
     private ImageView contentImageView;
 
+    public android.widget.Button prevButton;
+    public android.widget.Button nextButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         pageTextView = findViewById(R.id.pageTextView);
         contentImageView = findViewById(R.id.contentImageView);
+
+        prevButton = findViewById(R.id.prevButton);
+        nextButton = findViewById(R.id.nextButton);
 
         setPage(1);
     }
