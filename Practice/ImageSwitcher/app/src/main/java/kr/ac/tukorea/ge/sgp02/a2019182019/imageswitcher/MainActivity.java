@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setPage(int page) {
+        setEnabled(page);
         if (page < 1 || page > 5){
             return;
         }
@@ -61,5 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
         int resId = RES_IDS[pageNumber-1];
         contentImageView.setImageResource(resId);
+    }
+
+    public void setEnabled(int page){
+        if (page == 1){
+            prevButton.setEnabled(false);
+        }
+        else if (page == 5) {
+            nextButton.setEnabled(false);
+        }
+        else{
+            prevButton.setEnabled(true);
+            nextButton.setEnabled(true);
+        }
     }
 }
