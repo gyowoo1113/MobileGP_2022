@@ -3,6 +3,8 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.imageswitcher;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences pageShaderPref;
+    SharedPreferences.Editor pageEditor;
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -38,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
+        pageShaderPref = getSharedPreferences("pagePreferences", MODE_PRIVATE);
+        pageEditor = pageShaderPref.edit();
+
         pageTextView = findViewById(R.id.pageTextView);
         contentImageView = findViewById(R.id.contentImageView);
-
         prevButton = findViewById(R.id.prevButton);
         nextButton = findViewById(R.id.nextButton);
 
-        setPage(1);
+        setPage(pageShaderPref.getInt("pageNumber",1));
     }
 
     public void onBtnPrev(View view) {
@@ -68,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
         int resId = RES_IDS[pageNumber-1];
         contentImageView.setImageResource(resId);
+
+        pageEditor.putInt("pageNumber",pageNumber);
+        pageEditor.apply();
     }
 
     public void setEnabled(int page){
