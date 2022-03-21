@@ -119,5 +119,5 @@
         <ImageButton
             android:id="@+id/card_33"
             style="@style/cardButtonStyle"
-            />
-    </LinearLayout>
+            /></LinearLayout>
+    /></LinearLayout>
