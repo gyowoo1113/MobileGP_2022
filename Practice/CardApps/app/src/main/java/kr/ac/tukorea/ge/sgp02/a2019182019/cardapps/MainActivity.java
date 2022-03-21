@@ -59,13 +59,25 @@ public class MainActivity extends AppCompatActivity {
         int btnIndex = findButtonIndex(imageButton.getId());
         Log.d(TAG,"onBtnCard" + btnIndex);
 
-        int resId = (Integer)imageButton.getTag();
-        imageButton.setImageResource(resId);
-        if(previousButton != null){
-            previousButton.setImageResource(R.mipmap.card_blue_back);
+        int prevResId = 0;
+        if (previousButton != null){
+            prevResId = (Integer) previousButton.getTag();
         }
 
-        previousButton = imageButton;
+        int resId = (Integer)imageButton.getTag();
+        if (resId != prevResId){
+            imageButton.setImageResource(resId);
+            if(previousButton != null){
+                previousButton.setImageResource(R.mipmap.card_blue_back);
+            }
+            previousButton = imageButton;
+        }
+        else{
+            imageButton.setVisibility(View.INVISIBLE);
+            previousButton.setVisibility(View.INVISIBLE);
+            previousButton = null;
+        }
+
     }
 
     private int findButtonIndex(int id) {
