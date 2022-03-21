@@ -16,12 +16,29 @@ public class MainActivity extends AppCompatActivity {
             R.id.card_20,R.id.card_21,R.id.card_22,R.id.card_23,
             R.id.card_30,R.id.card_31,R.id.card_32,R.id.card_33
     };
+    private int[] resIds = new int[]{
+            R.mipmap.card_as,R.mipmap.card_2c,R.mipmap.card_3d,R.mipmap.card_4h,
+            R.mipmap.card_5s,R.mipmap.card_jc,R.mipmap.card_qh,R.mipmap.card_kd,
+            R.mipmap.card_as,R.mipmap.card_2c,R.mipmap.card_3d,R.mipmap.card_4h,
+            R.mipmap.card_5s,R.mipmap.card_jc,R.mipmap.card_qh,R.mipmap.card_kd,
+    };
+
     private ImageButton previousButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startGame();
+    }
+
+    private void startGame() {
+        for(int i=0; i< BUTTON_IDS.length; ++i){
+            int resId = resIds[i];
+            ImageButton btn = findViewById(BUTTON_IDS[i]);
+            btn.setTag(resId);
+        }
     }
 
     public void onBtnRestart(View view) {
@@ -42,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
         int btnIndex = findButtonIndex(imageButton.getId());
         Log.d(TAG,"onBtnCard" + btnIndex);
 
-        imageButton.setImageResource(R.mipmap.card_as);
+        int resId = (Integer)imageButton.getTag();
+        imageButton.setImageResource(resId);
         if(previousButton != null){
             previousButton.setImageResource(R.mipmap.card_blue_back);
         }
+
         previousButton = imageButton;
     }
 
