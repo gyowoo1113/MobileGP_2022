@@ -20,5 +20,11 @@
         android:text="@string/checkbox"
         android:onClick="onCheckBox"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/do_it"
+        android:onClick="onBtnDoIt"
+        />
 
 </LinearLayout>
