@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         outputTextView = findViewById(R.id.outputTextView);
         nameEdit = findViewById(R.id.nameEdit);
 
-        nameEdit.addTextChangedListener(this);
+        nameEdit.addTextChangedListener(nameWatcher);
     }
 
     public void onCheckBox(View view) {
@@ -40,19 +40,21 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         outputTextView.setText(text);
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.v(TAG,"before");
-    }
+    private TextWatcher nameWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            Log.v(TAG,"before");
+        }
 
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.d(TAG,"textchange: " +charSequence);
-        outputTextView.setText("Text Length: " + charSequence.length());
-    }
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            Log.d(TAG,"textchange: " +charSequence);
+            outputTextView.setText("Text Length: " + charSequence.length());
+        }
 
-    @Override
-    public void afterTextChanged(Editable editable) {
-        Log.v(TAG,"after");
-    }
+        @Override
+        public void afterTextChanged(Editable editable) {
+            Log.v(TAG,"after");
+        }
+    };
 }
