@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private ImageButton previousButton;
-    private int flips;
     private TextView scoreTextView;
+    private int flips;
+    private int openCardCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
         else{
             imageButton.setVisibility(View.INVISIBLE);
             previousButton.setVisibility(View.INVISIBLE);
+            openCardCount -=2;
+            if (openCardCount ==0){
+                askRetry();
+            }
             previousButton = null;
         }
 
