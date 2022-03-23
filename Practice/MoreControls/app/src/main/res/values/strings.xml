@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MoreControls</string>
+    <string name="checkbox">Check Box</string>
 </resources>
