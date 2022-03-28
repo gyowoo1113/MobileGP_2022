@@ -18,9 +18,10 @@
 ---------
 
 ## 예상 게임 실행 흐름
-![screensh](TermProject\Resource\flow.png)
-![screensh](TermProject\Resource\control.png)
+![screensh](/TermProject/Resource/flow.png)
+
+![screensh](/TermProject/Resource/control.png)
 
 ----------
 ## 개발 일정
-![screensh](TermProject\Resource\chart.png)
+![screensh](/TermProject/Resource/chart.png)
