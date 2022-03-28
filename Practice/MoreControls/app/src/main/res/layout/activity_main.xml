@@ -26,6 +26,11 @@
         android:text="@string/checkbox"
         android:onClick="onCheckBox"
         />
+    <kr.ac.tukorea.ge.sgp02.a2019182019.morecontrols.GameView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
