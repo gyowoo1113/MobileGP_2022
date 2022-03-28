@@ -19,13 +19,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <CheckBox
-        android:id="@+id/checkbox"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/checkbox"
-        android:onClick="onCheckBox"
-        />
+        >
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox"
+            android:onClick="onCheckBox"
+            />
+        <kr.ac.tukorea.ge.sgp02.a2019182019.morecontrols.GameView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
     <kr.ac.tukorea.ge.sgp02.a2019182019.morecontrols.GameView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
