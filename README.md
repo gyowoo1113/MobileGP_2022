@@ -24,4 +24,4 @@
 
 ----------
 ## 개발 일정
-![screensh](/TermProject/Resource/chart.png)
+![screensh](/TermProject/Resource/chart1.png)
