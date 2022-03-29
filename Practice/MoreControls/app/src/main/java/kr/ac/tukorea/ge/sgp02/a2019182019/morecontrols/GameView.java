@@ -57,26 +57,44 @@ public class GameView extends View {
         int contentHeight = height + paddingTop - paddingBottom;
 
         int size = contentWidth < contentHeight ? contentWidth : contentHeight;
-        int ballRadius = size/10;
+
 
         int centerX = paddingLeft + contentWidth / 2;
         int centerY = paddingTop + contentHeight / 2;
 
-        canvas.drawRoundRect(paddingLeft,paddingTop,paddingLeft+contentWidth,paddingTop+contentHeight,30,30,paint);
+        drawBackGround(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
+        drawSoccerBall(canvas, size, centerX, centerY);
+        drawLeftCircle(canvas, paddingLeft, paddingTop, contentWidth, contentHeight, size);
+        drawRightCircle(canvas, paddingTop, contentWidth, contentHeight, centerX, size);
+        drawCenterText(canvas, contentHeight, centerX, centerY);
+    }
 
+    private void drawBackGround(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight) {
+        canvas.drawRoundRect(paddingLeft, paddingTop, paddingLeft + contentWidth, paddingTop + contentHeight,30,30,paint);
+    }
+
+    private void drawSoccerBall(Canvas canvas, int size, int centerX, int centerY) {
+        int ballRadius = size /10;
         soccerDstRect.set(centerX - ballRadius, centerY - ballRadius,
                 centerX + ballRadius, centerY + ballRadius);
         canvas.drawBitmap(soccerBitmap,soccerSrcRect, soccerDstRect, null);
+    }
 
-        int leftCenterX = paddingLeft + contentWidth/ 4;
-        int leftCenterY = paddingTop + contentHeight/ 4;
+    private void drawLeftCircle(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight, int size) {
+        int leftCenterX = paddingLeft + contentWidth / 4;
+        int leftCenterY = paddingTop + contentHeight / 4;
         int circleRadius = size / 16;
         canvas.drawCircle(leftCenterX,leftCenterY,circleRadius,leftCirclePaint);
+    }
 
-        int rightCenterX = centerX + contentWidth/ 4;
-        int rightCenterY = paddingTop + contentHeight/ 4;
-        canvas.drawCircle(rightCenterX,rightCenterY,circleRadius,rightCirclePaint);
+    private void drawRightCircle(Canvas canvas, int paddingTop, int contentWidth, int contentHeight, int centerX, int size) {
+        int rightCenterX = centerX + contentWidth / 4;
+        int rightCenterY = paddingTop + contentHeight / 4;
+        int circleRadius = size / 16;
+        canvas.drawCircle(rightCenterX,rightCenterY, circleRadius,rightCirclePaint);
+    }
 
+    private void drawCenterText(Canvas canvas, int contentHeight, int centerX, int centerY) {
         String text ="Soccer";
         textPaint.getTextBounds(text,0,text.length(),textExtentRect);
         int textX = centerX - textExtentRect.width() / 2;
