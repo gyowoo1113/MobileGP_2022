@@ -23,7 +23,10 @@ public class GameView extends View {
     private Paint textPaint = new Paint();
     private Rect textExtentRect = new Rect();
 
+    private Paint pacManPaint = new Paint();
     private Paint foodPaint = new Paint();
+    private RectF pacManRectF = new RectF();
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
@@ -32,6 +35,8 @@ public class GameView extends View {
     private void initView() {
         paint.setColor(Color.BLACK);
         leftCirclePaint.setColor(Color.BLUE);
+
+        pacManPaint.setColor(Color.YELLOW);
         foodPaint.setColor(Color.argb(255,255,113,113));
 
         textPaint.setColor(Color.WHITE);
@@ -62,12 +67,19 @@ public class GameView extends View {
         drawBackGround(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
         drawRightCircle(canvas, paddingTop, contentWidth, contentHeight, centerX, size);
         drawCenterText(canvas, contentHeight, centerX, centerY);
+        drawPacMan(canvas, paddingLeft, contentWidth, contentHeight,size, centerY);
     }
 
     private void drawBackGround(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight) {
         canvas.drawRoundRect(paddingLeft, paddingTop, paddingLeft + contentWidth, paddingTop + contentHeight,30,30,paint);
     }
 
+    private void drawPacMan(Canvas canvas, int paddingLeft, int contentWidth,int contentHeight, int size, int centerY) {
+        int ballRadius = size / 16;
+        int pecManCenterX = paddingLeft + contentWidth / 4;
+        int pacManCenterY = centerY + contentHeight /4;
+        pacManRectF.set(pecManCenterX-ballRadius,pacManCenterY-ballRadius,pecManCenterX +ballRadius,pacManCenterY+ballRadius);
+        canvas.drawArc(pacManRectF,25f, 295f, true, pacManPaint);
     }
 
     }
