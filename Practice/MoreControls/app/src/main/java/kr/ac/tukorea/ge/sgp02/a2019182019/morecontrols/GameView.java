@@ -23,14 +23,17 @@ public class GameView extends View {
     private Paint textPaint = new Paint();
     private Rect textExtentRect = new Rect();
 
+    private Paint foodPaint = new Paint();
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
 
     private void initView() {
-        paint.setColor(0xFFCCCCCC);
+        paint.setColor(Color.BLACK);
         leftCirclePaint.setColor(Color.BLUE);
+        foodPaint.setColor(Color.argb(255,255,113,113));
+
         textPaint.setColor(Color.WHITE);
         Resources res = getResources();
         soccerBitmap = BitmapFactory.decodeResource(res,R.mipmap.soccer_ball_240);
@@ -72,8 +75,8 @@ public class GameView extends View {
     private void drawRightCircle(Canvas canvas, int paddingTop, int contentWidth, int contentHeight, int centerX, int size) {
         int rightCenterX = centerX + contentWidth / 4;
         int rightCenterY = paddingTop + contentHeight / 4;
-        int circleRadius = size / 16;
-        canvas.drawCircle(rightCenterX,rightCenterY, circleRadius,rightCirclePaint);
+        int circleRadius = size / 32;
+        canvas.drawCircle(rightCenterX,rightCenterY, circleRadius, foodPaint);
     }
 
     private void drawCenterText(Canvas canvas, int contentHeight, int centerX, int centerY) {
