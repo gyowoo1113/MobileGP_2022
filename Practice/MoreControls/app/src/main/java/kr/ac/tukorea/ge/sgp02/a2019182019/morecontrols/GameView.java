@@ -65,7 +65,7 @@ public class GameView extends View {
         textPaint.setTextSize(size/20);
 
         drawBackGround(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
-        drawRightCircle(canvas, paddingTop, contentWidth, contentHeight, centerX, size);
+        drawMiniCircle(canvas, paddingLeft,contentWidth, contentHeight, centerY, size);
         drawCenterText(canvas, contentHeight, centerX, centerY);
         drawPacMan(canvas, paddingLeft, contentWidth, contentHeight,size, centerY);
     }
@@ -84,11 +84,17 @@ public class GameView extends View {
 
     }
 
-    private void drawRightCircle(Canvas canvas, int paddingTop, int contentWidth, int contentHeight, int centerX, int size) {
-        int rightCenterX = centerX + contentWidth / 4;
-        int rightCenterY = paddingTop + contentHeight / 4;
-        int circleRadius = size / 32;
-        canvas.drawCircle(rightCenterX,rightCenterY, circleRadius, foodPaint);
+    private void drawMiniCircle(Canvas canvas, int paddingLeft, int contentWidth, int contentHeight, int centerY, int size) {
+        int circleStartX = paddingLeft + contentWidth / 4;
+        int circleStartY = centerY + contentHeight /4;
+        int circleRadius = size / 40;
+        int widthVal = size/4;
+        int num = (paddingLeft+contentWidth-circleStartX)/widthVal;
+
+        for (int i=0; i<num; ++i)
+        {
+            canvas.drawCircle(circleStartX + widthVal*i, circleStartY, circleRadius, foodPaint);
+        }
     }
 
     private void drawCenterText(Canvas canvas, int contentHeight, int centerX, int centerY) {
