@@ -1,0 +1,12 @@
+
+## GameView Specifications
+
+* padding (l/t/r/b) 을 적용한다
+* View 에서 padding 을 제외하고 폭과 높이 중 작은 값을 size 라 한다
+* 화면 정 중앙을 기준으로 좌표평면을 가정한다
+    * 제3사분면의 정 중앙에 pacman을 그린다
+* '임의의 size'에 대하여 원을 8개 그린다
+    * pacman과 동일한 y값을 가진다
+    * pacman과 겹칠 수 있다
+    * '임의의 width값'만큼 규칙적으로 그린다
+
