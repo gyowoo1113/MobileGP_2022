@@ -37,6 +37,7 @@ public class GameView extends View {
         rightCirclePaint.setStrokeWidth(10);
         textPaint.setColor(Color.GREEN);
         textPaint.setTextSize(50);
+        textPaint.setColor(Color.WHITE);
         Resources res = getResources();
         soccerBitmap = BitmapFactory.decodeResource(res,R.mipmap.soccer_ball_240);
         soccerSrcRect.set(0,0,soccerBitmap.getWidth(),soccerBitmap.getHeight());
@@ -95,10 +96,10 @@ public class GameView extends View {
     }
 
     private void drawCenterText(Canvas canvas, int contentHeight, int centerX, int centerY) {
-        String text ="Soccer";
+        String text ="GAME START";
         textPaint.getTextBounds(text,0,text.length(),textExtentRect);
         int textX = centerX - textExtentRect.width() / 2;
-        int textY = centerY + contentHeight / 4;
+        int textY = centerY;
         canvas.drawText(text,textX,textY,textPaint);
     }
 }
