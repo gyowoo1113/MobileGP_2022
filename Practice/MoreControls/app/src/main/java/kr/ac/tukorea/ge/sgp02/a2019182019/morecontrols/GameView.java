@@ -36,7 +36,6 @@ public class GameView extends View {
         rightCirclePaint.setStyle(Paint.Style.STROKE);
         rightCirclePaint.setStrokeWidth(10);
         textPaint.setColor(Color.GREEN);
-        textPaint.setTextSize(50);
         textPaint.setColor(Color.WHITE);
         Resources res = getResources();
         soccerBitmap = BitmapFactory.decodeResource(res,R.mipmap.soccer_ball_240);
@@ -59,9 +58,9 @@ public class GameView extends View {
 
         int size = contentWidth < contentHeight ? contentWidth : contentHeight;
 
-
         int centerX = paddingLeft + contentWidth / 2;
         int centerY = paddingTop + contentHeight / 2;
+        textPaint.setTextSize(size/20);
 
         drawBackGround(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
         drawSoccerBall(canvas, size, centerX, centerY);
