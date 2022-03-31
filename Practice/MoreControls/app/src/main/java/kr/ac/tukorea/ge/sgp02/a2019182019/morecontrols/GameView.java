@@ -92,13 +92,13 @@ public class GameView extends View {
     }
 
     private void drawMiniCircle(Canvas canvas, int paddingLeft, int contentWidth, int contentHeight, int centerY, int size) {
-        int circleStartX = paddingLeft + contentWidth / 4;
-        int circleStartY = centerY + contentHeight /4;
         int circleRadius = size / 40;
+        int circleStartX = paddingLeft + contentWidth / 4 - circleRadius;
+        int circleStartY = centerY + contentHeight /4;
         int widthVal = size/4;
-        int num = (paddingLeft+contentWidth-circleStartX)/widthVal;
+        int num = (paddingLeft+contentWidth-circleStartX)/widthVal+1;
 
-        for (int i=0; i<num; ++i)
+        for (int i=1; i<num; ++i)
         {
             canvas.drawCircle(circleStartX + widthVal*i, circleStartY, circleRadius, foodPaint);
         }
@@ -108,7 +108,7 @@ public class GameView extends View {
         String text ="GAME START";
         textPaint.getTextBounds(text,0,text.length(),textExtentRect);
         int textX = centerX - textExtentRect.width() / 2;
-        int textY = centerY;
+        int textY = centerY - contentHeight/8;
         canvas.drawText(text,textX,textY,textPaint);
     }
 }
