@@ -16,10 +16,6 @@ import androidx.annotation.Nullable;
 
 public class GameView extends View {
     private Paint paint = new Paint();
-    private Bitmap soccerBitmap;
-    private Rect soccerSrcRect = new Rect();
-    private Rect soccerDstRect = new Rect();
-    private Paint leftCirclePaint = new Paint();
     private Paint textPaint = new Paint();
     private Rect textExtentRect = new Rect();
 
@@ -34,15 +30,9 @@ public class GameView extends View {
 
     private void initView() {
         paint.setColor(Color.BLACK);
-        leftCirclePaint.setColor(Color.BLUE);
-
         pacManPaint.setColor(Color.YELLOW);
         foodPaint.setColor(Color.argb(255,255,113,113));
-
         textPaint.setColor(Color.WHITE);
-        Resources res = getResources();
-        soccerBitmap = BitmapFactory.decodeResource(res,R.mipmap.soccer_ball_240);
-        soccerSrcRect.set(0,0,soccerBitmap.getWidth(),soccerBitmap.getHeight());
     }
 
     @Override
