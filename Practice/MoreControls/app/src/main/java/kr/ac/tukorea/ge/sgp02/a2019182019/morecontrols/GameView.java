@@ -23,6 +23,7 @@ public class GameView extends View {
     private Paint pacManPaint = new Paint();
     private Paint foodPaint = new Paint();
     private RectF pacManRectF = new RectF();
+    private RectF roadRectF = new RectF();
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -63,6 +64,15 @@ public class GameView extends View {
         drawCenterText(canvas, contentHeight, centerX, centerY);
         drawPacMan(canvas, paddingLeft, contentWidth, contentHeight,size, centerY);
         drawBlock(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
+        drawRoadBlock(canvas, paddingLeft, contentWidth, contentHeight, size, centerY);
+
+    }
+
+    private void drawRoadBlock(Canvas canvas, int paddingLeft, int contentWidth, int contentHeight, int size, int centerY) {
+        int rectTop = centerY + contentHeight /4 - size /10;
+        int rectBottom = centerY + contentHeight /4 + size /10;
+        roadRectF.set(paddingLeft,rectTop, paddingLeft + contentWidth,rectBottom);
+        canvas.drawRect(roadRectF,blockPaint);
     }
 
     private void drawBackGround(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight) {
