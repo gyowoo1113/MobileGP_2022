@@ -19,6 +19,7 @@ public class GameView extends View {
     private Paint textPaint = new Paint();
     private Rect textExtentRect = new Rect();
 
+    private Paint blockPaint = new Paint();
     private Paint pacManPaint = new Paint();
     private Paint foodPaint = new Paint();
     private RectF pacManRectF = new RectF();
@@ -31,6 +32,9 @@ public class GameView extends View {
     private void initView() {
         paint.setColor(Color.BLACK);
         pacManPaint.setColor(Color.YELLOW);
+        blockPaint.setColor(Color.BLUE);
+        blockPaint.setStyle(Paint.Style.STROKE);
+        blockPaint.setStrokeWidth(10);
         foodPaint.setColor(Color.argb(255,255,113,113));
         textPaint.setColor(Color.WHITE);
     }
@@ -58,6 +62,7 @@ public class GameView extends View {
         drawMiniCircle(canvas, paddingLeft,contentWidth, contentHeight, centerY, size);
         drawCenterText(canvas, contentHeight, centerX, centerY);
         drawPacMan(canvas, paddingLeft, contentWidth, contentHeight,size, centerY);
+        drawBlock(canvas, paddingLeft, paddingTop, contentWidth, contentHeight);
     }
 
     private void drawBackGround(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight) {
@@ -72,6 +77,8 @@ public class GameView extends View {
         canvas.drawArc(pacManRectF,25f, 295f, true, pacManPaint);
     }
 
+    private void drawBlock(Canvas canvas, int paddingLeft, int paddingTop, int contentWidth, int contentHeight) {
+        canvas.drawRoundRect(paddingLeft, paddingTop, paddingLeft + contentWidth, paddingTop + contentHeight,30,30,blockPaint);
     }
 
     private void drawMiniCircle(Canvas canvas, int paddingLeft, int contentWidth, int contentHeight, int centerY, int size) {
