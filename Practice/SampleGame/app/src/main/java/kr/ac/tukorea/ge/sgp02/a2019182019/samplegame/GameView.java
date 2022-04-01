@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,6 +21,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private Rect soccerSrcRect = new Rect();
     private Rect soccerDstRect = new Rect();
     private int ballDx,ballDy;
+    private long previousTimeMilis;
+    private int framePerSecond;
+    private Paint fpsPaint = new Paint();
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -35,17 +40,26 @@ public class GameView extends View implements Choreographer.FrameCallback {
         ballDx = 10;
         ballDy = 10;
 
+        fpsPaint.setColor(Color.BLUE);
+        fpsPaint.setTextSize(100);
+
         Choreographer.getInstance().postFrameCallback(this);    // 싱글톤 패턴
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(soccerBitmap, soccerSrcRect, soccerDstRect, null);
+        canvas.drawText("FPS: " + framePerSecond , 100,100,fpsPaint);
         //Log.d(TAG, "onDraw()");
     }
 
     @Override
     public void doFrame(long l) {
+        long now = System.currentTimeMillis();
+        int elapsed = (int) (now - previousTimeMilis);
+        framePerSecond = 1000 / elapsed;
+        previousTimeMilis = now;
+        //Log.v(TAG,"elapsed: " + elapsed + " FPS: " + framePerSecond);
 
         update();
         invalidate();
@@ -75,4 +89,6 @@ public class GameView extends View implements Choreographer.FrameCallback {
             }
         }
     }
+
+
 }
