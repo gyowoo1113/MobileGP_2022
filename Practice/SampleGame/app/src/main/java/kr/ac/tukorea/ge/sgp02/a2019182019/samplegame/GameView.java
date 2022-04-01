@@ -18,12 +18,11 @@ public class GameView extends View {
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initView();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        initView();
         canvas.drawBitmap(soccerBitmap,soccerSrcRect,soccerDstRect,null);
     }
 
