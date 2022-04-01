@@ -58,5 +58,25 @@ public class GameView extends View {
 
     private void update() {
         soccerDstRect.offset(ballDx,ballDy);
+
+        if (ballDx>0) {
+            if (soccerDstRect.right > getWidth()) {
+                ballDx = -ballDx;
+            }
+        }else{
+            if(soccerDstRect.left < 0){
+                ballDx = -ballDx;
+            }
+        }
+
+        if (ballDy>0) {
+            if (soccerDstRect.bottom > getHeight()) {
+                ballDy = -ballDy;
+            }
+        }else{
+            if(soccerDstRect.top < 0){
+                ballDy = -ballDy;
+            }
+        }
     }
 }
