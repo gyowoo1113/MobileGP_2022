@@ -15,5 +15,9 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        initView();
+    }
+
+    private void initView() {
     }
 }
