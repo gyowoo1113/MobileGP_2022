@@ -18,11 +18,15 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     private Bitmap soccerBitmap;
     private Rect soccerSrcRect = new Rect();
-    private Rect soccerDstRect = new Rect();
-    private int ballDx,ballDy;
     private long previousTimeNanos;
     private int framePerSecond;
     private Paint fpsPaint = new Paint();
+
+    private Rect soccer1DstRect = new Rect();
+    private int ball1Dx, ball1Dy;
+
+    private Rect soccer2DstRect = new Rect();
+    private int ball2Dx,ball2Dy;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -34,10 +38,13 @@ public class GameView extends View implements Choreographer.FrameCallback {
         soccerBitmap = BitmapFactory.decodeResource(res,R.mipmap.soccer_ball_240);
 
         soccerSrcRect.set(0,0,soccerBitmap.getWidth(),soccerBitmap.getHeight());
-        soccerDstRect.set(0,0,200,200);
+        soccer1DstRect.set(0,0,200,200);
+        soccer2DstRect.set(0,0,200,200);
 
-        ballDx = 10;
-        ballDy = 10;
+        ball1Dx = 10;
+        ball1Dy = 10;
+        ball2Dx = 7;
+        ball2Dy = 15;
 
         fpsPaint.setColor(Color.BLUE);
         fpsPaint.setTextSize(100);
@@ -47,7 +54,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(soccerBitmap, soccerSrcRect, soccerDstRect, null);
+        canvas.drawBitmap(soccerBitmap, soccerSrcRect, soccer1DstRect, null);
+        canvas.drawBitmap(soccerBitmap, soccerSrcRect, soccer2DstRect, null);
         canvas.drawText("FPS: " + framePerSecond , 100,100,fpsPaint);
         //Log.d(TAG, "onDraw()");
     }
@@ -67,28 +75,49 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void update() {
-        soccerDstRect.offset(ballDx,ballDy);
+        soccer1DstRect.offset(ball1Dx, ball1Dy);
 
-        if (ballDx>0) {
-            if (soccerDstRect.right > getWidth()) {
-                ballDx = -ballDx;
+        if (ball1Dx >0) {
+            if (soccer1DstRect.right > getWidth()) {
+                ball1Dx = -ball1Dx;
             }
         }else{
-            if(soccerDstRect.left < 0){
-                ballDx = -ballDx;
+            if(soccer1DstRect.left < 0){
+                ball1Dx = -ball1Dx;
             }
         }
 
-        if (ballDy>0) {
-            if (soccerDstRect.bottom > getHeight()) {
-                ballDy = -ballDy;
+        if (ball1Dy >0) {
+            if (soccer1DstRect.bottom > getHeight()) {
+                ball1Dy = -ball1Dy;
             }
         }else{
-            if(soccerDstRect.top < 0){
-                ballDy = -ballDy;
+            if(soccer1DstRect.top < 0){
+                ball1Dy = -ball1Dy;
+            }
+        }
+
+        soccer2DstRect.offset(ball2Dx, ball2Dy);
+
+        if (ball2Dx >0) {
+            if (soccer2DstRect.right > getWidth()) {
+                ball2Dx = -ball2Dx;
+            }
+        }else{
+            if(soccer2DstRect.left < 0){
+                ball2Dx = -ball2Dx;
+            }
+        }
+
+        if (ball1Dy >0) {
+            if (soccer2DstRect.bottom > getHeight()) {
+                ball2Dy = -ball2Dy;
+            }
+        }else{
+            if(soccer2DstRect.top < 0){
+                ball2Dy = -ball2Dy;
             }
         }
     }
-
 
 }
