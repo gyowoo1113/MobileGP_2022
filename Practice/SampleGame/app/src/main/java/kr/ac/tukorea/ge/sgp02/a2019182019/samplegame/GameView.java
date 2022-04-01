@@ -7,11 +7,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
 public class GameView extends View {
+    private static final String TAG = GameView.class.getSimpleName();
     private Bitmap soccerBitmap;
     private Rect soccerSrcRect = new Rect();
     private Rect soccerDstRect = new Rect();
@@ -24,6 +26,7 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(soccerBitmap,soccerSrcRect,soccerDstRect,null);
+        Log.d(TAG,"onDraw()");
     }
 
     private void initView() {
