@@ -25,7 +25,7 @@ public class Ball {
        dstRect.offset(dx, dy);
 
         if (dx >0) {
-            if (dstRect.right > getWidth()) {
+            if (dstRect.right > GameView.view.getWidth()) {
                 dx = -dx;
             }
         }else{
@@ -35,7 +35,7 @@ public class Ball {
         }
 
         if (dy >0) {
-            if (dstRect.bottom > getHeight()) {
+            if (dstRect.bottom > GameView.view.getHeight()) {
                 dy = -dy;
             }
         }else{

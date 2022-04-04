@@ -22,6 +22,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private int framePerSecond;
     private Paint fpsPaint = new Paint();
 
+    public static GameView view;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -29,6 +30,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void initView() {
+        view = this;
 
         Resources res = getResources();
         Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
