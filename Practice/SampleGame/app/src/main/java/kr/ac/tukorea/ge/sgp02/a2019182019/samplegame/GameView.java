@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.Choreographer;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -62,6 +63,22 @@ public class GameView extends View implements Choreographer.FrameCallback {
         fighter.draw(canvas);
         canvas.drawText("FPS: " + framePerSecond , 100,100,fpsPaint);
         //Log.d(TAG, "onDraw()");
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        //if (action == MotionEvent.ACTION_DOWN) {
+
+        switch(action){
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                fighter.setPosition(x,y);
+                return true;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
