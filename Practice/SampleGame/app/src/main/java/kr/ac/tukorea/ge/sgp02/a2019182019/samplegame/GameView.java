@@ -38,10 +38,6 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void initView() {
         view = this;
 
-        Resources res = getResources();
-        Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
-        Ball.setBitmap(soccerBitmap);
-
         Random random = new Random();
         for (int i = 0; i< BALL_COUNT; i++){
             int dx = random.nextInt(10)+5;

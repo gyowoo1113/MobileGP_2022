@@ -1,6 +1,8 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.samplegame;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -11,11 +13,12 @@ public class Fighter {
 
     public Fighter(){
         dstRect.set(0,0,200,200);
-    }
 
-    public static void setBitmap(Bitmap bitmap) {
-        Fighter.bitmap = bitmap;
-        srcRect.set(0,0,bitmap.getWidth(),bitmap.getHeight());
+        if (bitmap == null) {
+            Resources res = GameView.view.getResources();
+            Bitmap bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
+            srcRect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        }
     }
 
     public void update() {
