@@ -14,9 +14,9 @@ public class Fighter {
     public Fighter(){
         dstRect.set(0,0,200,200);
 
-        if (bitmap == null) {
+        if (Fighter.bitmap == null) {
             Resources res = GameView.view.getResources();
-            Bitmap bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
+            Fighter.bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
             srcRect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
         }
     }

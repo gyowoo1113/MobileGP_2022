@@ -17,9 +17,9 @@ public class Ball {
         this.dy = dy;
         dstRect.set(0,0,200,200);
 
-        if (bitmap == null) {
+        if (Ball.bitmap == null) {
             Resources res = GameView.view.getResources();
-            Bitmap bitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
+            Ball.bitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
             srcRect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
         }
     }
