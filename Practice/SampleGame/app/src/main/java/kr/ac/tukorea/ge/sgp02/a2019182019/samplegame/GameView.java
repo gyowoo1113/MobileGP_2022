@@ -14,10 +14,12 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
 
-    Ball ball1,ball2;
+    private ArrayList<Ball> balls = new ArrayList<>();
     private long previousTimeNanos;
     private int framePerSecond;
     private Paint fpsPaint = new Paint();
@@ -36,8 +38,10 @@ public class GameView extends View implements Choreographer.FrameCallback {
         Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
         Ball.setBitmap(soccerBitmap);
 
-        ball1 = new Ball(10,10);
-        ball2 = new Ball(7,15);
+        Ball ball1 = new Ball(10,10);
+        Ball ball2 = new Ball(7,15);
+        balls.add(ball1);
+        balls.add(ball2);
 
         fpsPaint.setColor(Color.BLUE);
         fpsPaint.setTextSize(100);
@@ -47,8 +51,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        ball1.draw(canvas);
-        ball2.draw(canvas);
+        for (Ball ball : balls) {
+            ball.draw(canvas);
+        }
         canvas.drawText("FPS: " + framePerSecond , 100,100,fpsPaint);
         //Log.d(TAG, "onDraw()");
     }
@@ -68,8 +73,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void update() {
-        ball1.update();
-        ball2.update();
+        for (Ball ball : balls){
+            ball.update();
+        }
     }
 
 }
