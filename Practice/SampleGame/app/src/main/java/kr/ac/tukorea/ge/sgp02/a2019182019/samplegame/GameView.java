@@ -11,9 +11,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
 
@@ -22,10 +19,23 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private Paint fpsPaint = new Paint();
 
     public static GameView view;
+    private boolean initialized;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Matrics.width = w;
+        Matrics.height = h;
+
+        if(!initialized){
+            initView();
+            initialized = true;
+        }
     }
 
     private void initView() {
