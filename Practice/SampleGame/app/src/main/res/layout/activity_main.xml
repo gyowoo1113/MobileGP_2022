@@ -9,6 +9,5 @@
     <kr.ac.tukorea.ge.sgp02.a2019182019.samplegame.GameView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         />
 </LinearLayout>
