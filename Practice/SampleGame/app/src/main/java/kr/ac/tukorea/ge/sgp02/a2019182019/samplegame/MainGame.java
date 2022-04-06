@@ -35,7 +35,7 @@ public class MainGame {
             objects.add(ball);
         }
 
-        fighter = new Fighter();
+        fighter = new Fighter(500,500);
         objects.add(fighter);
     }
 
