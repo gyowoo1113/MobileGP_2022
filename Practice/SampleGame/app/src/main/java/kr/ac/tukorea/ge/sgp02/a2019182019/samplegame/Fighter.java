@@ -22,13 +22,13 @@ public class Fighter implements GameObject {
         this.x = x;
         this.y = y;
 
-        Resources res = GameView.view.getResources();
-        float radius = res.getDimension(R.dimen.fighter_radius);
+        float radius = Matrics.size(R.dimen.fighter_radius);
+        dstRect.set(x-radius,y-radius,x+radius,y+radius);
         tx = x;
         ty = y;
 
         if (Fighter.bitmap == null) {
-            //Resources res = GameView.view.getResources();
+            Resources res = GameView.view.getResources();
             Fighter.bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
             srcRect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
         }
@@ -36,7 +36,7 @@ public class Fighter implements GameObject {
 
     public void update() {
         float angle = (float) Math.atan2(ty-y,tx-x);
-        float speed = 1000;
+        float speed = Matrics.size(R.dimen.fighter_speed);
         float dist = speed * MainGame.getInstance().frameTime;
         dx = (float) (dist * Math.cos(angle));
         dy = (float) (dist * Math.sin(angle));
