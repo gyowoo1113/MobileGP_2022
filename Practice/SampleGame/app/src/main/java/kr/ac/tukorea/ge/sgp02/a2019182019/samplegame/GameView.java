@@ -16,10 +16,6 @@ import java.util.Random;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
-    private static final int BALL_COUNT = 10;
-
-    private ArrayList<GameObject> objects = new ArrayList<>();
-    private Fighter fighter;
 
     private long previousTimeNanos;
     private int framePerSecond;
@@ -35,16 +31,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void initView() {
         view = this;
 
-        Random random = new Random();
-        for (int i = 0; i< BALL_COUNT; i++){
-            int dx = random.nextInt(10)+5;
-            int dy = random.nextInt(10)+5;
-            Ball ball = new Ball(dx,dy);
-            objects.add(ball);
-        }
-
-        fighter = new Fighter();
-        objects.add(fighter);
+        MainGame game = MainGame.getInstance();
+        game.init();
 
         fpsPaint.setColor(Color.BLUE);
         fpsPaint.setTextSize(100);
@@ -54,25 +42,14 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        for (GameObject gobj : objects) {
-            gobj.draw(canvas);
-        }
+        MainGame.getInstance().draw(canvas);
         canvas.drawText("FPS: " + framePerSecond , 100,100,fpsPaint);
         //Log.d(TAG, "onDraw()");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch(action){
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                fighter.setPosition(x,y);
-                return true;
-        }
-        return super.onTouchEvent(event);
+        return MainGame.getInstance().onTouchEvent(event);
     }
 
     @Override
@@ -83,16 +60,10 @@ public class GameView extends View implements Choreographer.FrameCallback {
             framePerSecond = 1_000_000_000 / elapsed;
             previousTimeNanos = now;
             //Log.v(TAG,"elapsed: " + elapsed + " FPS: " + framePerSecond);
-            update();
+
+            MainGame.getInstance().update();
             invalidate();
         }
         Choreographer.getInstance().postFrameCallback(this);
     }
-
-    private void update() {
-        for (GameObject gobj : objects){
-            gobj.update();
-        }
-    }
-
 }
