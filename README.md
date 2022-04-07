@@ -33,6 +33,13 @@
         - 터치 시 몬스터 색상의 변화로 체력을 표현
     
    
+##### 화면구성
+    
+    시작화면 - Android Activity
+    메인화면 - Custom View
+    종료화면 - 개발 상황에 따라 변경 예정
+                Custom View: 클리어 등급 개발
+                Android Activity: 클리어 등급 미개발
 ---------
 
 ## 예상 게임 실행 흐름
