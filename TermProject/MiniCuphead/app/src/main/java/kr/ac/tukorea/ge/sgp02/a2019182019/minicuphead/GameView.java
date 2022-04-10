@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 public class GameView extends View implements Choreographer.FrameCallback{
 
+    private long previousTimeNanos;
     public static GameView view;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -33,7 +34,15 @@ public class GameView extends View implements Choreographer.FrameCallback{
     }
 
     @Override
-    public void doFrame(long l) {
+    public void doFrame(long currentTimeNanos) {
+        long now = currentTimeNanos;
+        int elapsed = (int) (now - previousTimeNanos);
+        if (elapsed != 0) {
+            previousTimeNanos = now;
 
+            MainGame.getInstance().update(elapsed);
+            invalidate();
+        }
+        Choreographer.getInstance().postFrameCallback(this);
     }
 }
