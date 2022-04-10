@@ -19,15 +19,21 @@ public class MainGame {
     }
 
     private static MainGame singleton;
+    private ArrayList<GameObject> objects = new ArrayList<>();
 
     public void init() {
 
     }
 
     public void update(int elapsedNanos) {
-
+        for (GameObject gobj : objects){
+            gobj.update();
+        }
     }
 
     public void draw(Canvas canvas) {
+        for (GameObject gobj : objects) {
+            gobj.draw(canvas);
+        }
     }
 }
