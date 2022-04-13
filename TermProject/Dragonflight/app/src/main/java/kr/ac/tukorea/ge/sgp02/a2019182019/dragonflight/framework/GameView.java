@@ -1,4 +1,4 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight;
+package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.game.MainGame;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();

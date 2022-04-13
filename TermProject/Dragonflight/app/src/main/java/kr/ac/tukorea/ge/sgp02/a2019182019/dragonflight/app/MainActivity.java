@@ -1,4 +1,4 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight;
+package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 

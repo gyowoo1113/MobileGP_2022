@@ -1,4 +1,4 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight;
+package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.game;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -37,7 +37,8 @@ public class MainGame {
 //            objects.add(ball);
 //        }
 
-        fighter = new Fighter(Metrics.width / 2, Metrics.height / 2);
+        float fighterY = Metrics.height - Metrics.size(R.dimen.fighter_y_offset);
+        fighter = new Fighter(Metrics.width / 2, fighterY);
         objects.add(fighter);
     }
 
@@ -62,15 +63,26 @@ public class MainGame {
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 fighter.setTargetPosition(x, y);
-                if (action == MotionEvent.ACTION_DOWN) {
-                    fighter.fire();
-                }
                 return true;
         }
         return false;
     }
 
     public void add(GameObject gameObject) {
-        objects.add(gameObject);
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.add(gameObject);
+            }
+        });
+    }
+
+    public void remove(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.remove(gameObject);
+            }
+        });
     }
 }
