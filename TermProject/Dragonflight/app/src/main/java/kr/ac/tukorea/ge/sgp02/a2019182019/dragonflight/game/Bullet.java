@@ -4,6 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.R;
+
 public class Bullet implements GameObject {
     protected float x, y;
     protected final float length;

@@ -4,6 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.Sprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.BitmapPool;
+
 public class Fighter extends Sprite {
 
     private static final String TAG = Fighter.class.getSimpleName();
