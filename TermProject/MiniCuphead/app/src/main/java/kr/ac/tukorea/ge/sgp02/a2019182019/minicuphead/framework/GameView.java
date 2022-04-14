@@ -44,6 +44,11 @@ public class GameView extends View implements Choreographer.FrameCallback{
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return MainGame.getInstance().onTouchEvent(event);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         MainGame.getInstance().draw(canvas);
     }

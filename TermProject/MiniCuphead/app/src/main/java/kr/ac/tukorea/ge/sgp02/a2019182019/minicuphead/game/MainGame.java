@@ -35,6 +35,19 @@ public class MainGame {
         objects.add(cuphead);
     }
 
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                cuphead.setPosition(x, y);
+                return true;
+        }
+        return false;
+    }
+
     public void update(int elapsedNanos) {
         for (GameObject gobj : objects){
             gobj.update();
