@@ -1,16 +1,23 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.GameView;
 
 public class MainGame {
+    private Paint collisionPaint;
+
     public static MainGame getInstance() {
         if (singleton == null) {
             singleton = new MainGame();
@@ -29,13 +36,22 @@ public class MainGame {
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Fighter fighter;
 
+    public static void clear() {
+        singleton = null;
+    }
+
     public void init() {
 
+        objects.clear();
         objects.add(new EnemyGenerator());
 
         float fighterY = Metrics.height - Metrics.size(R.dimen.fighter_y_offset);
         fighter = new Fighter(Metrics.width / 2, fighterY);
         objects.add(fighter);
+
+        collisionPaint = new Paint();
+        collisionPaint.setColor(Color.RED);
+        collisionPaint.setStyle(Paint.Style.STROKE);
     }
 
     public void update(int elapsedNanos) {
@@ -43,11 +59,38 @@ public class MainGame {
         for (GameObject gobj : objects) {
             gobj.update();
         }
+
+        checkCollision();
+    }
+
+    private void checkCollision() {
+        for (GameObject o1 : objects){
+            if (!(o1 instanceof Enemy)){
+                continue;
+            }
+            Enemy enemy = (Enemy) o1;
+            for (GameObject o2 : objects){
+                if(!(o2 instanceof Bullet)){
+                    continue;
+                }
+                Bullet bullet = (Bullet) o2;
+                if (CollisionHelper.collides(enemy,bullet)){
+                   // Log.d(TAG,"Collision !!");
+                    remove(enemy);
+                    remove(bullet);
+                    break;
+                }
+            }
+        }
     }
 
     public void draw(Canvas canvas) {
         for (GameObject gobj : objects) {
             gobj.draw(canvas);
+            if (gobj instanceof BoxCollidable){
+                RectF rect = ((BoxCollidable) gobj).getBoundingRect();
+                canvas.drawRect(rect,collisionPaint);
+            }
         }
     }
 
