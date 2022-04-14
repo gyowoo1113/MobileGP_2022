@@ -1,8 +1,10 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 
 public class MainActivity extends AppCompatActivity {
 
