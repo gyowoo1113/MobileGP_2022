@@ -14,4 +14,15 @@ public class CollisionHelper {
 
         return true;
     }
+
+    public static boolean isPointInBox(BoxCollidable o,float x, float y)
+    {
+        RectF r = o.getBoundingRect();
+        if (r.right < x) return false;
+        if (r.left > x) return false;
+        if (r.top > y) return false;
+        if (r.bottom < y) return false;
+
+        return true;
+    }
 }

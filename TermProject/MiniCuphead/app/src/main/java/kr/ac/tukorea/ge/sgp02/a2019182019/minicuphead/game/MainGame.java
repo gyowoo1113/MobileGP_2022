@@ -15,6 +15,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
 public class MainGame {
+    private boolean isTouchPlayer = false;
+
     public static MainGame getInstance() {
         if (singleton == null) {
             singleton = new MainGame();
@@ -51,9 +53,19 @@ public class MainGame {
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                if (CollisionHelper.isPointInBox(cuphead,x,y)) {
+                    isTouchPlayer = true;
+                    return true;
+                }
             case MotionEvent.ACTION_MOVE:
+                if (!isTouchPlayer){
+                    return false;
+                }
                 cuphead.setPosition(x, y);
                 return true;
+
+            case MotionEvent.ACTION_UP:
+                isTouchPlayer = false;
         }
         return false;
     }
