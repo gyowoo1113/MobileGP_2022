@@ -59,8 +59,10 @@ public class MainGame {
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (CollisionHelper.isPointInBox(cuphead,x,y)) {
+                if (CollisionHelper.isPointInBox(cuphead,x,y)
+                && !isTouchPlayer) {
                     isTouchPlayer = true;
+                    moveBoundingBox.setPosition(x,y);
                     return true;
                 }
             case MotionEvent.ACTION_MOVE:
@@ -72,6 +74,7 @@ public class MainGame {
 
             case MotionEvent.ACTION_UP:
                 isTouchPlayer = false;
+                moveBoundingBox.setPosition(x,y);
         }
         return false;
     }
