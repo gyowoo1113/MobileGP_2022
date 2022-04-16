@@ -5,7 +5,9 @@ import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 
 public class Cuphead extends Sprite implements BoxCollidable {
@@ -35,7 +37,11 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void fire() {
     }
 
-    public void setPosition(float x, float y) {
+    public void setPosition(float x, float y, RangeBox moveBoundingBox) {
+
+        if (!CollisionHelper.isPointInBox(moveBoundingBox,x,y))
+        {return;}
+
         float radius = dstRect.width() / 2;
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
     }

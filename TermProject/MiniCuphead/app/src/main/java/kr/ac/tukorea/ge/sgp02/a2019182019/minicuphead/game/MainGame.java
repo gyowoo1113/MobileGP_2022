@@ -69,7 +69,7 @@ public class MainGame {
                 if (!isTouchPlayer){
                     return false;
                 }
-                cuphead.setPosition(x, y);
+                cuphead.setPosition(x, y,moveBoundingBox);
                 return true;
 
             case MotionEvent.ACTION_UP:
