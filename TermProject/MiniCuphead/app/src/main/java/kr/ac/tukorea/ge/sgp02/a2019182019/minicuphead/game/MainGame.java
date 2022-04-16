@@ -13,9 +13,11 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 
 public class MainGame {
     private boolean isTouchPlayer = false;
+    private RangeBox moveBoundingBox;
 
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -42,9 +44,13 @@ public class MainGame {
         cuphead = new Cuphead(Metrics.width / 2, cupheadY);
         objects.add(cuphead);
 
+        moveBoundingBox = new RangeBox(Metrics.width / 2,cupheadY);
+        objects.add(moveBoundingBox);
+
         collisionPaint = new Paint();
         collisionPaint.setColor(Color.RED);
         collisionPaint.setStyle(Paint.Style.STROKE);
+        collisionPaint.setStrokeWidth(10);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
