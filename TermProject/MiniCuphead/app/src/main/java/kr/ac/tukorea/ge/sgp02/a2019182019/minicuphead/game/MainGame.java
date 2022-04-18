@@ -12,6 +12,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 
@@ -94,6 +95,24 @@ public class MainGame {
                 canvas.drawRect(rect, collisionPaint);
             }
         }
+    }
+
+    public void add(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.add(gameObject);
+            }
+        });
+    }
+
+    public void remove(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.remove(gameObject);
+            }
+        });
     }
 
 }

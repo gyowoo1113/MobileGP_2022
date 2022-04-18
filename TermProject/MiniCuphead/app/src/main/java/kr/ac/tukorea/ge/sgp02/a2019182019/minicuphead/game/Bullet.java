@@ -3,16 +3,22 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
-public class Bullet implements GameObject {
+public class Bullet implements GameObject, BoxCollidable {
     protected float x, y;
     protected final float length;
     protected final float dy;
+    protected RectF boundingRect = new RectF();
+
     protected static Paint paint;
+    protected static float laserWidth;
+
     public Bullet(float x, float y) {
         this.x = x;
         this.y = y;
@@ -22,7 +28,8 @@ public class Bullet implements GameObject {
         if (paint == null) {
             paint = new Paint();
             paint.setColor(Color.RED);
-            paint.setStrokeWidth(Metrics.size(R.dimen.laser_width));
+            laserWidth = Metrics.size(R.dimen.laser_width);
+            paint.setStrokeWidth(laserWidth);
         }
     }
     @Override
@@ -30,13 +37,21 @@ public class Bullet implements GameObject {
         float frameTime = MainGame.getInstance().frameTime;
         y += dy * frameTime;
 
-        if ( y < 0 ){
-           // MainGame.getInstance().remove(this);
+        float hw = laserWidth / 2;
+        boundingRect.set(x - hw, y, x + hw, y - length);
+
+        if (y < 0) {
+            MainGame.getInstance().remove(this);
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawLine(x, y, x, y -length, paint);
+        canvas.drawLine(x, y, x, y - length, paint);
+    }
+
+    @Override
+    public RectF getBoundingRect() {
+        return boundingRect;
     }
 }
