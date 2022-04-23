@@ -64,6 +64,7 @@ public class MainGame {
                 && !isTouchPlayer) {
                     isTouchPlayer = true;
                     moveBoundingBox.setPosition(x,y);
+                    cuphead.fire();
                     return true;
                 }
             case MotionEvent.ACTION_MOVE:
@@ -71,6 +72,9 @@ public class MainGame {
                     return false;
                 }
                 cuphead.setPosition(x, y,moveBoundingBox);
+                if (action == MotionEvent.ACTION_DOWN) {
+                    cuphead.fire();
+                }
                 return true;
 
             case MotionEvent.ACTION_UP:
@@ -81,6 +85,7 @@ public class MainGame {
     }
 
     public void update(int elapsedNanos) {
+        frameTime = elapsedNanos * 1e-9f;
         for (GameObject gobj : objects){
             gobj.update();
         }

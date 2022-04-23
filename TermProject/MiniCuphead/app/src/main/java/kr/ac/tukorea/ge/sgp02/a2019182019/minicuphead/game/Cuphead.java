@@ -27,6 +27,12 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void update() {
+        float frameTime = MainGame.getInstance().frameTime;
+        elapsedTimeForFire += frameTime;
+        if (elapsedTimeForFire > fireInterval) {
+            fire();
+            elapsedTimeForFire -= fireInterval;
+        }
         boundingRect.set(dstRect);
     }
 
@@ -35,14 +41,17 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void fire() {
+        Bullet bullet = new Bullet(x, y);
+        MainGame.getInstance().add(bullet);
     }
 
     public void setPosition(float x, float y, RangeBox moveBoundingBox) {
-
         if (!CollisionHelper.isPointInBox(moveBoundingBox,x,y))
         {return;}
 
         float radius = dstRect.width() / 2;
+        this.x = x;
+        this.y = y;
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
     }
 
