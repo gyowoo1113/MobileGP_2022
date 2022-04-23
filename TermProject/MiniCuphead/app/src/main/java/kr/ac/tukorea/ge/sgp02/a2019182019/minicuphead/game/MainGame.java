@@ -42,10 +42,13 @@ public class MainGame {
         objects.clear();
 
         float cupheadY = Metrics.height - Metrics.size(R.dimen.cuphead_y_offset);
+        float cupheadX = Metrics.size(R.dimen.cuphead_y_offset);
+
         cuphead = new Cuphead(Metrics.width / 2, cupheadY);
+        cuphead = new Cuphead(cupheadX, Metrics.height/2);
         objects.add(cuphead);
 
-        moveBoundingBox = new RangeBox(Metrics.width / 2,cupheadY);
+        moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
         objects.add(moveBoundingBox);
 
         collisionPaint = new Paint();
