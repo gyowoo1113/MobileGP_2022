@@ -16,6 +16,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private float elapsedTimeForFire;
     private float fireInterval;
     protected RectF boundingRect = new RectF();
+    private boolean isFire;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_radius, R.mipmap.player_normal);
@@ -29,7 +30,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
         elapsedTimeForFire += frameTime;
-        if (elapsedTimeForFire > fireInterval) {
+        if (elapsedTimeForFire > fireInterval && isFire) {
             fire();
             elapsedTimeForFire -= fireInterval;
         }
@@ -58,6 +59,10 @@ public class Cuphead extends Sprite implements BoxCollidable {
     @Override
     public RectF getBoundingRect() {
         return boundingRect;
+    }
+
+    public void setFire(boolean fire) {
+        isFire = fire;
     }
 }
 

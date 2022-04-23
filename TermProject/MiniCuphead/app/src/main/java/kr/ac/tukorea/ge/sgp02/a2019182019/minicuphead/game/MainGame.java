@@ -64,7 +64,7 @@ public class MainGame {
                 && !isTouchPlayer) {
                     isTouchPlayer = true;
                     moveBoundingBox.setPosition(x,y);
-                    cuphead.fire();
+                    cuphead.setFire(true);
                     return true;
                 }
             case MotionEvent.ACTION_MOVE:
@@ -72,13 +72,11 @@ public class MainGame {
                     return false;
                 }
                 cuphead.setPosition(x, y,moveBoundingBox);
-                if (action == MotionEvent.ACTION_DOWN) {
-                    cuphead.fire();
-                }
                 return true;
 
             case MotionEvent.ACTION_UP:
                 isTouchPlayer = false;
+                cuphead.setFire(false);
                 moveBoundingBox.setPosition(x,y);
         }
         return false;
