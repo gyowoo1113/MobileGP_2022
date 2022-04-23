@@ -3,6 +3,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 

@@ -63,13 +63,11 @@ public class MainGame {
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (CollisionHelper.isPointInBox(cuphead,x,y)
-                && !isTouchPlayer) {
-                    isTouchPlayer = true;
-                    moveBoundingBox.setPosition(x,y);
-                    cuphead.setFire(true);
+                if (isPlayerInBox(x, y)) {
+                    setPlayerAction(x, y);
                     return true;
                 }
+
             case MotionEvent.ACTION_MOVE:
                 if (!isTouchPlayer){
                     return false;
@@ -78,11 +76,27 @@ public class MainGame {
                 return true;
 
             case MotionEvent.ACTION_UP:
-                isTouchPlayer = false;
-                cuphead.setFire(false);
-                moveBoundingBox.setPosition(x,y);
+                initPlayerAction(x, y);
         }
         return false;
+    }
+
+    private void initPlayerAction(int x, int y) {
+        isTouchPlayer = false;
+        cuphead.setFire(false);
+        moveBoundingBox.setPosition(x, y);
+    }
+
+    private boolean isPlayerInBox(int x, int y) {
+        if (!CollisionHelper.isPointInBox(cuphead, x, y)) return false;
+        if (isTouchPlayer) return false;
+        return true;
+    }
+
+    private void setPlayerAction(int x, int y) {
+        isTouchPlayer = true;
+        moveBoundingBox.setPosition(x, y);
+        cuphead.setFire(true);
     }
 
     public void update(int elapsedNanos) {
