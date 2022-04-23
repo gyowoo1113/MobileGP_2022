@@ -17,11 +17,14 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private float fireInterval;
     protected RectF boundingRect = new RectF();
     private boolean isFire;
+    private boolean bulletToggle = false;
+    float heightVal;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_radius, R.mipmap.player_normal);
         //targetBitmap = BitmapPool.get(R.mipmap.target);
         fireInterval = Metrics.floatValue(R.dimen.cuphead_fire_interval);
+        heightVal = Metrics.size(R.dimen.bulletHeight);
 
         float radius = dstRect.width() / 2;
         boundingRect.set(x - radius, y - radius, x + radius, y + radius);
@@ -42,7 +45,9 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void fire() {
-        Bullet bullet = new Bullet(x, y);
+        bulletToggle = !bulletToggle;
+        float val = (bulletToggle) ? +heightVal : -heightVal;
+        Bullet bullet = new Bullet(x, y + val);
         MainGame.getInstance().add(bullet);
     }
 
