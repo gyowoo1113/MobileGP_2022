@@ -1,27 +1,17 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 
-public class Bullet implements GameObject, BoxCollidable {
-    protected float x, y;
-    protected final float length;
-    protected final float dx;
-    protected RectF boundingRect = new RectF();
+public class NormalBullet extends Bullet {
 
-    protected static Paint paint;
-    protected static float laserWidth;
-
-    public Bullet(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public NormalBullet(float x, float y) {
+        super(x, y);
         this.length = Metrics.size(R.dimen.laser_length);
         this.dx = -Metrics.size(R.dimen.laser_speed);
 
@@ -32,6 +22,7 @@ public class Bullet implements GameObject, BoxCollidable {
             paint.setStrokeWidth(laserWidth);
         }
     }
+
     @Override
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
@@ -44,15 +35,5 @@ public class Bullet implements GameObject, BoxCollidable {
         if (x < 0) {
             MainGame.getInstance().remove(this);
         }
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawLine(x, y, x-length, y, paint);
-    }
-
-    @Override
-    public RectF getBoundingRect() {
-        return boundingRect;
     }
 }

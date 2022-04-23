@@ -9,6 +9,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.BombBullet;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 
 public class Cuphead extends Sprite implements BoxCollidable {
     private static final String TAG = Cuphead.class.getSimpleName();
@@ -47,7 +49,8 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void fire() {
         bulletToggle = !bulletToggle;
         float val = (bulletToggle) ? +heightVal : -heightVal;
-        Bullet bullet = new Bullet(x, y + val);
+        //Bullet bullet = new Bullet(x, y + val);
+        BombBullet bullet = new BombBullet(x, y);
         MainGame.getInstance().add(bullet);
     }
 
