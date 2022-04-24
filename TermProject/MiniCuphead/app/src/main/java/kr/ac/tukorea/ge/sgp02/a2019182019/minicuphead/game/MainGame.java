@@ -56,6 +56,8 @@ public class MainGame {
         for (GameObject gobj : objects) {
             if (gobj.onTouchEvent(event)) return true;
         }
+        if (SwitchButton.getInstance().onTouchEvent(event)) return true;
+
         return false;
     }
 
@@ -75,6 +77,8 @@ public class MainGame {
                 canvas.drawRect(rect, collisionPaint);
             }
         }
+
+        SwitchButton.getInstance().draw(canvas);
     }
 
     public void add(GameObject gameObject) {

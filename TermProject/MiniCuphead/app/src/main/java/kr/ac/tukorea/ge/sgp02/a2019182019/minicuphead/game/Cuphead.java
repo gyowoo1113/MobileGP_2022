@@ -21,7 +21,6 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
     private RangeBox moveBoundingBox;
     private boolean isTouchPlayer = false;
-    private float touchTime = 0;
 
     private float elapsedTimeForFire;
     private float fireInterval;
