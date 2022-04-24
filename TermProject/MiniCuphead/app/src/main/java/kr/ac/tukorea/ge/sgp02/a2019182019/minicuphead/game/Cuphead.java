@@ -1,6 +1,8 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 
@@ -15,9 +17,12 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 
 public class Cuphead extends Sprite implements BoxCollidable {
     private static final String TAG = Cuphead.class.getSimpleName();
+    private final Paint collisionPaint;
 
     private RangeBox moveBoundingBox;
     private boolean isTouchPlayer = false;
+    private float touchTime = 0;
+
     private float elapsedTimeForFire;
     private float fireInterval;
     protected RectF boundingRect = new RectF();
@@ -34,6 +39,11 @@ public class Cuphead extends Sprite implements BoxCollidable {
         float radius = dstRect.width() / 2;
         boundingRect.set(x - radius, y - radius, x + radius, y + radius);
         moveBoundingBox = new RangeBox(x, y);
+
+        collisionPaint = new Paint();
+        collisionPaint.setColor(Color.RED);
+        collisionPaint.setStyle(Paint.Style.STROKE);
+        collisionPaint.setStrokeWidth(10);
     }
 
     public void update() {
@@ -50,6 +60,9 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
         moveBoundingBox.draw(canvas);
+
+        RectF rect = moveBoundingBox.getBoundingRect();
+        canvas.drawRect(rect, collisionPaint);
     }
 
     public void fire() {
@@ -94,7 +107,6 @@ public class Cuphead extends Sprite implements BoxCollidable {
             case MotionEvent.ACTION_MOVE:
                 if (!isTouchPlayer) return false;
                 setPosition(x, y,moveBoundingBox);
-
                 return true;
 
             case MotionEvent.ACTION_UP:
