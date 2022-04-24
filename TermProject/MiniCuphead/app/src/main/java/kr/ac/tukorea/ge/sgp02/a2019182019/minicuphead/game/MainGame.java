@@ -36,6 +36,7 @@ public class MainGame {
     private static MainGame singleton;
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Cuphead cuphead;
+    private SwitchButton switchButton;
     private Paint collisionPaint;
 
     public void init() {
@@ -50,6 +51,9 @@ public class MainGame {
 
         moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
         objects.add(moveBoundingBox);
+
+        switchButton = new SwitchButton(Metrics.width/2, Metrics.height/2);
+        objects.add(switchButton);
 
         collisionPaint = new Paint();
         collisionPaint.setColor(Color.RED);
@@ -78,7 +82,6 @@ public class MainGame {
             case MotionEvent.ACTION_UP:
                 initPlayerAction(x, y);
         }
-        if (SwitchButton.getInstance().onTouchEvent(event)) return true;
 
         return false;
     }
@@ -117,8 +120,6 @@ public class MainGame {
                 canvas.drawRect(rect, collisionPaint);
             }
         }
-
-        SwitchButton.getInstance().draw(canvas);
     }
 
     public void add(GameObject gameObject) {

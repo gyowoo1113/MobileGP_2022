@@ -78,30 +78,6 @@ public class Cuphead extends Sprite implements BoxCollidable {
         isFire = fire;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                if (isPlayerInBox(x, y)) {
-                    setPlayerAction(x, y);
-                    return true;
-                }
-
-            case MotionEvent.ACTION_MOVE:
-                if (!isTouchPlayer) return false;
-                setPosition(x, y,moveBoundingBox);
-
-                return true;
-
-            case MotionEvent.ACTION_UP:
-                initPlayerAction(x, y);
-        }
-        return false;
-    }
-
     private void initPlayerAction(int x, int y) {
         isTouchPlayer = false;
         setFire(false);
