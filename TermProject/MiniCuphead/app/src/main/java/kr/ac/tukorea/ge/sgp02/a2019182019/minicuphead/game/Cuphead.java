@@ -11,6 +11,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.BombBullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.NormalBullet;
 
 public class Cuphead extends Sprite implements BoxCollidable {
     private static final String TAG = Cuphead.class.getSimpleName();
@@ -21,6 +22,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private boolean isFire;
     private boolean bulletToggle = false;
     float heightVal;
+    private boolean isBomb = false;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_radius, R.mipmap.player_normal);
@@ -49,9 +51,10 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void fire() {
         bulletToggle = !bulletToggle;
         float val = (bulletToggle) ? +heightVal : -heightVal;
-        //Bullet bullet = new Bullet(x, y + val);
-        BombBullet bullet = new BombBullet(x, y);
+        
+        Bullet bullet = (isBomb) ? new BombBullet(x, y) :new NormalBullet(x, y + val);
         MainGame.getInstance().add(bullet);
+
     }
 
     public void setPosition(float x, float y, RangeBox moveBoundingBox) {
@@ -71,6 +74,10 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
     public void setFire(boolean fire) {
         isFire = fire;
+    }
+
+    public void switchBullet() {
+        isBomb = !isBomb;
     }
 }
 

@@ -135,4 +135,7 @@ public class MainGame {
         });
     }
 
+    public void switchBullet() {
+        cuphead.switchBullet();
+    }
 }
