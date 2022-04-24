@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.MotionEvent;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
@@ -34,11 +33,6 @@ public class Bullet implements GameObject, BoxCollidable {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawLine(x, y, x-length, y, paint);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return false;
     }
 
     @Override

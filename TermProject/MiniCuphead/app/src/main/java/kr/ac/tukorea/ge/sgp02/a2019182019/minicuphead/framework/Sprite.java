@@ -3,7 +3,6 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.view.MotionEvent;
 
 public class Sprite implements GameObject {
     protected Bitmap bitmap;
@@ -32,10 +31,5 @@ public class Sprite implements GameObject {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return false;
     }
 }

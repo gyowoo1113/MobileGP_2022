@@ -17,6 +17,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 
 public class MainGame {
+    private boolean isTouchPlayer = false;
+    private RangeBox moveBoundingBox;
 
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -46,6 +48,9 @@ public class MainGame {
         cuphead = new Cuphead(cupheadX, Metrics.height/2);
         objects.add(cuphead);
 
+        moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
+        objects.add(moveBoundingBox);
+
         collisionPaint = new Paint();
         collisionPaint.setColor(Color.RED);
         collisionPaint.setStyle(Paint.Style.STROKE);
@@ -53,12 +58,47 @@ public class MainGame {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
-        for (GameObject gobj : objects) {
-            if (gobj.onTouchEvent(event)) return true;
+        int action = event.getAction();
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                if (isPlayerInBox(x, y)) {
+                    setPlayerAction(x, y);
+                    return true;
+                }
+
+            case MotionEvent.ACTION_MOVE:
+                if (!isTouchPlayer){
+                    return false;
+                }
+                cuphead.setPosition(x, y,moveBoundingBox);
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                initPlayerAction(x, y);
         }
         if (SwitchButton.getInstance().onTouchEvent(event)) return true;
 
         return false;
+    }
+
+    private void initPlayerAction(int x, int y) {
+        isTouchPlayer = false;
+        cuphead.setFire(false);
+        moveBoundingBox.setPosition(x, y);
+    }
+
+    private boolean isPlayerInBox(int x, int y) {
+        if (!CollisionHelper.isPointInBox(cuphead, x, y)) return false;
+        if (isTouchPlayer) return false;
+        return true;
+    }
+
+    private void setPlayerAction(int x, int y) {
+        isTouchPlayer = true;
+        moveBoundingBox.setPosition(x, y);
+        cuphead.setFire(true);
     }
 
     public void update(int elapsedNanos) {
