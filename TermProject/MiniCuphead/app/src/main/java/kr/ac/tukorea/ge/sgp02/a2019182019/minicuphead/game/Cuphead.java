@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.view.MotionEvent;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
@@ -15,6 +16,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 public class Cuphead extends Sprite implements BoxCollidable {
     private static final String TAG = Cuphead.class.getSimpleName();
 
+    private RangeBox moveBoundingBox;
+    private boolean isTouchPlayer = false;
     private float elapsedTimeForFire;
     private float fireInterval;
     protected RectF boundingRect = new RectF();
@@ -30,6 +33,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
         float radius = dstRect.width() / 2;
         boundingRect.set(x - radius, y - radius, x + radius, y + radius);
+        moveBoundingBox = new RangeBox(x, y);
     }
 
     public void update() {
@@ -40,10 +44,12 @@ public class Cuphead extends Sprite implements BoxCollidable {
             elapsedTimeForFire -= fireInterval;
         }
         boundingRect.set(dstRect);
+        moveBoundingBox.update();
     }
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
+        moveBoundingBox.draw(canvas);
     }
 
     public void fire() {
@@ -71,6 +77,48 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
     public void setFire(boolean fire) {
         isFire = fire;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                if (isPlayerInBox(x, y)) {
+                    setPlayerAction(x, y);
+                    return true;
+                }
+
+            case MotionEvent.ACTION_MOVE:
+                if (!isTouchPlayer) return false;
+                setPosition(x, y,moveBoundingBox);
+
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                initPlayerAction(x, y);
+        }
+        return false;
+    }
+
+    private void initPlayerAction(int x, int y) {
+        isTouchPlayer = false;
+        setFire(false);
+        moveBoundingBox.setPosition(x, y);
+    }
+
+    private boolean isPlayerInBox(int x, int y) {
+        if (!CollisionHelper.isPointInBox(this, x, y)) return false;
+        if (isTouchPlayer) return false;
+        return true;
+    }
+
+    private void setPlayerAction(int x, int y) {
+        isTouchPlayer = true;
+        moveBoundingBox.setPosition(x, y);
+        setFire(true);
     }
 }
 

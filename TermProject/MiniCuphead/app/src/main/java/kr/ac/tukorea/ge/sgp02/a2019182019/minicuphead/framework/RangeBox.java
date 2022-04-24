@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.view.MotionEvent;
 
 import androidx.lifecycle.SavedStateHandle;
 
@@ -34,5 +35,10 @@ public class RangeBox implements BoxCollidable, GameObject{
     @Override
     public void draw(Canvas canvas) {
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
     }
 }
