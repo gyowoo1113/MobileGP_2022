@@ -8,4 +8,6 @@
     <dimen name="player_move_range_radius">70dp</dimen>
     <dimen name="bulletHeight">4dp</dimen>
     <item name="cuphead_fire_interval" type="dimen" format="float">0.2</item>
+    <dimen name="bullet_gravity">5000dp</dimen>
+    <dimen name="bullet_upper_speed">500dp</dimen>
 </resources>
