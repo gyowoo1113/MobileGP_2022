@@ -31,7 +31,7 @@ public class Fighter extends Sprite {
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
         elapsedTimeForFire += frameTime;
-        if (elapsedTimeForFire > 1.0){
+        if (elapsedTimeForFire > fireInterval) {
             fire();
             // elapsedTimeForFire = 0;
             elapsedTimeForFire -= fireInterval;
@@ -56,7 +56,7 @@ public class Fighter extends Sprite {
 //        canvas.save();
 //        canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
         canvas.drawBitmap(bitmap, null, dstRect, null);
-        canvas.restore();
+//        canvas.restore();
         if (dx != 0) {
             canvas.drawBitmap(targetBitmap, null, targetRect, null);
         }

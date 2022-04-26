@@ -4,10 +4,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.game.Fighter;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.Metrics;
@@ -16,6 +18,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.dragonflight.framework.GameView;
 
 public class MainGame {
+    private static final String TAG = MainGame.class.getSimpleName();
     private Paint collisionPaint;
 
     public static MainGame getInstance() {

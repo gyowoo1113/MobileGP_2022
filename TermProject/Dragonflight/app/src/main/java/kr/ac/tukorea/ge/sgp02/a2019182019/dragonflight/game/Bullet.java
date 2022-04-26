@@ -24,9 +24,6 @@ public class Bullet implements GameObject, BoxCollidable {
         this.length = Metrics.size(R.dimen.laser_length);
         this.dy = -Metrics.size(R.dimen.laser_speed);
 
-        float hw = laserWidth / 2;
-        boundingRect.set(x - hw, y, x + hw, y - length);
-
         if (paint == null) {
             paint = new Paint();
             paint.setColor(Color.RED);
@@ -39,7 +36,10 @@ public class Bullet implements GameObject, BoxCollidable {
         float frameTime = MainGame.getInstance().frameTime;
         y += dy * frameTime;
 
-        if ( y < 0 ){
+        float hw = laserWidth / 2;
+        boundingRect.set(x - hw, y, x + hw, y - length);
+
+        if (y < 0) {
             MainGame.getInstance().remove(this);
         }
     }

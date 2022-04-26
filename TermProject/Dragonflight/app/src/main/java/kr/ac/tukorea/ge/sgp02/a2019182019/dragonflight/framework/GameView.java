@@ -40,6 +40,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         if (!initialized) {
             initView();
             initialized = true;
+            running = true;
         }
     }
 

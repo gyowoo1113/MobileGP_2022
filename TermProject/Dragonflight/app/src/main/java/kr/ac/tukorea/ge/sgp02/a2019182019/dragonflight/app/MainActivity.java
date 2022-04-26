@@ -26,11 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // Resume: 다시 그 예약을 재개함
-        // 맨처음 Create 된 다음 한번 불림 (Pause 뿐만아니라)
-        // Create - Paused 상태로 Create 되는것이기 때문
         super.onResume();
-        GameView.view.resumeGame();
+        if (GameView.view != null) {
+            GameView.view.resumeGame();
+        }
     }
 
     @Override
@@ -39,8 +38,4 @@ public class MainActivity extends AppCompatActivity {
         MainGame.clear();
         super.onDestroy();
     }
-
-    // setContentVeiw -> xml load됨
-    // findViewId로 찾을 수 있음
-    // or 아예 xml 쓰지말고 Member variable로 GameView 받아서 해도됨
 }
