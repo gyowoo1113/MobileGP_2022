@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
@@ -9,18 +10,10 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 
 public class NormalBullet extends Bullet {
-
     public NormalBullet(float x, float y) {
-        super(x, y);
-        this.length = Metrics.size(R.dimen.laser_length);
+        super(x, y,R.dimen.bomb_bullet_radius, R.mipmap.bullet_normal);
         this.dx = -Metrics.size(R.dimen.laser_speed);
-
-        if (paint == null) {
-            paint = new Paint();
-            paint.setColor(Color.RED);
-            laserWidth = Metrics.size(R.dimen.laser_width);
-            paint.setStrokeWidth(laserWidth);
-        }
+        boundingRect.set(x - radius, y - radius, x + radius, y + radius);
     }
 
     @Override
@@ -28,9 +21,9 @@ public class NormalBullet extends Bullet {
         float frameTime = MainGame.getInstance().frameTime;
         x -= dx * frameTime;
 
-        float hw = laserWidth / 2;
-        //boundingRect.set(x - hw, y, x + hw, y - length);
-        boundingRect.set(x , y - hw, x - length, y + hw);
+        float radius = dstRect.width() / 2;
+        dstRect.set(x - radius, y - radius, x + radius, y + radius);
+        boundingRect.set(dstRect);
 
         if (x < 0) {
             MainGame.getInstance().remove(this);

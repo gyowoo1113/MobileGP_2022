@@ -9,18 +9,16 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
-public class Bullet implements GameObject, BoxCollidable {
+public class Bullet extends Sprite implements BoxCollidable {
     protected float x, y;
-    protected float length;
     protected float dx, dy;
     protected RectF boundingRect = new RectF();
 
-    protected static Paint paint;
-    protected static float laserWidth;
-
-    public Bullet(float x, float y) {
+    public Bullet(float x, float y ,int radius, int ResID) {
+        super(x, y, radius, ResID);
         this.x = x;
         this.y = y;
     }
@@ -32,7 +30,7 @@ public class Bullet implements GameObject, BoxCollidable {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawLine(x, y, x-length, y, paint);
+        canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
     @Override
