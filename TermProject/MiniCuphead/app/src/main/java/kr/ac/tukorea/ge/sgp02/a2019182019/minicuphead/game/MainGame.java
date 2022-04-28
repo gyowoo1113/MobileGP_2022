@@ -43,6 +43,8 @@ public class MainGame {
     public void init() {
         objects.clear();
 
+        objects.add(new EnemyGenerator());
+
         float cupheadY = Metrics.height - Metrics.size(R.dimen.cuphead_y_offset);
         float cupheadX = Metrics.size(R.dimen.cuphead_y_offset);
 
