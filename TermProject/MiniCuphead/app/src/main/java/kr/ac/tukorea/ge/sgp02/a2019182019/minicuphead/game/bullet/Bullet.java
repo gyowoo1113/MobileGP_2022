@@ -9,15 +9,16 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
-public class Bullet extends Sprite implements BoxCollidable {
+public class Bullet extends Sprite implements BoxCollidable , Recyclable {
     protected float x, y;
     protected float dx, dy;
     protected RectF boundingRect = new RectF();
 
-    public Bullet(float x, float y ,int radius, int ResID) {
+    protected Bullet(float x, float y ,int radius, int ResID) {
         super(x, y, radius, ResID);
         this.x = x;
         this.y = y;
@@ -36,5 +37,15 @@ public class Bullet extends Sprite implements BoxCollidable {
     @Override
     public RectF getBoundingRect() {
         return boundingRect;
+    }
+
+    @Override
+    public void finish() {
+
+    }
+
+    protected void set(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 }

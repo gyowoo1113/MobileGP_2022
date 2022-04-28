@@ -6,15 +6,25 @@ import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
 public class BombBullet extends Bullet {
     public final float gravity;
-    public BombBullet(float x, float y) {
+    private BombBullet(float x, float y) {
         super(x, y,R.dimen.bomb_bullet_radius, R.mipmap.bullet_bomb);
         this.dx = -Metrics.size(R.dimen.laser_speed);
         this.dy = Metrics.size(R.dimen.bullet_upper_speed);
         gravity = Metrics.size(R.dimen.bullet_gravity);
+    }
+
+    public static BombBullet get(float x, float y) {
+        BombBullet bullet = (BombBullet) RecycleBin.get(BombBullet.class);
+        if (bullet != null) {
+            bullet.set(x, y);
+            return bullet;
+        }
+        return new BombBullet(x,y);
     }
 
     @Override

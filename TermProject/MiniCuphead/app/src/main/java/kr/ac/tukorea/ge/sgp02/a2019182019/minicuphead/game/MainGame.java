@@ -15,6 +15,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 
 public class MainGame {
     private boolean isTouchPlayer = false;
@@ -131,6 +133,9 @@ public class MainGame {
             @Override
             public void run() {
                 objects.remove(gameObject);
+                if (gameObject instanceof Recyclable) {
+                    RecycleBin.add((Recyclable) gameObject);
+                }
             }
         });
     }
