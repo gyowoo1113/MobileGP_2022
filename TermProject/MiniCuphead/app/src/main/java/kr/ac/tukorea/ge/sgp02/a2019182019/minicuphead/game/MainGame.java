@@ -37,6 +37,7 @@ public class MainGame {
 
     private static MainGame singleton;
     protected ArrayList<ArrayList<GameObject>> layers;
+
     public enum Layer {
         bullet, enemy, player, controller, COUNT
     }
@@ -47,6 +48,7 @@ public class MainGame {
         initLayers(Layer.COUNT.ordinal());
 
         add(Layer.controller, new EnemyGenerator());
+        add(Layer.controller, new CollisionChecker());
 
         float cupheadY = Metrics.height - Metrics.size(R.dimen.cuphead_y_offset);
         float cupheadX = Metrics.size(R.dimen.cuphead_y_offset);
@@ -158,6 +160,10 @@ public class MainGame {
                 }
             }
         });
+    }
+
+    public ArrayList<GameObject> objectsAt(Layer layer) {
+        return layers.get(layer.ordinal());
     }
 
     public void switchBullet() {
