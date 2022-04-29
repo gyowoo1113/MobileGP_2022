@@ -59,7 +59,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
         float val = (bulletToggle) ? +heightVal : -heightVal;
         
         Bullet bullet = (isBomb) ? BombBullet.get(x, y) : NormalBullet.get(x, y + val);
-        MainGame.getInstance().add(bullet);
+        MainGame.getInstance().add(MainGame.Layer.bullet, bullet);
 
     }
 

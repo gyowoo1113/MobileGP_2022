@@ -36,29 +36,39 @@ public class MainGame {
     }
 
     private static MainGame singleton;
-    private ArrayList<GameObject> objects = new ArrayList<>();
+    protected ArrayList<ArrayList<GameObject>> layers;
+    public enum Layer {
+        bullet, enemy, player, controller, COUNT
+    }
     private Cuphead cuphead;
     private Paint collisionPaint;
 
     public void init() {
-        objects.clear();
+        initLayers(Layer.COUNT.ordinal());
 
-        objects.add(new EnemyGenerator());
+        add(Layer.controller, new EnemyGenerator());
 
         float cupheadY = Metrics.height - Metrics.size(R.dimen.cuphead_y_offset);
         float cupheadX = Metrics.size(R.dimen.cuphead_y_offset);
 
         cuphead = new Cuphead(Metrics.width / 2, cupheadY);
         cuphead = new Cuphead(cupheadX, Metrics.height/2);
-        objects.add(cuphead);
+        add(Layer.player, cuphead);
 
         moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
-        objects.add(moveBoundingBox);
+        add(Layer.player,moveBoundingBox);
 
         collisionPaint = new Paint();
         collisionPaint.setColor(Color.RED);
         collisionPaint.setStyle(Paint.Style.STROKE);
         collisionPaint.setStrokeWidth(10);
+    }
+
+    private void initLayers(int count) {
+        layers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            layers.add(new ArrayList<>());
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -105,27 +115,31 @@ public class MainGame {
 
     public void update(int elapsedNanos) {
         frameTime = elapsedNanos * 1e-9f;
-        for (GameObject gobj : objects){
-            gobj.update();
-        }
-    }
-
-    public void draw(Canvas canvas) {
-        for (GameObject gobj : objects) {
-            gobj.draw(canvas);
-            if (gobj instanceof BoxCollidable) {
-                RectF rect = ((BoxCollidable) gobj).getBoundingRect();
-
-                canvas.drawRect(rect, collisionPaint);
+        for (ArrayList<GameObject> gameObjects : layers) {
+            for (GameObject gobj : gameObjects) {
+                gobj.update();
             }
         }
     }
 
-    public void add(GameObject gameObject) {
+    public void draw(Canvas canvas) {
+        for (ArrayList<GameObject> gameObjects : layers) {
+            for (GameObject gobj : gameObjects) {
+                gobj.draw(canvas);
+                if (gobj instanceof BoxCollidable) {
+                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
+                    canvas.drawRect(box, collisionPaint);
+                }
+            }
+        }
+    }
+
+    public void add(Layer layer, GameObject gameObject) {
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
-                objects.add(gameObject);
+                ArrayList<GameObject> gameObjects = layers.get(layer.ordinal());
+                gameObjects.add(gameObject);
             }
         });
     }
@@ -134,9 +148,13 @@ public class MainGame {
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
-                objects.remove(gameObject);
-                if (gameObject instanceof Recyclable) {
-                    RecycleBin.add((Recyclable) gameObject);
+                for (ArrayList<GameObject> gameObjects : layers) {
+                    boolean removed = gameObjects.remove(gameObject);
+                    if (!removed) continue;
+                    if (gameObject instanceof Recyclable) {
+                        RecycleBin.add((Recyclable) gameObject);
+                    }
+                    break;
                 }
             }
         });
