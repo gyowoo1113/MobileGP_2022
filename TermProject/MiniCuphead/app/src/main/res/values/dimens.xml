@@ -13,4 +13,6 @@
     <dimen name="bullet_upper_speed">500dp</dimen>
     <dimen name="bomb_bullet_radius">10dp</dimen>
     <dimen name="enemy_initial_speed">80dp</dimen>
+    <dimen name="bg_speed_1">20dp</dimen>
+    <dimen name="bg_speed_8">10dp</dimen>
 </resources>

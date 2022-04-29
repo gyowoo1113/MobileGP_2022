@@ -39,7 +39,7 @@ public class MainGame {
     protected ArrayList<ArrayList<GameObject>> layers;
 
     public enum Layer {
-        bullet, enemy, player, controller, COUNT
+        bg1, bullet, enemy, player, bg2, controller, COUNT
     }
     private Cuphead cuphead;
     private Paint collisionPaint;
@@ -59,6 +59,9 @@ public class MainGame {
 
         moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
         add(Layer.player,moveBoundingBox);
+
+        add(Layer.bg1, new HorScrollBackground(R.mipmap.birdhouse_bg_8, Metrics.size(R.dimen.bg_speed_8)));
+        add(Layer.bg2, new HorScrollBackground(R.mipmap.birdhouse_bg_1, Metrics.size(R.dimen.bg_speed_1)));
 
         collisionPaint = new Paint();
         collisionPaint.setColor(Color.RED);
