@@ -39,7 +39,11 @@ public class EnemyGenerator implements GameObject {
     private void spawn() {
         Random r = new Random();
         if (count == 0){
-            raw = (raw == 1) ? 3 : 1;
+            int val;
+            do{
+                val = r.nextInt(5);
+            }while(val == raw);
+            raw = val;
             max_count = r.nextInt(3);
         }
 
