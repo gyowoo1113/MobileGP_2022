@@ -42,4 +42,11 @@ public class BombBullet extends Bullet {
             MainGame.getInstance().remove(this);
         }
     }
+
+    @Override
+    protected void set(float x, float y) {
+        this.x = x;
+        this.y = y;
+        this.dy = Metrics.size(R.dimen.bullet_upper_speed);
+    }
 }
