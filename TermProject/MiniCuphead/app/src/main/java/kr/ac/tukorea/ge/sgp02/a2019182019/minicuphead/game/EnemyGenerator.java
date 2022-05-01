@@ -37,22 +37,27 @@ public class EnemyGenerator implements GameObject {
     }
 
     private void spawn() {
-        Random r = new Random();
         if (count == 0){
-            int val;
-            do{
-                val = r.nextInt(5);
-            }while(val == raw);
-            raw = val;
-            max_count = r.nextInt(3);
+            setGenerateValues();
         }
 
+        int level = (count > max_count) ? 2 : 1;
         int i = raw*2+1;
         float tenth = Metrics.height / 10;
-        Enemy enemy = Enemy.get(1, tenth * i, fallSpeed);
+        Enemy enemy = Enemy.get(level, tenth * i, fallSpeed);
         MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
 
         count = (count > max_count) ? 0 : count + 1;
+    }
+
+    private void setGenerateValues() {
+        Random r = new Random();
+        int val;
+        do{
+            val = r.nextInt(5);
+        }while(val == raw);
+        raw = val;
+        max_count = r.nextInt(3);
     }
 
     @Override
