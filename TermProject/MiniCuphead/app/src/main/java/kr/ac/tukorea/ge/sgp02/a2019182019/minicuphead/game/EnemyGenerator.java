@@ -14,6 +14,7 @@ public class EnemyGenerator implements GameObject {
     private final float fallSpeed;
     private float elapsedTime;
     private int count;
+    private int max_count;
     private int raw;
 
     public EnemyGenerator() {
@@ -22,6 +23,7 @@ public class EnemyGenerator implements GameObject {
         Enemy.size = Metrics.height / 5.0f * 0.9f;
         count = 0;
         raw = 0;
+        max_count = 2;
     }
 
     @Override
@@ -35,8 +37,10 @@ public class EnemyGenerator implements GameObject {
     }
 
     private void spawn() {
+        Random r = new Random();
         if (count == 0){
             raw = (raw == 1) ? 3 : 1;
+            max_count = r.nextInt(3);
         }
 
         int i = raw*2+1;
@@ -44,7 +48,7 @@ public class EnemyGenerator implements GameObject {
         Enemy enemy = Enemy.get(1, tenth * i, fallSpeed);
         MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
 
-        count = (count > 2) ? 0 : count + 1;
+        count = (count > max_count) ? 0 : count + 1;
     }
 
     @Override
