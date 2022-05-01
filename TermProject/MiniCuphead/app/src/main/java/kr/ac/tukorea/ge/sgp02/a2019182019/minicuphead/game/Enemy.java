@@ -1,7 +1,6 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
@@ -17,7 +16,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     private static final String TAG = Enemy.class.getSimpleName();
     public static float size;
     protected int level;
-    protected float dy;
+    protected float dx;
     protected RectF boundingBox = new RectF();
     protected static int[] bitmapIds = {
             R.mipmap.monster_normal, R.mipmap.monster_touch
@@ -25,33 +24,34 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = bitmapIds.length;
 
-    public static Enemy get(int level, float x, float speed) {
+    public static Enemy get(int level, float y, float speed) {
         Enemy enemy = (Enemy) RecycleBin.get(Enemy.class);
         if (enemy != null) {
-            enemy.set(level, x, speed);
+            enemy.set(level, y, speed);
             return enemy;
         }
-        return new Enemy(level, x, speed);
+        return new Enemy(level, y, speed);
     }
 
-    private void set(int level, float x, float speed) {
+    private void set(int level, float y, float speed) {
         bitmap = BitmapPool.get(bitmapIds[level - 1]);
-        this.x = x;
-        this.y = -size;
-        this.dy = speed;
+        this.y = y;
+        this.x = -size;
+        this.dx = speed;
         this.level = level;
     }
 
-    private Enemy(int level, float x, float speed) {
-        super(x, -size, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
+    private Enemy(int level, float y, float speed) {
+        super(-size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
+//super(x, -size, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
         this.level = level;
-        dy = speed;
+        dx = speed;
     }
 
     @Override
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
-        y += dy * frameTime;
+        x += dx * frameTime;
         setDstRectWithRadius();
         boundingBox.set(dstRect);
         boundingBox.inset(size/16, size/16);
