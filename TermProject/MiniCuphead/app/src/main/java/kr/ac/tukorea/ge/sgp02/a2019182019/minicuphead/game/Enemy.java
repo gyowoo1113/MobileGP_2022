@@ -42,8 +42,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     }
 
     private Enemy(int level, float y, float speed) {
-        super(-size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
-//super(x, -size, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
+        super(Metrics.width+size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
         this.level = level;
         dx = speed;
     }
@@ -51,7 +50,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     @Override
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
-        x += dx * frameTime;
+        x -= dx * frameTime;
         setDstRectWithRadius();
         boundingBox.set(dstRect);
         boundingBox.inset(size/16, size/16);
