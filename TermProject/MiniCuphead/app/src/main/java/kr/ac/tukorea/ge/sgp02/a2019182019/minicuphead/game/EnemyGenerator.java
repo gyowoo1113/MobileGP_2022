@@ -13,7 +13,6 @@ public class EnemyGenerator implements GameObject {
     private final float spawnInterval;
     private final float fallSpeed;
     private float elapsedTime;
-    private int wave;
     private int count;
     private int raw;
 
@@ -21,7 +20,6 @@ public class EnemyGenerator implements GameObject {
         this.spawnInterval = INITIAL_SPAWN_INTERVAL;
         this.fallSpeed = Metrics.size(R.dimen.enemy_initial_speed);
         Enemy.size = Metrics.height / 5.0f * 0.9f;
-        wave = 0;
         count = 0;
         raw = 0;
     }
@@ -37,21 +35,16 @@ public class EnemyGenerator implements GameObject {
     }
 
     private void spawn() {
-        Random r = new Random();
-
         if (count == 0){
-            raw = r.nextInt(5);
+            raw = (raw == 1) ? 3 : 1;
         }
 
         int i = raw*2+1;
         float tenth = Metrics.height / 10;
         Enemy enemy = Enemy.get(1, tenth * i, fallSpeed);
         MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
-        ++count;
 
-        if (count == 4){
-            count = 0;
-        }
+        count = (count > 2) ? 0 : count + 1;
     }
 
     @Override
