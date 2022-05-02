@@ -5,10 +5,10 @@ import android.graphics.Canvas;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 
-public class HorScrollBackground extends Sprite {
+public class HorzScrollBackground extends Sprite {
     private final float speed;
     private final int width;
-    public HorScrollBackground(int bitmapResId, float speed) {
+    public HorzScrollBackground(int bitmapResId, float speed) {
         super(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, bitmapResId);
         this.width = bitmap.getHeight() * Metrics.height / bitmap.getHeight();
         setDstRect(width, Metrics.height);
@@ -17,7 +17,7 @@ public class HorScrollBackground extends Sprite {
 
     @Override
     public void update() {
-        this.x += speed * MainGame.getInstance().frameTime;
+        this.x -= speed * MainGame.getInstance().frameTime;
     }
 
     @Override
