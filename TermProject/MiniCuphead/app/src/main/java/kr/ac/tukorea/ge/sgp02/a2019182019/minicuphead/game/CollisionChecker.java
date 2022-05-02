@@ -22,6 +22,7 @@ public class CollisionChecker implements GameObject {
                 continue;
             }
             Enemy enemy = (Enemy) o1;
+            if (enemy.level == 2) continue;
             boolean collided = false;
             for (GameObject o2 : bullets) {
                 if (!(o2 instanceof Bullet)) {
@@ -40,6 +41,31 @@ public class CollisionChecker implements GameObject {
                 continue;
             }
         }
+
+        if (!MainGame.getInstance().isTouch) return;
+        float x = MainGame.getInstance().tx;
+        float y = MainGame.getInstance().ty;
+
+        for (GameObject o1 : enemies) {
+            if (!(o1 instanceof Enemy)) {
+                continue;
+            }
+            Enemy enemy = (Enemy) o1;
+            if (enemy.level == 1) continue;
+
+
+            boolean collided = false;
+            if (CollisionHelper.isPointInBox(enemy,x,y)) {
+                game.remove(enemy);
+                collided = true;
+                break;
+            }
+
+            if (collided) {
+                continue;
+            }
+        }
+
     }
 
     @Override

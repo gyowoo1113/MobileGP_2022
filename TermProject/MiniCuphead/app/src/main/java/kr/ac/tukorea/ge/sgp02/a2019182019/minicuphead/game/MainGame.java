@@ -30,6 +30,8 @@ public class MainGame {
     }
 
     public float frameTime;
+    public boolean isTouch = false;
+    public float tx,ty;
 
     private MainGame() {
 
@@ -88,6 +90,10 @@ public class MainGame {
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                isTouch = true;
+                tx = x;
+                ty = y;
+
                 if (isPlayerInBox(x, y)) {
                     setPlayerAction(x, y);
                     return true;
@@ -102,6 +108,7 @@ public class MainGame {
 
             case MotionEvent.ACTION_UP:
                 initPlayerAction(x, y);
+                isTouch = false;
         }
         return false;
     }
