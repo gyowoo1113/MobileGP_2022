@@ -53,11 +53,69 @@
 
 #### class 
 
+* Bullet
+    * 구성    
+        * ![screensh](/TermProject/Resource/bullet.png)
+        
+    * 상호작용
+        1. 플레이어 -> Bullet 발사
+        2. 몬스터 -> 공격, 충돌검사
+
+* Cuphead(Player)
+    * 구성 (동작 구성)
+        1. 터치다운 => Box/Point 충돌검사 성공
+            * 이동범위(RangeBox) 갱신
+            * 플레이어 좌표 갱신·총알 발사 활성화
+        2. 화면 드래그
+            * 제한된 범위 내에서 이동
+        3. 터치업
+            * 이동범위(RangeBox) 갱신
+            * 플레이어 좌표 갱신·총알 발사 비활성화
+    * 상호작용
+        1. 화면터치 -> 이동처리, 총알발사
+        
 * Enemy
     * 구성
-        ![screensh](/TermProject/Resource/bullet.png)
-    
+        - level에 따라 충돌처리를 다르게 함
+            * level 1 : 총알과 충돌처리
+            * level 2 : 화면 터치로 충돌처리
+                * 터치다운 상태에서만 충돌검사 진행
     * 상호작용
+        1. 총알 -> 충돌검사
+        2. 화면터치 -> 충돌검사    
+        
+        
+#### 핵심코드
 
-    * 핵심코드
+* 공격 유형(isBomb)에 따라 BombBullet/NormalBullet class를 호출하여 bullet을 생성한다. 
+
+        * Cuphead의 fire() 일부
+            Bullet bullet = (isBomb) ? BombBullet.get(x, y) : NormalBullet.get(x, y + val);
+            MainGame.getInstance().add(MainGame.Layer.bullet, bullet);
+        
+        
+gravity로 dy값을 점점 감소시킨다. 
+dy는 양수값으로 시작하기 때문에, 화면에서 총알은 위로 상승하다가 서서히 추락한다.
+    => 포물선 궤도를 표현
+        
+        public void update() {
+            float frameTime = MainGame.getInstance().frameTime;
+            x -= dx * frameTime;
+            y -= dy * frameTime;
+            dy -=gravity*frameTime;    
     
+    
+터치다운 시, MainGame의 tx,ty를 갱신하고 isTouch를 true로 바꾼다.
+CollisionChecker는 isTouch가 true일 경우 tx,ty 값을 받아와 특정 몬스터와 충돌 검사를 한다.
+        
+        * CollisionChecker의 update() 일부
+            if (!MainGame.getInstance().isTouch) return;
+            float x = MainGame.getInstance().tx;
+            float y = MainGame.getInstance().ty;
+
+            boolean collided = false;
+            if (CollisionHelper.isPointInBox(enemy,x,y)) {
+                game.remove(enemy);
+                collided = true;
+                break;
+            }
