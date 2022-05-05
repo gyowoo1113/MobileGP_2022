@@ -40,4 +40,9 @@ public class NormalBullet extends Bullet {
             game.remove(this);
         }
     }
+
+    @Override
+    public int getPower(){
+        return 10;
+    }
 }

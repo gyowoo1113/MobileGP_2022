@@ -32,7 +32,10 @@ public class CollisionChecker implements GameObject {
                 if (CollisionHelper.collides(enemy, bullet)) {
                     //Log.d(TAG, "*Collision*");
                     game.remove(bullet);
-                    game.remove(enemy);
+                    boolean dead = enemy.decreaseLife(bullet.getPower());
+                    if (dead) {
+                        game.remove(enemy);
+                    }
                     collided = true;
                     break;
                 }
@@ -56,7 +59,10 @@ public class CollisionChecker implements GameObject {
 
             boolean collided = false;
             if (CollisionHelper.isPointInBox(enemy,x,y)) {
-                game.remove(enemy);
+                boolean dead = enemy.decreaseLife(1);
+                if (dead) {
+                    game.remove(enemy);
+                }
                 collided = true;
                 break;
             }

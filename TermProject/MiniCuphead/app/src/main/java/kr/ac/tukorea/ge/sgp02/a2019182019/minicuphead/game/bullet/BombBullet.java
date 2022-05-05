@@ -49,4 +49,9 @@ public class BombBullet extends Bullet {
         this.y = y;
         this.dy = Metrics.size(R.dimen.bullet_upper_speed);
     }
+
+    @Override
+    public int getPower(){
+        return 80;
+    }
 }

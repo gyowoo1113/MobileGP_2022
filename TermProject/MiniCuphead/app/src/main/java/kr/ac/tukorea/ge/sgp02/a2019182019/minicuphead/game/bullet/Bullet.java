@@ -48,4 +48,8 @@ public class Bullet extends Sprite implements BoxCollidable , Recyclable {
         this.x = x;
         this.y = y;
     }
+
+    public int getPower(){
+        return 0;
+    }
 }
