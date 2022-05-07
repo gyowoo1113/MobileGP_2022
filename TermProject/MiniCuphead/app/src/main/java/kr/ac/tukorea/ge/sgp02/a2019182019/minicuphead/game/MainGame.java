@@ -37,6 +37,10 @@ public class MainGame {
 
     }
 
+    public boolean getIsTouchPlayer(){
+        return isTouchPlayer;
+    }
+
     private static MainGame singleton;
     protected ArrayList<ArrayList<GameObject>> layers;
 
@@ -103,6 +107,10 @@ public class MainGame {
                 if (!isTouchPlayer){
                     return false;
                 }
+                isTouch = false;
+
+                tx = x;
+                ty = y;
                 cuphead.setPosition(x, y,moveBoundingBox);
                 return true;
 
