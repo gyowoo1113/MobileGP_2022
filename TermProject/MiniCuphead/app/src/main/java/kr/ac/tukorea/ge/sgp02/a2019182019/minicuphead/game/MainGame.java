@@ -66,9 +66,9 @@ public class MainGame {
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_7, Metrics.size(R.dimen.bg_speed_7)));
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_6, Metrics.size(R.dimen.bg_speed_6)));
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_5, Metrics.size(R.dimen.bg_speed_5)));
-        add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_4, Metrics.size(R.dimen.bg_speed_4)));
-        add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_3, Metrics.size(R.dimen.bg_speed_3)));
-        add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_2, Metrics.size(R.dimen.bg_speed_2)));
+        add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_4, Metrics.size(R.dimen.bg_speed_4)));
+        add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_3, Metrics.size(R.dimen.bg_speed_3)));
+        add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_2, Metrics.size(R.dimen.bg_speed_2)));
         add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_1, Metrics.size(R.dimen.bg_speed_1)));
 
         collisionPaint = new Paint();
