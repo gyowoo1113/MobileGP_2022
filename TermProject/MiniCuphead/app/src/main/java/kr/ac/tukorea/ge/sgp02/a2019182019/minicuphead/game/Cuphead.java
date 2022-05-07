@@ -27,8 +27,8 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private boolean isBomb = false;
 
     public Cuphead(float x, float y) {
-        super(x, y, R.dimen.cuphead_radius, R.mipmap.player_normal);
-        //targetBitmap = BitmapPool.get(R.mipmap.target);
+        super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,0);
+
         fireInterval = Metrics.floatValue(R.dimen.cuphead_fire_interval);
         bombInterval = Metrics.floatValue(R.dimen.cuphead_bomb_interval);
 
@@ -64,13 +64,13 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void setPosition(float x, float y, RangeBox moveBoundingBox) {
-        if (!CollisionHelper.isPointInBox(moveBoundingBox,x,y))
-        {return;}
+        if (!CollisionHelper.isPointInBox(moveBoundingBox,x,y)) return;
 
-        float radius = dstRect.width() / 2;
         this.x = x;
         this.y = y;
-        dstRect.set(x - radius, y - radius, x + radius, y + radius);
+        float _w = dstRect.width() / 2;
+        float _h = dstRect.height() / 2;
+        dstRect.set(x - _w, y - _h, x + _w, y + _h);
     }
 
     @Override

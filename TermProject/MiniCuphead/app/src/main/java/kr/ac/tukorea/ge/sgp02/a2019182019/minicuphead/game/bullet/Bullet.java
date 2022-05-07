@@ -19,7 +19,7 @@ public class Bullet extends Sprite implements BoxCollidable , Recyclable {
     protected RectF boundingRect = new RectF();
 
     protected Bullet(float x, float y ,int w, int h, int ResID) {
-        super(x, y, w,h, ResID);
+        super(x, y, w,h, ResID, 0);
         this.x = x;
         this.y = y;
     }
