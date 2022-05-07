@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="cuphead_radius">30dp</dimen>
     <dimen name="laser_length">20dp</dimen>
     <dimen name="laser_speed">1000dp</dimen>
     <dimen name="laser_width">3dp</dimen>
@@ -25,4 +24,6 @@
     <dimen name="bomb_bullet_h">20dp</dimen>
     <dimen name="normal_bullet_w">30dp</dimen>
     <dimen name="normal_bullet_h">10dp</dimen>
+    <dimen name="cuphead_w">60dp</dimen>
+    <dimen name="cuphead_h">50dp</dimen>
 </resources>
