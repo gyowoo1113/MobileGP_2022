@@ -12,9 +12,10 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 
 public class NormalBullet extends Bullet {
     private NormalBullet(float x, float y) {
-        super(x, y,R.dimen.bomb_bullet_radius, R.mipmap.bullet_normal);
+        super(x, y, (int) Metrics.size(R.dimen.bomb_bullet_w),
+                (int) Metrics.size(R.dimen.bomb_bullet_h), R.mipmap.bullet_normal);
         this.dx = -Metrics.size(R.dimen.laser_speed);
-        boundingRect.set(x - radius, y - radius, x + radius, y + radius);
+        boundingRect.set(x - w/2, y - h/2, x + w/2, y + h/2);
     }
 
     public static NormalBullet get(float x, float y) {
@@ -32,8 +33,9 @@ public class NormalBullet extends Bullet {
         float frameTime = game.frameTime;
         x -= dx * frameTime;
 
-        float radius = dstRect.width() / 2;
-        dstRect.set(x - radius, y - radius, x + radius, y + radius);
+        float _w = dstRect.width() / 2;
+        float _h = dstRect.height() / 2;
+        dstRect.set(x - _w, y - _h, x + _w, y + _h);
         boundingRect.set(dstRect);
 
         if (x < 0) {

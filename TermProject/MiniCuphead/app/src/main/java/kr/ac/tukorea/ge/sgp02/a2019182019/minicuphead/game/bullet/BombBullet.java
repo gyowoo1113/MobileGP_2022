@@ -12,7 +12,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 public class BombBullet extends Bullet {
     public final float gravity;
     private BombBullet(float x, float y) {
-        super(x, y,R.dimen.bomb_bullet_radius, R.mipmap.bullet_bomb);
+        super(x, y, (int) Metrics.size(R.dimen.bomb_bullet_radius_w),
+                (int) Metrics.size(R.dimen.bomb_bullet_radius_h), R.mipmap.bullet_bomb);
         this.dx = -Metrics.size(R.dimen.laser_speed);
         this.dy = Metrics.size(R.dimen.bullet_upper_speed);
         gravity = Metrics.size(R.dimen.bullet_gravity);
@@ -34,8 +35,9 @@ public class BombBullet extends Bullet {
         y -= dy * frameTime;
         dy -=gravity*frameTime;
 
-        float radius = dstRect.width() / 2;
-        dstRect.set(x - radius, y - radius, x + radius, y + radius);
+        float _w = dstRect.width() / 2;
+        float _h = dstRect.height() / 2;
+        dstRect.set(x - _w, y - _h, x + _w, y + _h);
         boundingRect.set(dstRect);
 
         if (x < 0 || y < 0) {
