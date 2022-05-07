@@ -21,8 +21,8 @@
     <dimen name="bg_speed_4">16dp</dimen>
     <dimen name="bg_speed_3">18dp</dimen>
     <dimen name="bg_speed_2">19dp</dimen>
-    <dimen name="bomb_bullet_w">30dp</dimen>
-    <dimen name="bomb_bullet_h">10dp</dimen>
-    <dimen name="bomb_bullet_radius_h">10dp</dimen>
-    <dimen name="bomb_bullet_radius_w">15dp</dimen>
+    <dimen name="bomb_bullet_w">25dp</dimen>
+    <dimen name="bomb_bullet_h">20dp</dimen>
+    <dimen name="normal_bullet_w">30dp</dimen>
+    <dimen name="normal_bullet_h">10dp</dimen>
 </resources>
