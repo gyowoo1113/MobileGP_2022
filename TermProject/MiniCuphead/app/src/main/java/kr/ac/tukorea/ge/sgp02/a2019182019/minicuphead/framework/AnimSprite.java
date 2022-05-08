@@ -1,6 +1,7 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class AnimSprite extends Sprite {
@@ -8,6 +9,7 @@ public class AnimSprite extends Sprite {
     private final int frameCount;
     private final int imageWidth;
     private final int imageHeight;
+    private Paint paint = new Paint();
 
     private Rect srcRect = new Rect();
     private long createdOn;
@@ -39,6 +41,10 @@ public class AnimSprite extends Sprite {
         float time = (now - createdOn) / 1000.0f;
         int index = Math.round(time * framesPerSecond) % frameCount;
         srcRect.set(index * imageWidth, 0, (index + 1) * imageWidth, imageHeight);
-        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+        canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
+    }
+
+    public void setAlpha(int value){
+        paint.setAlpha(value);
     }
 }

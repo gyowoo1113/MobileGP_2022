@@ -18,6 +18,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     protected int level;
     protected float dx;
     protected int life;
+    protected int maxAlpha = 255;
+    protected int alpha;
     protected RectF boundingBox = new RectF();
     protected static int[] bitmapIds = {
             R.mipmap.monster_normal, R.mipmap.monster_touch
@@ -41,6 +43,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.dx = speed;
         this.level = level;
         this.life = (level == 1) ? 100 : 10;
+        this.alpha = maxAlpha;
+        setAlpha(this.alpha);
     }
 
     private Enemy(int level, float y, float speed) {
@@ -48,6 +52,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.level = level;
         dx = speed;
         this.life = (level == 1) ? 100 : 10;
+        this.alpha = maxAlpha;
     }
 
     @Override
@@ -74,6 +79,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     public boolean decreaseLife(int power) {
         life -= power;
+        alpha -= power;
+        setAlpha(alpha);
         if (life <= 0) return true;
         return false;
     }
