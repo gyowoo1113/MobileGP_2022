@@ -25,6 +25,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private boolean bulletToggle = false;
     float heightVal;
     private boolean isBomb = false;
+    int life = 5;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,0);
@@ -85,6 +86,12 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void switchBullet() {
         isBomb = !isBomb;
         interval = (isBomb) ? bombInterval : fireInterval;
+    }
+
+    public boolean decreaseLife(int power) {
+        life -= power;
+        if (life <= 0) return true;
+        return false;
     }
 }
 

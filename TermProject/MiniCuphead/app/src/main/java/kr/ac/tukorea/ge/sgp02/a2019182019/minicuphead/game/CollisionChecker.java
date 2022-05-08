@@ -17,6 +17,8 @@ public class CollisionChecker implements GameObject {
         MainGame game = MainGame.getInstance();
         ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullet);
         ArrayList<GameObject> enemies = game.objectsAt(MainGame.Layer.enemy);
+        ArrayList<GameObject> player = game.objectsAt(MainGame.Layer.player);
+
         for (GameObject o1 : enemies) {
             if (!(o1 instanceof Enemy)) {
                 continue;
@@ -35,6 +37,32 @@ public class CollisionChecker implements GameObject {
                     boolean dead = enemy.decreaseLife(bullet.getPower());
                     if (dead) {
                         game.remove(enemy);
+                    }
+                    collided = true;
+                    break;
+                }
+            }
+            if (collided) {
+                continue;
+            }
+        }
+
+        for (GameObject o1 : enemies) {
+            if (!(o1 instanceof Enemy)) {
+                continue;
+            }
+            Enemy enemy = (Enemy) o1;
+            boolean collided = false;
+            for (GameObject o2 : player) {
+                if (!(o2 instanceof Cuphead)) {
+                    continue;
+                }
+                Cuphead cuphead = (Cuphead) o2;
+                if (CollisionHelper.collides(enemy, cuphead)) {
+                    Log.d(TAG, "collision!");
+                    boolean dead = cuphead.decreaseLife(1);
+                    if (dead) {
+
                     }
                     collided = true;
                     break;
