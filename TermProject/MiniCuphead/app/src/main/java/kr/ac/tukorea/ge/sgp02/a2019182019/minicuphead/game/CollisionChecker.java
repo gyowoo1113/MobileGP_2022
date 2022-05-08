@@ -91,6 +91,7 @@ public class CollisionChecker implements GameObject {
                 if (dead) {
                     game.remove(enemy);
                 }
+                MainGame.getInstance().isTouch = false;
                 collided = true;
                 break;
             }

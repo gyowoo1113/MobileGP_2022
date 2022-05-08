@@ -13,6 +13,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 
 public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public static final float FRAMES_PER_SECOND = 10.0f;
+    public static final int TOUCH_MONSTER = 5;
+    public static final int NORMAL_MONSTER = 100;
     private static final String TAG = Enemy.class.getSimpleName();
     public static float size;
     protected int level;
@@ -41,8 +43,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.x = -size;
         this.dx = speed;
         this.level = level;
-        this.life = (level == 1) ? 100 : 10;
-        this.maxlife = (level == 1) ? 100 : 10;
+        this.life = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
+        this.maxlife = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
         setAlpha(this.maxAlpha);
     }
 
@@ -50,8 +52,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         super(Metrics.width+size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
         this.level = level;
         dx = speed;
-        this.life = (level == 1) ? 100 : 10;
-        this.maxlife = (level == 1) ? 100 : 10;
+        this.life = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
+        this.maxlife = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
     }
 
     @Override
