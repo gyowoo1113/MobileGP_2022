@@ -29,4 +29,5 @@
     <dimen name="boss_idle_w">260dp</dimen>
     <dimen name="boss_idle_h">220dp</dimen>
     <dimen name="boss_x_offest">130dp</dimen>
+    <dimen name="boss_update_speed">70dp</dimen>
 </resources>

@@ -16,6 +16,8 @@ public class Boss implements BoxCollidable, GameObject {
     private int curState = State.idle.ordinal();
     AnimSprite currentSprite;
     float x, y;
+    boolean isDown = true;
+    static float updateElapsedTime;
 
     private enum State{
         //idle,flap_intro,flap_loop,flap_outro,headgun,headgun_outro,death,count
@@ -33,7 +35,7 @@ public class Boss implements BoxCollidable, GameObject {
         };
 
         static float[] fps = {
-                10.0f,
+                12.0f,
         };
 
         static int[] frameCount = {
@@ -42,18 +44,37 @@ public class Boss implements BoxCollidable, GameObject {
     }
 
     Boss(float x, float y) {
-
+        this.x = x;
+        this.y = y;
         for (int i=0; i<State.COUNT.ordinal(); ++i)
         {
             AnimSprite state = new AnimSprite(x,y, State.w[i], State.h[i], State.resIds[i], State.fps[i], State.frameCount[i]);
             states.add(state);
         }
+        updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
     }
 
     @Override
     public void update() {
         currentSprite = states.get(curState);
-        currentSprite.setXY(this.x,this.y);
+
+        float h = currentSprite.getH();
+        if (isDown)
+        {
+            if (this.y + h/2 > Metrics.height)
+                isDown = false;
+            else
+                this.y += MainGame.getInstance().frameTime * updateElapsedTime;
+        }
+        else
+        {
+            if (this.y - h/2 < 0)
+                isDown = true;
+            else
+                this.y -= MainGame.getInstance().frameTime * updateElapsedTime;
+        }
+
+        currentSprite.UpdateDstRect(this.x,this.y);
     }
 
     @Override
