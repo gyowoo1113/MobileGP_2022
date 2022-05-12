@@ -44,6 +44,12 @@ public class Sprite implements GameObject {
         dstRect.set(x - width / 2, y - height / 2, x + width / 2, y + height / 2);
     }
 
+    public void UpdateDstRect(float x, float y) {
+        this.x = x;
+        this.y = y;
+        dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+    }
+
     @Override
     public void update() {
     }
@@ -56,5 +62,13 @@ public class Sprite implements GameObject {
     public void setXY(float x, float y) {
         this.x = x;
         this.y = y;
+    }
+
+    public float getW() {
+        return w;
+    }
+
+    public float getH() {
+        return h;
     }
 }
