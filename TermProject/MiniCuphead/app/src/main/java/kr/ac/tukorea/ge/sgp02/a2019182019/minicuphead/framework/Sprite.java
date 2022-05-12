@@ -52,4 +52,9 @@ public class Sprite implements GameObject {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
     }
+
+    public void setXY(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 }

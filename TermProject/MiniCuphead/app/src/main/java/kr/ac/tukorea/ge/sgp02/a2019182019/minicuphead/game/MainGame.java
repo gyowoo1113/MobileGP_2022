@@ -45,7 +45,7 @@ public class MainGame {
     protected ArrayList<ArrayList<GameObject>> layers;
 
     public enum Layer {
-        bg1, bullet, enemy, player, bg2, controller, COUNT
+        bg1, bullet, enemy, player,boss, bg2, controller, COUNT
     }
     private Cuphead cuphead;
     private Paint collisionPaint;
@@ -62,6 +62,9 @@ public class MainGame {
         cuphead = new Cuphead(Metrics.width / 2, cupheadY);
         cuphead = new Cuphead(cupheadX, Metrics.height/2);
         add(Layer.player, cuphead);
+
+        Boss boss = new Boss(Metrics.width/2, Metrics.size(R.dimen.boss_y_offest));
+        add(Layer.boss,boss);
 
         moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
         add(Layer.player,moveBoundingBox);
@@ -152,10 +155,10 @@ public class MainGame {
         for (ArrayList<GameObject> gameObjects : layers) {
             for (GameObject gobj : gameObjects) {
                 gobj.draw(canvas);
-                if (gobj instanceof BoxCollidable) {
-                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
-                    canvas.drawRect(box, collisionPaint);
-                }
+//                if (gobj instanceof BoxCollidable) {
+//                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
+//                    canvas.drawRect(box, collisionPaint);
+//                }
             }
         }
     }

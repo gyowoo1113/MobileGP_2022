@@ -26,4 +26,7 @@
     <dimen name="normal_bullet_h">10dp</dimen>
     <dimen name="cuphead_w">60dp</dimen>
     <dimen name="cuphead_h">50dp</dimen>
+    <dimen name="boss_idle_w">100dp</dimen>
+    <dimen name="boss_idle_h">110dp</dimen>
+    <dimen name="boss_y_offest">130dp</dimen>
 </resources>
