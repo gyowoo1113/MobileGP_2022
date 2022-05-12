@@ -63,7 +63,8 @@ public class MainGame {
         cuphead = new Cuphead(cupheadX, Metrics.height/2);
         add(Layer.player, cuphead);
 
-        Boss boss = new Boss(Metrics.width/2, Metrics.size(R.dimen.boss_y_offest));
+        float bossX = Metrics.width - Metrics.size(R.dimen.boss_x_offest);
+        Boss boss = new Boss(bossX,Metrics.height/2);
         add(Layer.boss,boss);
 
         moveBoundingBox = new RangeBox(cupheadX, Metrics.height/2);
