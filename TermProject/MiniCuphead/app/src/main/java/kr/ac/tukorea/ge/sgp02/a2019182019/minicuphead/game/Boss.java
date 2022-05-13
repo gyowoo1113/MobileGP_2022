@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
@@ -12,12 +13,14 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
 public class Boss implements BoxCollidable, GameObject {
-    ArrayList<AnimSprite> states = new ArrayList<>();
-    private State curState = State.handgun;
-    AnimSprite currentSprite;
+    private ArrayList<AnimSprite> states = new ArrayList<>();
+    private State curState = State.idle;
+    private AnimSprite currentSprite;
     float x, y;
     boolean isDown = true;
     static float updateElapsedTime;
+    private int loop_count = 1;
+    static final int inoutCount = 1;
 
     private enum State{
         idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
@@ -87,35 +90,56 @@ public class Boss implements BoxCollidable, GameObject {
             case idle:
                 updateHeight();
                 break;
-
-            case handgun:
-                if (isAnimEnd()) {
-                    setState(State.handgun_outro);
-                }
-                break;
-
-            case handgun_outro:
-                if (isAnimEnd()){
-                    setState(State.idle);
-                }
-                break;
-
-            case flap_intro:
-                if (isAnimEnd()) {
-                    setState(State.flap_loop);
-                }
-                break;
-
-            case flap_loop:
-                break;
-
-            case flap_outro:
-                if (isAnimEnd()) {
-                    setState(State.idle);
-                }
-                break;
         }
+
+        if (isAnimEnd()){
+            ++loop_count;
+            switchState();
+        }
+
         currentSprite.UpdateDstRect(this.x,this.y);
+    }
+
+    private void switchState() {
+
+        int cnt = (curState == State.idle || curState == State.flap_loop) ?
+                GetRandCount(): inoutCount;
+        Random r = new Random();
+
+        if (loop_count == cnt)
+        {
+            switch(curState)
+            {
+                case idle:
+                    boolean check = r.nextBoolean();
+                    State st = (check) ? State.handgun : State.flap_intro;
+                    setState(st);
+                    break;
+
+                case handgun:
+                    setState(State.handgun_outro);
+                    break;
+
+                case flap_intro:
+                    setState(State.flap_loop);
+                    break;
+
+                case flap_loop:
+                    setState(State.flap_outro);
+                    break;
+
+                case handgun_outro:
+                case flap_outro:
+                    setState(State.idle);
+                    break;
+            }
+        }
+    }
+
+    private int GetRandCount() {
+        Random r = new Random();
+        int cnt = 4;
+        return cnt;
     }
 
     private boolean isAnimEnd() {
@@ -127,6 +151,7 @@ public class Boss implements BoxCollidable, GameObject {
         currentSprite = states.get(curState.ordinal());
         currentSprite.setCreatedOn(System.currentTimeMillis());
         currentSprite.setIndex(0);
+        loop_count = 0;
     }
 
     private void updateHeight() {
