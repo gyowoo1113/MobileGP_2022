@@ -13,6 +13,7 @@ public class AnimSprite extends Sprite {
 
     private Rect srcRect = new Rect();
     private long createdOn;
+    private int index = 0;
 
     public AnimSprite(float x, float y, float w, float h, int bitmapResId, float framesPerSecond, int frameCount) {
         super(x, y, w, h, bitmapResId);
@@ -39,12 +40,24 @@ public class AnimSprite extends Sprite {
     public void draw(Canvas canvas) {
         long now = System.currentTimeMillis();
         float time = (now - createdOn) / 1000.0f;
-        int index = Math.round(time * framesPerSecond) % frameCount;
+        this.index = Math.round(time * framesPerSecond) % frameCount;
         srcRect.set(index * imageWidth, 0, (index + 1) * imageWidth, imageHeight);
         canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
     }
 
     public void setAlpha(int value){
         paint.setAlpha(value);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setCreatedOn(long createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

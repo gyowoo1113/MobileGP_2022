@@ -13,7 +13,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
 public class Boss implements BoxCollidable, GameObject {
     ArrayList<AnimSprite> states = new ArrayList<>();
-    private State curState = State.idle;
+    private State curState = State.handgun;
     AnimSprite currentSprite;
     float x, y;
     boolean isDown = true;
@@ -76,37 +76,58 @@ public class Boss implements BoxCollidable, GameObject {
             states.add(state);
         }
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
+        int stateIndex = curState.ordinal();
+        currentSprite = states.get(stateIndex);
     }
 
     @Override
     public void update() {
-        currentSprite = states.get(curState.ordinal());
+        int stateIndex = curState.ordinal();
+        currentSprite = states.get(stateIndex);
 
         switch(curState)
         {
             case idle:
                 updateHeight();
                 break;
-        }
 
+            case handgun:
+                if (State.frameCount[stateIndex] == currentSprite.getIndex() + 1) {
+                    curState = State.handgun_outro;
+                    currentSprite = states.get(curState.ordinal());
+                    currentSprite.setCreatedOn(System.currentTimeMillis());
+                    currentSprite.setIndex(0);
+                }
+                break;
+
+            case handgun_outro:
+                if (State.frameCount[stateIndex] == currentSprite.getIndex() + 1){
+                    curState = State.handgun;
+                    currentSprite = states.get(curState.ordinal());
+                    currentSprite.setCreatedOn(System.currentTimeMillis());
+                    currentSprite.setIndex(0);
+                }
+                break;
+        }
         currentSprite.UpdateDstRect(this.x,this.y);
     }
 
     private void updateHeight() {
         float h = currentSprite.getH();
+        float frameTime = MainGame.getInstance().frameTime;
         if (isDown)
         {
             if (this.y + h/2 > Metrics.height)
                 isDown = false;
             else
-                this.y += MainGame.getInstance().frameTime * updateElapsedTime;
+                this.y += frameTime * updateElapsedTime;
         }
         else
         {
             if (this.y - h/2 < 0)
                 isDown = true;
             else
-                this.y -= MainGame.getInstance().frameTime * updateElapsedTime;
+                this.y -= frameTime * updateElapsedTime;
         }
     }
 
