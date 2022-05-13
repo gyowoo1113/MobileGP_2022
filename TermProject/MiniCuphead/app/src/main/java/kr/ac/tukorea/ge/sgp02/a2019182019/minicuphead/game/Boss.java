@@ -13,7 +13,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
 public class Boss implements BoxCollidable, GameObject {
     ArrayList<AnimSprite> states = new ArrayList<>();
-    private int curState = State.idle.ordinal();
+    private State curState = State.idle;
     AnimSprite currentSprite;
     float x, y;
     boolean isDown = true;
@@ -80,8 +80,19 @@ public class Boss implements BoxCollidable, GameObject {
 
     @Override
     public void update() {
-        currentSprite = states.get(curState);
+        currentSprite = states.get(curState.ordinal());
 
+        switch(curState)
+        {
+            case idle:
+                updateHeight();
+                break;
+        }
+
+        currentSprite.UpdateDstRect(this.x,this.y);
+    }
+
+    private void updateHeight() {
         float h = currentSprite.getH();
         if (isDown)
         {
@@ -97,13 +108,11 @@ public class Boss implements BoxCollidable, GameObject {
             else
                 this.y -= MainGame.getInstance().frameTime * updateElapsedTime;
         }
-
-        currentSprite.UpdateDstRect(this.x,this.y);
     }
 
     @Override
     public void draw(Canvas canvas) {
-        currentSprite = states.get(curState);
+        currentSprite = states.get(curState.ordinal());
         currentSprite.draw(canvas);
     }
 
