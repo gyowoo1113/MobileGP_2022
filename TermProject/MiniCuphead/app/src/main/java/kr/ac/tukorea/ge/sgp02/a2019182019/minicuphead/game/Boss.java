@@ -76,14 +76,11 @@ public class Boss implements BoxCollidable, GameObject {
             states.add(state);
         }
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
-        int stateIndex = curState.ordinal();
-        currentSprite = states.get(stateIndex);
+        currentSprite = states.get(curState.ordinal());
     }
 
     @Override
     public void update() {
-        int stateIndex = curState.ordinal();
-        currentSprite = states.get(stateIndex);
 
         switch(curState)
         {
@@ -92,24 +89,29 @@ public class Boss implements BoxCollidable, GameObject {
                 break;
 
             case handgun:
-                if (State.frameCount[stateIndex] == currentSprite.getIndex() + 1) {
-                    curState = State.handgun_outro;
-                    currentSprite = states.get(curState.ordinal());
-                    currentSprite.setCreatedOn(System.currentTimeMillis());
-                    currentSprite.setIndex(0);
+                if (isAnimEnd()) {
+                    setState(State.handgun_outro);
                 }
                 break;
 
             case handgun_outro:
-                if (State.frameCount[stateIndex] == currentSprite.getIndex() + 1){
-                    curState = State.handgun;
-                    currentSprite = states.get(curState.ordinal());
-                    currentSprite.setCreatedOn(System.currentTimeMillis());
-                    currentSprite.setIndex(0);
+                if (isAnimEnd()){
+                    setState(State.handgun);
                 }
                 break;
         }
         currentSprite.UpdateDstRect(this.x,this.y);
+    }
+
+    private boolean isAnimEnd() {
+        return State.frameCount[curState.ordinal()] == currentSprite.getIndex() + 1;
+    }
+
+    private void setState(State handgun_outro) {
+        curState = handgun_outro;
+        currentSprite = states.get(curState.ordinal());
+        currentSprite.setCreatedOn(System.currentTimeMillis());
+        currentSprite.setIndex(0);
     }
 
     private void updateHeight() {
@@ -133,7 +135,6 @@ public class Boss implements BoxCollidable, GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        currentSprite = states.get(curState.ordinal());
         currentSprite.draw(canvas);
     }
 
