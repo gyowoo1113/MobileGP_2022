@@ -30,4 +30,6 @@
     <dimen name="boss_idle_h">220dp</dimen>
     <dimen name="boss_x_offest">130dp</dimen>
     <dimen name="boss_update_speed">70dp</dimen>
+    <dimen name="boss_flap_w">260dp</dimen>
+    <dimen name="boss_flap_h">300dp</dimen>
 </resources>

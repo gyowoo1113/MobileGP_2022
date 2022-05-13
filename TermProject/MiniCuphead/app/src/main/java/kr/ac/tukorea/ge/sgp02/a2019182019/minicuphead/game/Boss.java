@@ -20,26 +20,50 @@ public class Boss implements BoxCollidable, GameObject {
     static float updateElapsedTime;
 
     private enum State{
-        //idle,flap_intro,flap_loop,flap_outro,headgun,headgun_outro,death,count
-        idle,COUNT;
+        idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
         static float[] w = {
-            Metrics.size(R.dimen.boss_idle_w),
+                Metrics.size(R.dimen.boss_idle_w),
+                Metrics.size(R.dimen.boss_idle_w),
+                Metrics.size(R.dimen.boss_idle_w),
+                Metrics.size(R.dimen.boss_flap_w),
+                Metrics.size(R.dimen.boss_flap_w),
+                Metrics.size(R.dimen.boss_idle_w),
         };
 
         static float[] h = {
-            Metrics.size(R.dimen.boss_idle_h),
+                Metrics.size(R.dimen.boss_idle_h),
+                Metrics.size(R.dimen.boss_idle_h),
+                Metrics.size(R.dimen.boss_idle_h),
+                Metrics.size(R.dimen.boss_flap_h),
+                Metrics.size(R.dimen.boss_flap_h),
+                Metrics.size(R.dimen.boss_idle_h),
         };
 
         static int[] resIds = {
-            R.mipmap.boss_normal,
+                R.mipmap.boss_normal,
+                R.mipmap.boss_attack_handgun,
+                R.mipmap.boss_attack_handgun_outro,
+                R.mipmap.boss_attack_flap_intro,
+                R.mipmap.boss_attack_flap_loop,
+                R.mipmap.boss_attack_flap_outro,
         };
 
         static float[] fps = {
                 12.0f,
+                12.0f,
+                12.0f,
+                12.0f,
+                9.0f,
+                12.0f,
         };
 
         static int[] frameCount = {
-            17,
+                17,
+                17,
+                17,
+                9,
+                9,
+                3,
         };
     }
 
