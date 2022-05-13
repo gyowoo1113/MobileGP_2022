@@ -96,7 +96,22 @@ public class Boss implements BoxCollidable, GameObject {
 
             case handgun_outro:
                 if (isAnimEnd()){
-                    setState(State.handgun);
+                    setState(State.idle);
+                }
+                break;
+
+            case flap_intro:
+                if (isAnimEnd()) {
+                    setState(State.flap_loop);
+                }
+                break;
+
+            case flap_loop:
+                break;
+
+            case flap_outro:
+                if (isAnimEnd()) {
+                    setState(State.idle);
                 }
                 break;
         }
