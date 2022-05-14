@@ -11,6 +11,8 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.HandgunBullet;
 
 public class Boss implements BoxCollidable, GameObject {
     private ArrayList<AnimSprite> states = new ArrayList<>();
@@ -114,8 +116,11 @@ public class Boss implements BoxCollidable, GameObject {
                     boolean check = r.nextBoolean();
                     State st = (check) ? State.handgun : State.flap_intro;
                     setState(st);
-                    break;
 
+                    if (st == State.handgun)
+                        handgunFire();
+
+                    break;
                 case handgun:
                     setState(State.handgun_outro);
                     break;
@@ -134,6 +139,11 @@ public class Boss implements BoxCollidable, GameObject {
                     break;
             }
         }
+    }
+
+    private void handgunFire() {
+        Bullet bullet = HandgunBullet.get(x, y);
+        MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
     }
 
     private int GetRandCount() {

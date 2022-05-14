@@ -45,7 +45,7 @@ public class MainGame {
     protected ArrayList<ArrayList<GameObject>> layers;
 
     public enum Layer {
-        bg1, bullet, enemy, player,boss, bg2, controller, COUNT
+        bg1, bullet, enemy, player,boss_bullet,boss, bg2, controller, COUNT
     }
     private Cuphead cuphead;
     private Paint collisionPaint;
