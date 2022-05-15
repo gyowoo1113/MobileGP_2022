@@ -10,6 +10,7 @@ public class AnimSprite extends Sprite {
     private final int imageWidth;
     private final int imageHeight;
     private Paint paint = new Paint();
+    protected float angle;
 
     private Rect srcRect = new Rect();
     private long createdOn;
@@ -30,6 +31,7 @@ public class AnimSprite extends Sprite {
         this.frameCount = frameCount;
 
         createdOn = System.currentTimeMillis();
+        angle = -(float) (Math.PI / 2);
     }
 
     public AnimSprite(float x, float y, int resWID, int resHID, int bitmapResId, float framesPerSecond, int frameCount) {
@@ -55,11 +57,16 @@ public class AnimSprite extends Sprite {
 
     @Override
     public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
+
         long now = System.currentTimeMillis();
         float time = (now - createdOn) / 1000.0f;
         this.index = Math.round(time * framesPerSecond) % frameCount;
         srcRect.set(index * imageWidth, 0, (index + 1) * imageWidth, imageHeight);
         canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
+
+        canvas.restore();
     }
 
     public void setAlpha(int value){
