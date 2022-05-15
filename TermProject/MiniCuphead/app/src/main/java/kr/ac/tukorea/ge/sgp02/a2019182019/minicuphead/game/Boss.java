@@ -24,6 +24,8 @@ public class Boss implements BoxCollidable, GameObject {
     static float updateElapsedTime;
     private int loop_count = 1;
     static final int inoutCount = 1;
+    private float elapsedTimeForFire;
+    private float interval;
 
     private enum State{
         idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
@@ -83,10 +85,12 @@ public class Boss implements BoxCollidable, GameObject {
         }
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
         currentSprite = states.get(curState.ordinal());
+        interval = Metrics.floatValue(R.dimen.feather_fire_interval);
     }
 
     @Override
     public void update() {
+        float frameTime = MainGame.getInstance().frameTime;
 
         switch(curState)
         {
@@ -95,7 +99,11 @@ public class Boss implements BoxCollidable, GameObject {
                 break;
 
             case flap_loop:
-                featherFire();
+                elapsedTimeForFire += frameTime;
+                if (elapsedTimeForFire > interval) {
+                    featherFire();
+                    elapsedTimeForFire -= interval;
+                }
                 break;
         }
 
@@ -179,6 +187,7 @@ public class Boss implements BoxCollidable, GameObject {
         currentSprite.setCreatedOn(System.currentTimeMillis());
         currentSprite.setIndex(0);
         loop_count = 0;
+        elapsedTimeForFire = 0;
     }
 
     private void updateHeight() {
