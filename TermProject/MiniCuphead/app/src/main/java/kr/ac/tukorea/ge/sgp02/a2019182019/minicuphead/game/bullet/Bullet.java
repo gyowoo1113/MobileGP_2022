@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
@@ -13,13 +14,19 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
-public class Bullet extends Sprite implements BoxCollidable , Recyclable {
+public class Bullet extends AnimSprite implements BoxCollidable , Recyclable {
     protected float x, y;
     protected float dx, dy;
     protected RectF boundingRect = new RectF();
 
     protected Bullet(float x, float y ,int w, int h, int ResID) {
-        super(x, y, w,h, ResID, 0);
+        super(x, y, w,h, ResID, 10.0f,1);
+        this.x = x;
+        this.y = y;
+    }
+
+    protected Bullet(float x, float y ,int w, int h, int ResID, float fps, int fc) {
+        super(x, y, w,h, ResID, fps,fc);
         this.x = x;
         this.y = y;
     }
@@ -27,11 +34,6 @@ public class Bullet extends Sprite implements BoxCollidable , Recyclable {
     @Override
     public void update() {
 
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
     @Override

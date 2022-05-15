@@ -8,7 +8,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 public class FeatherBullet extends Bullet{
     private float fireSpeed;
     private FeatherBullet(float x, float y, float dx, float dy) {
-        super(x, y, R.dimen.normal_bullet_w, R.dimen.normal_bullet_h, R.mipmap.boss_attack_flap_feathers);
+        super(x, y, R.dimen.feather_w, R.dimen.feather_h, R.mipmap.boss_attack_flap_feathers,10.0f,8);
         fireSpeed = Metrics.size(R.dimen.feather_fire_speed);
         this.dx = dx;
         this.dy = dy;

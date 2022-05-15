@@ -32,6 +32,23 @@ public class AnimSprite extends Sprite {
         createdOn = System.currentTimeMillis();
     }
 
+    public AnimSprite(float x, float y, int resWID, int resHID, int bitmapResId, float framesPerSecond, int frameCount) {
+        super(x, y, resWID, resHID, bitmapResId,0);
+        int imageWidth = bitmap.getWidth();
+        imageHeight = bitmap.getHeight();
+        this.framesPerSecond = framesPerSecond;
+        if (frameCount == 0) {
+            frameCount = imageWidth / imageHeight;
+            imageWidth = imageHeight;
+        } else {
+            imageWidth = imageWidth / frameCount;
+        }
+        this.imageWidth = imageWidth;
+        this.frameCount = frameCount;
+
+        createdOn = System.currentTimeMillis();
+    }
+
     @Override
     public void update() {
     }
