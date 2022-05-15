@@ -35,4 +35,5 @@
     <dimen name="handgun_bullet_w">60dp</dimen>
     <dimen name="handgun_bullet_h">30dp</dimen>
     <dimen name="handgun_speed">200dp</dimen>
+    <dimen name="feather_fire_speed">500dp</dimen>
 </resources>

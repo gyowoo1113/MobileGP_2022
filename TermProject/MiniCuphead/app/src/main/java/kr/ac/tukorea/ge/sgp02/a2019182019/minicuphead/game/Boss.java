@@ -12,6 +12,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.FeatherBullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.HandgunBullet;
 
 public class Boss implements BoxCollidable, GameObject {
@@ -92,6 +93,10 @@ public class Boss implements BoxCollidable, GameObject {
             case idle:
                 updateHeight();
                 break;
+
+            case flap_loop:
+                featherFire();
+                break;
         }
 
         if (isAnimEnd()){
@@ -100,6 +105,18 @@ public class Boss implements BoxCollidable, GameObject {
         }
 
         currentSprite.UpdateDstRect(this.x,this.y);
+    }
+
+    private void featherFire() {
+        int shotNum = 12;
+        float angle = 360 / shotNum;
+
+        for(int i =0;i<shotNum; ++i) {
+            float dx = (float) Math.sin(angle*i);
+            float dy = (float) Math.cos(angle*i);
+            Bullet bullet = FeatherBullet.get(x, y,dx,dy);
+            MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
+        }
     }
 
     private void switchState() {
