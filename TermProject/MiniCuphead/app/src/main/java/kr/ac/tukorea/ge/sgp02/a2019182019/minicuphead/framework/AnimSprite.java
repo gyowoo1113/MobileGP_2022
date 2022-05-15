@@ -57,15 +57,14 @@ public class AnimSprite extends Sprite {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
-
         long now = System.currentTimeMillis();
         float time = (now - createdOn) / 1000.0f;
         this.index = Math.round(time * framesPerSecond) % frameCount;
         srcRect.set(index * imageWidth, 0, (index + 1) * imageWidth, imageHeight);
-        canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
 
+        canvas.save();
+        canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
+        canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
         canvas.restore();
     }
 

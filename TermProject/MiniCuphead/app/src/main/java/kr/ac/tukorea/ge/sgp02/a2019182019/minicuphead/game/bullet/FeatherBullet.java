@@ -34,12 +34,12 @@ public class FeatherBullet extends Bullet{
         x -= dx * fireSpeed * frameTime;
         y -= dy * fireSpeed * frameTime;
 
-        float _w = dstRect.width() / 2;
-        float _h = dstRect.height() / 2;
-        dstRect.set(x - _w, y - _h, x + _w, y + _h);
+        angle = (float) Math.atan2(ty - y, tx-x) - (float)Math.PI/2;
+
+        UpdateDstRect(x,y);
         boundingRect.set(dstRect);
 
-        if (x > Metrics.width) {
+        if (x < 0 || x > Metrics.width || y < 0 || y > Metrics.height) {
             game.remove(this);
         }
     }
@@ -56,5 +56,7 @@ public class FeatherBullet extends Bullet{
         this.dy = dy;
         this.tx = x;
         this.ty = y;
+        angle = (float) (Math.PI * 2 - (Math.PI/2));
+        UpdateDstRect(x,y);
     }
 }
