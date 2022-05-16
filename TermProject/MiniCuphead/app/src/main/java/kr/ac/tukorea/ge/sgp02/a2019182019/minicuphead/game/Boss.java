@@ -137,9 +137,7 @@ public class Boss implements BoxCollidable, GameObject {
     }
 
     private void switchState() {
-
-        int cnt = (curState == State.idle || curState == State.flap_loop) ?
-                GetRandCount(): inoutCount;
+        int cnt = getLoopCnt();
         Random r = new Random();
 
         if (loop_count == cnt)
@@ -175,10 +173,17 @@ public class Boss implements BoxCollidable, GameObject {
         }
     }
 
-    private int GetRandCount() {
+    private int getLoopCnt() {
         Random r = new Random();
-        int cnt = 4;
-        return cnt;
+        if (curState == State.idle) {
+            int cnt = r.nextInt(2)+3;
+            return cnt;
+        }
+        if (curState == State.flap_loop) {
+            int cnt =  r.nextInt(2)+6;
+            return cnt;
+        }
+        return inoutCount;
     }
 
     private boolean isAnimEnd() {
