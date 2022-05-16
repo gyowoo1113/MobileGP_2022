@@ -26,6 +26,8 @@ public class Boss implements BoxCollidable, GameObject {
     static final int inoutCount = 1;
     private float elapsedTimeForFire;
     private float interval;
+    private RectF boundingBox = new RectF();
+    protected int life, maxlife;
 
     private enum State{
         idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
@@ -86,6 +88,7 @@ public class Boss implements BoxCollidable, GameObject {
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
         currentSprite = states.get(curState.ordinal());
         interval = Metrics.floatValue(R.dimen.feather_fire_interval);
+        life = 2000;
     }
 
     @Override
@@ -113,6 +116,7 @@ public class Boss implements BoxCollidable, GameObject {
         }
 
         currentSprite.updateDstRect(this.x,this.y);
+        boundingBox.set(currentSprite.getDstRect());
     }
 
     private void featherFire() {
@@ -216,6 +220,12 @@ public class Boss implements BoxCollidable, GameObject {
 
     @Override
     public RectF getBoundingRect() {
-        return null;
+        return boundingBox;
+    }
+
+    public boolean decreaseLife(int power) {
+        life -= power;
+        if (life <= 0) return true;
+        return false;
     }
 }
