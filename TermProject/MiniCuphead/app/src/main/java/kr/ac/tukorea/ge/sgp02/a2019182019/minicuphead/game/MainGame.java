@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
@@ -18,22 +19,17 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 
-public class MainGame {
+public class MainGame extends BaseGame {
     private boolean isTouchPlayer = false;
     private RangeBox moveBoundingBox;
 
-    public static MainGame getInstance() {
+    public static MainGame get() {
         if (singleton == null) {
             singleton = new MainGame();
         }
-        return singleton;
+        return (MainGame) singleton;
     }
 
-    public static void clear() {
-        singleton = null;
-    }
-
-    public float frameTime;
     public boolean isTouch = false;
     public float tx,ty;
 
@@ -45,16 +41,14 @@ public class MainGame {
         return isTouchPlayer;
     }
 
-    private static MainGame singleton;
-    protected ArrayList<ArrayList<GameObject>> layers;
-
     public enum Layer {
         bg1, bullet, enemy, player,boss_bullet,boss, bg2, controller, COUNT
     }
     private Cuphead cuphead;
-    private Paint collisionPaint;
 
     public void init() {
+        super.init();
+
         initLayers(Layer.COUNT.ordinal());
 
         add(Layer.controller, new EnemyGenerator());
@@ -83,19 +77,9 @@ public class MainGame {
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_2, Metrics.size(R.dimen.bg_speed_2)));
         add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_1, Metrics.size(R.dimen.bg_speed_1)));
 
-        collisionPaint = new Paint();
-        collisionPaint.setColor(Color.RED);
-        collisionPaint.setStyle(Paint.Style.STROKE);
-        collisionPaint.setStrokeWidth(10);
     }
 
-    private void initLayers(int count) {
-        layers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            layers.add(new ArrayList<>());
-        }
-    }
-
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         int x = (int) event.getX();
@@ -147,58 +131,15 @@ public class MainGame {
         cuphead.setFire(true);
     }
 
-    public void update(int elapsedNanos) {
-        frameTime = elapsedNanos * 1e-9f;
-        for (ArrayList<GameObject> gameObjects : layers) {
-            for (GameObject gobj : gameObjects) {
-                gobj.update();
-            }
-        }
-    }
-
-    public void draw(Canvas canvas) {
-        for (ArrayList<GameObject> gameObjects : layers) {
-            for (GameObject gobj : gameObjects) {
-                gobj.draw(canvas);
-//                if (gobj instanceof BoxCollidable) {
-//                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
-//                    canvas.drawRect(box, collisionPaint);
-//                }
-            }
-        }
-    }
-
     public void add(Layer layer, GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<GameObject> gameObjects = layers.get(layer.ordinal());
-                gameObjects.add(gameObject);
-            }
-        });
-    }
-
-    public void remove(GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                for (ArrayList<GameObject> gameObjects : layers) {
-                    boolean removed = gameObjects.remove(gameObject);
-                    if (!removed) continue;
-                    if (gameObject instanceof Recyclable) {
-                        RecycleBin.add((Recyclable) gameObject);
-                    }
-                    break;
-                }
-            }
-        });
+        add(layer.ordinal(),gameObject);
     }
 
     public ArrayList<GameObject> objectsAt(Layer layer) {
-        return layers.get(layer.ordinal());
+        return objectsAt(layer.ordinal());
     }
 
-    public void switchBullet() {
-        cuphead.switchBullet();
-    }
+//    public void switchBullet() {
+//        cuphead.switchBullet();
+//    }
 }

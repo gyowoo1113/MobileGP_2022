@@ -2,12 +2,14 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
@@ -16,6 +18,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.FeatherBullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.HandgunBullet;
 
 public class Boss implements BoxCollidable, GameObject {
+    private static final String TAG = Boss.class.getSimpleName();
     private ArrayList<AnimSprite> states = new ArrayList<>();
     private State curState = State.idle;
     private AnimSprite currentSprite;
@@ -94,7 +97,7 @@ public class Boss implements BoxCollidable, GameObject {
 
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
 
         switch(curState)
         {
@@ -130,7 +133,7 @@ public class Boss implements BoxCollidable, GameObject {
             float dx = (float) Math.sin(valAngle);
             float dy = (float) Math.cos(valAngle);
             Bullet bullet = FeatherBullet.get(x, y,dx,dy);
-            MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
+            MainGame.get().add(MainGame.Layer.boss_bullet, bullet);
         }
         isToggle = !isToggle;
     }
@@ -142,7 +145,7 @@ public class Boss implements BoxCollidable, GameObject {
         for(int i=0; i<3; ++i)
         {
             Bullet bullet = HandgunBullet.get(x, y,vals[i]);
-            MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
+            MainGame.get().add(MainGame.Layer.boss_bullet, bullet);
         }
     }
 
@@ -211,7 +214,7 @@ public class Boss implements BoxCollidable, GameObject {
 
     private void updateHeight() {
         float h = currentSprite.getH();
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         if (isDown)
         {
             if (this.y + h/2 > Metrics.height)

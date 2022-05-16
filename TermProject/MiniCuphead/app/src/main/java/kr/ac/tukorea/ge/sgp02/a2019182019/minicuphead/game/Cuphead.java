@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
@@ -42,7 +43,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         elapsedTimeForFire += frameTime;
         if (elapsedTimeForFire > interval && isFire) {
             fire();
@@ -60,7 +61,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
         float val = (bulletToggle) ? +heightVal : -heightVal;
         
         Bullet bullet = (isBomb) ? BombBullet.get(x, y) : NormalBullet.get(x, y + val);
-        MainGame.getInstance().add(MainGame.Layer.bullet, bullet);
+        MainGame.get().add(MainGame.Layer.bullet, bullet);
 
     }
 

@@ -4,6 +4,7 @@ import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BitmapPool;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
@@ -58,13 +59,13 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         x -= dx * frameTime;
         setDstRectWithRadius();
         boundingBox.set(dstRect);
         boundingBox.inset(size/16, size/16);
         if (dstRect.top > Metrics.height) {
-            MainGame.getInstance().remove(this);
+            BaseGame.getInstance().remove(this);
         }
     }
 

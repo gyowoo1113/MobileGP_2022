@@ -35,10 +35,10 @@ public class RangeBox implements BoxCollidable, GameObject{
 
     @Override
     public void update() {
-        if (!MainGame.getInstance().getIsTouchPlayer()) return;
+        if (!MainGame.get().getIsTouchPlayer()) return;
 
-        float tx = MainGame.getInstance().tx;
-        float ty = MainGame.getInstance().ty;
+        float tx = MainGame.get().tx;
+        float ty = MainGame.get().ty;
 
         float angle = (float) Math.atan2(ty-y,tx-x);
         float speed = 300;

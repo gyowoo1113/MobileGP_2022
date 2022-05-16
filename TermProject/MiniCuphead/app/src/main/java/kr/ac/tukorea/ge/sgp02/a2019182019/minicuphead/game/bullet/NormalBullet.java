@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
@@ -28,7 +29,7 @@ public class NormalBullet extends Bullet {
 
     @Override
     public void update() {
-        MainGame game = MainGame.getInstance();
+        BaseGame game = BaseGame.getInstance();
         float frameTime = game.frameTime;
         x -= dx * frameTime;
 

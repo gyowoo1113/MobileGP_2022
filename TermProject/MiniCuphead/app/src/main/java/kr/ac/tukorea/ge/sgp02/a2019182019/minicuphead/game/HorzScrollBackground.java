@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
 
@@ -17,7 +18,7 @@ public class HorzScrollBackground extends Sprite {
 
     @Override
     public void update() {
-        this.x -= speed * MainGame.getInstance().frameTime;
+        this.x -= speed * BaseGame.getInstance().frameTime;
     }
 
     @Override

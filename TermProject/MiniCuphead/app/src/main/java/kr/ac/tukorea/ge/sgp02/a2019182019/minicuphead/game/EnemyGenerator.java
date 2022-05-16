@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 
@@ -28,7 +29,7 @@ public class EnemyGenerator implements GameObject {
 
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         elapsedTime += frameTime;
         if (elapsedTime > spawnInterval) {
             spawn();
@@ -45,7 +46,7 @@ public class EnemyGenerator implements GameObject {
         int i = raw*2+1;
         float tenth = Metrics.height / 10;
         Enemy enemy = Enemy.get(level, tenth * i, fallSpeed);
-        MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
+        MainGame.get().add(MainGame.Layer.enemy, enemy);
 
         count = (count > max_count) ? 0 : count + 1;
     }

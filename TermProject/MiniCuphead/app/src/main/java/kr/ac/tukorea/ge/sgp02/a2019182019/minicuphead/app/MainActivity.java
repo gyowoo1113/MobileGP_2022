@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSwitchBtn(View view) {
-        MainGame.getInstance().switchBullet();
+        //MainGame.get().switchBullet();
     }
 
     public void onBtnStart(View view) {

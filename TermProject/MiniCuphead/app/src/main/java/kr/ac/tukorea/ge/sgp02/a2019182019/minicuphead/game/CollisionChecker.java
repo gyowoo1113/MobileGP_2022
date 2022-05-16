@@ -14,7 +14,7 @@ public class CollisionChecker implements GameObject {
 
     @Override
     public void update() {
-        MainGame game = MainGame.getInstance();
+        MainGame game = MainGame.get();
         ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullet);
         ArrayList<GameObject> enemies = game.objectsAt(MainGame.Layer.enemy);
         ArrayList<GameObject> player = game.objectsAt(MainGame.Layer.player);
@@ -115,9 +115,9 @@ public class CollisionChecker implements GameObject {
     }
 
     private void checkTouchByMonstsers(MainGame game, ArrayList<GameObject> enemies) {
-        if (!MainGame.getInstance().isTouch) return;
-        float x = MainGame.getInstance().tx;
-        float y = MainGame.getInstance().ty;
+        if (!MainGame.get().isTouch) return;
+        float x = MainGame.get().tx;
+        float y = MainGame.get().ty;
 
         for (GameObject o1 : enemies) {
             if (!(o1 instanceof Enemy)) {
@@ -133,7 +133,7 @@ public class CollisionChecker implements GameObject {
                 if (dead) {
                     game.remove(enemy);
                 }
-                MainGame.getInstance().isTouch = false;
+                MainGame.get().isTouch = false;
                 collided = true;
                 break;
             }

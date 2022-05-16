@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
@@ -29,7 +30,7 @@ public class BombBullet extends Bullet {
 
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         x -= dx * frameTime;
         y -= dy * frameTime;
         dy -=gravity*frameTime;
