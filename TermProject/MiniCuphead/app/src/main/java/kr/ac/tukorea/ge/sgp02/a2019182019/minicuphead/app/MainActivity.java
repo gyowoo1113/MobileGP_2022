@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,5 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSwitchBtn(View view) {
         MainGame.getInstance().switchBullet();
+    }
+
+    public void onBtnStart(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 }

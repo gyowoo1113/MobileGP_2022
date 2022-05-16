@@ -29,6 +29,10 @@ public class MainGame {
         return singleton;
     }
 
+    public static void clear() {
+        singleton = null;
+    }
+
     public float frameTime;
     public boolean isTouch = false;
     public float tx,ty;
