@@ -6,19 +6,23 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
 public class HandgunBullet extends Bullet{
-    private HandgunBullet(float x, float y) {
+    float tx,ty;
+    private HandgunBullet(float x, float y, float dy) {
         super(x, y, R.dimen.handgun_bullet_w, R.dimen.handgun_bullet_h, R.mipmap.handgun_bullet);
         this.dx = Metrics.size(R.dimen.handgun_speed);
+        this.dy = dy;
+        tx = x;
+        ty = y;
         boundingRect.set(x - w/2, y - h/2, x + w/2, y + h/2);
     }
 
-    public static HandgunBullet get(float x, float y) {
+    public static HandgunBullet get(float x, float y, float dy) {
         HandgunBullet bullet = (HandgunBullet) RecycleBin.get(HandgunBullet.class);
         if (bullet != null) {
-            bullet.set(x, y);
+            bullet.set(x, y, dy);
             return bullet;
         }
-        return new HandgunBullet(x,y);
+        return new HandgunBullet(x,y,dy);
     }
 
     @Override
@@ -26,10 +30,11 @@ public class HandgunBullet extends Bullet{
         MainGame game = MainGame.getInstance();
         float frameTime = game.frameTime;
         x -= dx * frameTime;
+        y -= dy * frameTime;
 
-        float _w = dstRect.width() / 2;
-        float _h = dstRect.height() / 2;
-        dstRect.set(x - _w, y - _h, x + _w, y + _h);
+        angle = (float) Math.atan2(ty - y, tx-x) - (float)Math.PI/2;
+
+        updateDstRect(x,y);
         boundingRect.set(dstRect);
 
         if (x > Metrics.width) {
@@ -40,5 +45,13 @@ public class HandgunBullet extends Bullet{
     @Override
     public int getPower(){
         return 10;
+    }
+
+    protected void set(float x, float y, float dy) {
+        this.x = x;
+        this.y = y;
+        this.dy = dy;
+        this.tx = x;
+        this.ty = y;
     }
 }

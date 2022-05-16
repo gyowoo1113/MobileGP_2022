@@ -132,8 +132,14 @@ public class Boss implements BoxCollidable, GameObject {
     }
 
     private void handgunFire() {
-        Bullet bullet = HandgunBullet.get(x, y);
-        MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
+        float dy = Metrics.size(R.dimen.handgun_speed_y);
+        float[] vals = {dy,-dy,0};
+
+        for(int i=0; i<3; ++i)
+        {
+            Bullet bullet = HandgunBullet.get(x, y,vals[i]);
+            MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
+        }
     }
 
     private void switchState() {
