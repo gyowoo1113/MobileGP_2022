@@ -81,7 +81,7 @@ public class Boss implements BoxCollidable, GameObject {
         };
     }
 
-    Boss(float x, float y) {
+    public Boss(float x, float y) {
         this.x = x;
         this.y = y;
         for (int i=0; i<State.COUNT.ordinal(); ++i)

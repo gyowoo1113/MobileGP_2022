@@ -18,7 +18,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public static final int NORMAL_MONSTER = 100;
     private static final String TAG = Enemy.class.getSimpleName();
     public static float size;
-    protected int level;
+    public int level;
     protected float dx;
     protected int life, maxlife;
     protected int maxAlpha = 255;
