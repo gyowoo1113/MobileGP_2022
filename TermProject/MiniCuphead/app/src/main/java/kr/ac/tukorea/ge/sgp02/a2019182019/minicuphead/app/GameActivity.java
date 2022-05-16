@@ -1,6 +1,7 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +16,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainGame.get();
-        setContentView(new GameView(this, null));
+        setContentView(R.layout.activity_game);
     }
 
     @Override
@@ -35,5 +36,9 @@ public class GameActivity extends AppCompatActivity {
         GameView.view = null;
         BaseGame.clear();
         super.onDestroy();
+    }
+
+    public void onSwitchBtn(View view) {
+        MainGame.get().switchBullet();
     }
 }

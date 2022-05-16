@@ -132,7 +132,7 @@ public class MainGame extends BaseGame {
         return objectsAt(layer.ordinal());
     }
 
-//    public void switchBullet() {
-//        cuphead.switchBullet();
-//    }
+    public void switchBullet() {
+        cuphead.switchBullet();
+    }
 }

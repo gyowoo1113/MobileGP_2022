@@ -17,10 +17,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onSwitchBtn(View view) {
-        //MainGame.get().switchBullet();
-    }
-
     public void onBtnStart(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
