@@ -1,23 +1,16 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameView;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RangeBox;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHelper;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.RangeBox;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
 
 public class MainGame extends BaseGame {
     private boolean isTouchPlayer = false;

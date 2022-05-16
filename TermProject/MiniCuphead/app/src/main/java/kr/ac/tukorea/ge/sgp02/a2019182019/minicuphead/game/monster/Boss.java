@@ -1,18 +1,18 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.FeatherBullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.HandgunBullet;

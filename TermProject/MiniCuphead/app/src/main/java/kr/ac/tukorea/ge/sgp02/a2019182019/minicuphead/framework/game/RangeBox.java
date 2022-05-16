@@ -1,14 +1,15 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-import androidx.lifecycle.SavedStateHandle;
-
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
-public class RangeBox implements BoxCollidable, GameObject{
+public class RangeBox implements BoxCollidable, GameObject {
 
     protected RectF boundingRect = new RectF();
     float boundingRadius;

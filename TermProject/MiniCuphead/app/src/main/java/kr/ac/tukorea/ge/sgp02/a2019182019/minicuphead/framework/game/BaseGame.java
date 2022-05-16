@@ -1,4 +1,4 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,6 +7,10 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.Recyclable;
 
 public class BaseGame {
     protected static BaseGame singleton;

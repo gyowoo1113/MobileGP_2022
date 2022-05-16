@@ -1,4 +1,4 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

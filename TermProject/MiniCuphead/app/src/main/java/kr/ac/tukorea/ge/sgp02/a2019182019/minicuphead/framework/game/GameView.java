@@ -1,11 +1,9 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Choreographer;
@@ -14,7 +12,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     public static GameView view;

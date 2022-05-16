@@ -1,10 +1,12 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.util.HashMap;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 
 public class BitmapPool {
     private static HashMap<Integer, Bitmap> bitmaps = new HashMap<>();

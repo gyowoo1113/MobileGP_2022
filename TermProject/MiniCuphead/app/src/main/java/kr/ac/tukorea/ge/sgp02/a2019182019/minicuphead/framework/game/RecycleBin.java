@@ -1,7 +1,9 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.Recyclable;
 
 public class RecycleBin {
     private static HashMap<Class, ArrayList<Recyclable>> recycleBin = new HashMap<>();

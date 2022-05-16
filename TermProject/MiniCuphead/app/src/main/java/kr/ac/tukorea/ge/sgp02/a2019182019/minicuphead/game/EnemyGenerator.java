@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Enemy;
 
 public class EnemyGenerator implements GameObject {
     private static final float INITIAL_SPAWN_INTERVAL = 2.0f;

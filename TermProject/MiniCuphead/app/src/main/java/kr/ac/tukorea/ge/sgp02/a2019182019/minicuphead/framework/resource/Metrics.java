@@ -1,9 +1,9 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource;
 
 import android.content.res.Resources;
 import android.util.TypedValue;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameView;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 
 public class Metrics {
     public static int width;

@@ -1,18 +1,10 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.Recyclable;
 
 public class Bullet extends AnimSprite implements BoxCollidable , Recyclable {
     protected float x, y;

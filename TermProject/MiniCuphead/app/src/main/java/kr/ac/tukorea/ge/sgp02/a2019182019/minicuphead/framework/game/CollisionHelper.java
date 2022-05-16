@@ -1,6 +1,8 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game;
 
 import android.graphics.RectF;
+
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
 
 public class CollisionHelper {
     public static boolean collides(BoxCollidable o1, BoxCollidable o2) {

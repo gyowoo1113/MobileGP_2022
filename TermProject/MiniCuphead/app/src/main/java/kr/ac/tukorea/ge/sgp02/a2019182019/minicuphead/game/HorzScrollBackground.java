@@ -2,9 +2,9 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Sprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.Sprite;
 
 public class HorzScrollBackground extends Sprite {
     private final float speed;

@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameView;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
 public class GameActivity extends AppCompatActivity {

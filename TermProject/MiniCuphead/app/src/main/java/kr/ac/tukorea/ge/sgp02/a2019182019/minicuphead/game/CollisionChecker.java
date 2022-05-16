@@ -1,13 +1,14 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import java.util.ArrayList;
 
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.CollisionHelper;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHelper;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Enemy;
 
 public class CollisionChecker implements GameObject {
     private static final String TAG = CollisionChecker.class.getSimpleName();

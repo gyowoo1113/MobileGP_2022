@@ -1,15 +1,15 @@
-package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
+package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster;
 
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.AnimSprite;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BaseGame;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BitmapPool;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.BoxCollidable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Metrics;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.Recyclable;
-import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.RecycleBin;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.BitmapPool;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.Recyclable;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.RecycleBin;
 
 
 public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
