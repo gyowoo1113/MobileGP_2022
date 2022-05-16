@@ -19,13 +19,43 @@ public class CollisionChecker implements GameObject {
         ArrayList<GameObject> enemies = game.objectsAt(MainGame.Layer.enemy);
         ArrayList<GameObject> player = game.objectsAt(MainGame.Layer.player);
         ArrayList<GameObject> boss = game.objectsAt(MainGame.Layer.boss);
+        ArrayList<GameObject> bossBullets = game.objectsAt(MainGame.Layer.boss_bullet);
 
+        checkPlayerByBossBullets(game, player, bossBullets);
         checkBulletByMonsters(game, bullets, enemies);
         checkBulletByBoss(game, bullets, boss);
         checkPlayerByMonsters(enemies, player);
         checkPlayerByBoss(player, boss);
         checkTouchByMonstsers(game, enemies);
 
+    }
+
+    private void checkPlayerByBossBullets(MainGame game, ArrayList<GameObject> player, ArrayList<GameObject> bossBullets) {
+        for (GameObject o1 : player) {
+            if (!(o1 instanceof Cuphead)) {
+                continue;
+            }
+            Cuphead cuphead = (Cuphead) o1;
+            boolean collided = false;
+            for (GameObject o2 : bossBullets) {
+                if (!(o2 instanceof Bullet)) {
+                    continue;
+                }
+                Bullet bullet = (Bullet) o2;
+                if (CollisionHelper.collides(cuphead, bullet)) {
+                    game.remove(bullet);
+                    boolean dead = cuphead.decreaseLife(1);
+                    if (dead) {
+
+                    }
+                    collided = true;
+                    break;
+                }
+            }
+            if (collided) {
+                continue;
+            }
+        }
     }
 
     private void checkPlayerByBoss(ArrayList<GameObject> player, ArrayList<GameObject> boss) {
