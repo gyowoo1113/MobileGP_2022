@@ -44,7 +44,7 @@ public class Sprite implements GameObject {
         dstRect.set(x - width / 2, y - height / 2, x + width / 2, y + height / 2);
     }
 
-    public void UpdateDstRect(float x, float y) {
+    public void updateDstRect(float x, float y) {
         this.x = x;
         this.y = y;
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);

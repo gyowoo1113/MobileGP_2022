@@ -36,7 +36,7 @@ public class FeatherBullet extends Bullet{
 
         angle = (float) Math.atan2(ty - y, tx-x) - (float)Math.PI/2;
 
-        UpdateDstRect(x,y);
+        updateDstRect(x,y);
         boundingRect.set(dstRect);
 
         if (x < 0 || x > Metrics.width || y < 0 || y > Metrics.height) {
@@ -57,6 +57,6 @@ public class FeatherBullet extends Bullet{
         this.tx = x;
         this.ty = y;
         angle = (float) (Math.PI * 2 - (Math.PI/2));
-        UpdateDstRect(x,y);
+        updateDstRect(x,y);
     }
 }

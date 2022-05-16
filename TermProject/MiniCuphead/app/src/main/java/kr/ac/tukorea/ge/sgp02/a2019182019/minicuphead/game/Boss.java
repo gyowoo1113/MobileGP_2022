@@ -112,7 +112,7 @@ public class Boss implements BoxCollidable, GameObject {
             switchState();
         }
 
-        currentSprite.UpdateDstRect(this.x,this.y);
+        currentSprite.updateDstRect(this.x,this.y);
     }
 
     private void featherFire() {
@@ -125,6 +125,11 @@ public class Boss implements BoxCollidable, GameObject {
             Bullet bullet = FeatherBullet.get(x, y,dx,dy);
             MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
         }
+    }
+
+    private void handgunFire() {
+        Bullet bullet = HandgunBullet.get(x, y);
+        MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
     }
 
     private void switchState() {
@@ -164,11 +169,6 @@ public class Boss implements BoxCollidable, GameObject {
                     break;
             }
         }
-    }
-
-    private void handgunFire() {
-        Bullet bullet = HandgunBullet.get(x, y);
-        MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
     }
 
     private int GetRandCount() {
