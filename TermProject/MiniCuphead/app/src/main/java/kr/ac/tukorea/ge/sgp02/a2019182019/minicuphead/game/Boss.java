@@ -28,6 +28,7 @@ public class Boss implements BoxCollidable, GameObject {
     private float interval;
     private RectF boundingBox = new RectF();
     protected int life, maxlife;
+    private boolean isToggle = false;
 
     private enum State{
         idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
@@ -124,11 +125,14 @@ public class Boss implements BoxCollidable, GameObject {
         float angle = 360 / shotNum;
 
         for(int i =0;i<shotNum; ++i) {
-            float dx = (float) Math.sin(angle*i);
-            float dy = (float) Math.cos(angle*i);
+            float valAngle = angle*i;
+            if (isToggle) {valAngle += angle/2;}
+            float dx = (float) Math.sin(valAngle);
+            float dy = (float) Math.cos(valAngle);
             Bullet bullet = FeatherBullet.get(x, y,dx,dy);
             MainGame.getInstance().add(MainGame.Layer.boss_bullet, bullet);
         }
+        isToggle = !isToggle;
     }
 
     private void handgunFire() {
