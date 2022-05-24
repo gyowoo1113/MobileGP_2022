@@ -246,7 +246,25 @@ public class Boss implements BoxCollidable, GameObject {
 
     public boolean decreaseLife(int power) {
         life -= power;
+        setAlphaPercent();
         if (life <= 0) return true;
         return false;
+    }
+
+    public void setAlphaPercent(){
+        int per = maxlife/5;
+
+        if (life > per*4) setAlpha(255-51);
+        else if (life > per*3) setAlpha(255 - 102);
+        else if (life > per*2) setAlpha(255 - 153);
+        else setAlpha(255 - 204);
+    }
+
+    private void setAlpha(int alpha) {
+        for (int i=0; i<State.COUNT.ordinal(); ++i)
+        {
+            AnimSprite anim = states.get(i);
+            anim.setAlpha(alpha);
+        }
     }
 }
