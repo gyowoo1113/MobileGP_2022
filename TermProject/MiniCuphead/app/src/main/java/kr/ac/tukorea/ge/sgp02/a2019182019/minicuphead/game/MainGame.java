@@ -10,6 +10,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHe
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.RangeBox;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
 
 public class MainGame extends BaseGame {
@@ -85,6 +86,9 @@ public class MainGame extends BaseGame {
 
                 if (isPlayerInBox(x, y)) {
                     setPlayerAction(x, y);
+
+                    if(!cuphead.isBomb())
+                        Sound.playMusic(R.raw.player_plane_fire);
                     return true;
                 }
 
@@ -101,6 +105,7 @@ public class MainGame extends BaseGame {
 
             case MotionEvent.ACTION_UP:
                 initPlayerAction(x, y);
+                Sound.stopMusic();
                 isTouch = false;
         }
         return false;

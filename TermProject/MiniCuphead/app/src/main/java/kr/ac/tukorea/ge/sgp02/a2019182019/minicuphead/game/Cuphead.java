@@ -9,6 +9,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCo
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.RangeBox;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.Sprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.BombBullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
@@ -57,6 +58,9 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void fire() {
+        if (isBomb)
+            Sound.playMusic(R.raw.player_plane_bomb);
+
         bulletToggle = !bulletToggle;
         float val = (bulletToggle) ? +heightVal : -heightVal;
         
@@ -87,6 +91,10 @@ public class Cuphead extends Sprite implements BoxCollidable {
     public void switchBullet() {
         isBomb = !isBomb;
         interval = (isBomb) ? bombInterval : fireInterval;
+    }
+
+    public boolean isBomb() {
+        return isBomb;
     }
 
     public boolean decreaseLife(int power) {
