@@ -36,7 +36,7 @@ public class MainGame extends BaseGame {
     }
 
     public enum Layer {
-        bg1, bullet, enemy, player,boss_bullet,boss, bg2, controller, COUNT
+        bg1, bullet, enemy, player,boss_bullet,boss, bg2,ui, controller, COUNT
     }
     private Cuphead cuphead;
 
@@ -70,7 +70,6 @@ public class MainGame extends BaseGame {
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_3, Metrics.size(R.dimen.bg_speed_3)));
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.birdhouse_bg_2, Metrics.size(R.dimen.bg_speed_2)));
         add(Layer.bg2, new HorzScrollBackground(R.mipmap.birdhouse_bg_1, Metrics.size(R.dimen.bg_speed_1)));
-
     }
 
     @Override

@@ -40,4 +40,8 @@
     <dimen name="feather_w">50dp</dimen>
     <dimen name="feather_h">20dp</dimen>
     <dimen name="handgun_speed_y">70dp</dimen>
+    <dimen name="hp_w">50dp</dimen>
+    <dimen name="hp_h">20dp</dimen>
+    <dimen name="hp_y_offset">30dp</dimen>
+    <dimen name="hp_x_offset">50dp</dimen>
 </resources>

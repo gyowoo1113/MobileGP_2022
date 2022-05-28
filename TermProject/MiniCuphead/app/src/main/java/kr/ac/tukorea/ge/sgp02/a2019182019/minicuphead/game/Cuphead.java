@@ -27,7 +27,8 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private boolean bulletToggle = false;
     float heightVal;
     private boolean isBomb = false;
-    int life = 5;
+    int life = 8;
+    private HpUi hpUI;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,0);
@@ -41,6 +42,12 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
         float radius = dstRect.width() / 2;
         boundingRect.set(x - radius, y - radius, x + radius, y + radius);
+
+        float hpX  = Metrics.size(R.dimen.hp_x_offset);
+        float hpY = Metrics.height - Metrics.size(R.dimen.hp_y_offset);
+
+        hpUI = new HpUi(hpX,hpY,life);
+        MainGame.get().add(MainGame.Layer.ui, hpUI);
     }
 
     public void update() {
@@ -99,6 +106,8 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
     public boolean decreaseLife(int power) {
         life -= power;
+        hpUI.setHp(life);
+
         if (life <= 0) return true;
         return false;
     }
