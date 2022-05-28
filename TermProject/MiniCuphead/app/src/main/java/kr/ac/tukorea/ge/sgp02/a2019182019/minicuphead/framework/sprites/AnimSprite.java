@@ -12,7 +12,6 @@ public class AnimSprite extends Sprite {
     private Paint paint = new Paint();
     protected float angle;
 
-    private Rect srcRect = new Rect();
     private long createdOn;
     private int index = 0;
 

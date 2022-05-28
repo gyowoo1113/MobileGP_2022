@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
@@ -11,6 +12,7 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics
 public class Sprite implements GameObject {
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
+    protected Rect srcRect = new Rect();
     protected float x, y, radius, w,h;
     public Sprite(float x, float y, int radiusDimenResId, int bitmapResId) {
         this.x = x;
