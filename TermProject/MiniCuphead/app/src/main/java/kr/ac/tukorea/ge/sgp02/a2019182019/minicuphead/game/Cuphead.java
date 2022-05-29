@@ -29,6 +29,8 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private boolean isBomb = false;
     int life = 8;
     private HpUi hpUI;
+    private boolean isGod = false;
+    private float godTime = 0;
 
     public Cuphead(float x, float y) {
         super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,0);
@@ -51,6 +53,13 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public void update(float frameTime) {
+        if(isGod){
+            godTime += frameTime;
+            if (godTime > 1.5f){
+                isGod = false;
+            }
+        }
+
         elapsedTimeForFire += frameTime;
         if (elapsedTimeForFire > interval && isFire) {
             fire();
@@ -104,11 +113,20 @@ public class Cuphead extends Sprite implements BoxCollidable {
     }
 
     public boolean decreaseLife(int power) {
+        if (isGod) return false;
+
         life -= power;
         hpUI.setHp(life);
-
+        setGod();
         if (life <= 0) return true;
         return false;
+    }
+
+    public void setGod(){
+        if (isGod == false) {
+            isGod = true;
+            godTime = 0;
+        }
     }
 }
 
