@@ -9,7 +9,6 @@ public class AnimSprite extends Sprite {
     private final int frameCount;
     private final int imageWidth;
     private final int imageHeight;
-    private Paint paint = new Paint();
     protected float angle;
 
     private long createdOn;
@@ -65,10 +64,6 @@ public class AnimSprite extends Sprite {
         canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
         canvas.drawBitmap(bitmap, srcRect, dstRect, paint);
         canvas.restore();
-    }
-
-    public void setAlpha(int value){
-        paint.setAlpha(value);
     }
 
     public int getIndex() {

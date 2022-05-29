@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -14,6 +15,8 @@ public class Sprite implements GameObject {
     protected RectF dstRect = new RectF();
     protected Rect srcRect = new Rect();
     protected float x, y, radius, w,h;
+    protected Paint paint = new Paint();
+
     public Sprite(float x, float y, int radiusDimenResId, int bitmapResId) {
         this.x = x;
         this.y = y;
@@ -66,7 +69,7 @@ public class Sprite implements GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, null, dstRect, null);
+        canvas.drawBitmap(bitmap, null, dstRect, paint);
     }
 
     public void setXY(float x, float y) {
@@ -80,5 +83,9 @@ public class Sprite implements GameObject {
 
     public float getH() {
         return h;
+    }
+
+    public void setAlpha(int value){
+        paint.setAlpha(value);
     }
 }

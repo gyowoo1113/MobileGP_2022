@@ -57,6 +57,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
             godTime += frameTime;
             if (godTime > 1.5f){
                 isGod = false;
+                setAlpha(255);
             }
         }
 
@@ -126,6 +127,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
         if (isGod == false) {
             isGod = true;
             godTime = 0;
+            setAlpha(150);
         }
     }
 }
