@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
@@ -81,6 +82,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
         float val = (bulletToggle) ? +heightVal : -heightVal;
         
         Bullet bullet = (isBomb) ? BombBullet.get(x, y) : NormalBullet.get(x, y + val);
+        //Log.d(TAG,"x:"+x+" y:"+y);
         MainGame.get().add(MainGame.Layer.bullet, bullet);
 
     }

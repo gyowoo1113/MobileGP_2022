@@ -35,8 +35,8 @@ public class BombBullet extends Bullet {
         dstRect.set(x - _w, y - _h, x + _w, y + _h);
         boundingRect.set(dstRect);
 
-        if (x < 0 || y < 0) {
-            MainGame.getInstance().remove(this);
+        if (x < 0 ) {
+            BaseGame.getInstance().remove(this);
         }
     }
 
