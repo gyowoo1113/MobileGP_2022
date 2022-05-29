@@ -35,7 +35,7 @@ public class RangeBox implements BoxCollidable, GameObject {
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
         if (!MainGame.get().getIsTouchPlayer()) return;
 
         float tx = MainGame.get().tx;

@@ -51,7 +51,7 @@ public class BaseGame {
         elapsedTime += frameTime;
         for (ArrayList<GameObject> gameObjects : layers) {
             for (GameObject gobj : gameObjects) {
-                gobj.update();
+                gobj.update(frameTime);
             }
         }
     }

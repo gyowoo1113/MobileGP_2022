@@ -28,9 +28,8 @@ public class FeatherBullet extends Bullet{
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
         BaseGame game = BaseGame.getInstance();
-        float frameTime = game.frameTime;
         x -= dx * fireSpeed * frameTime;
         y -= dy * fireSpeed * frameTime;
 

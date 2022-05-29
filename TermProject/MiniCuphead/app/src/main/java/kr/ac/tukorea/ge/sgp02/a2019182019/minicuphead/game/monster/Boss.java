@@ -96,8 +96,7 @@ public class Boss implements BoxCollidable, GameObject {
     }
 
     @Override
-    public void update() {
-        float frameTime = BaseGame.getInstance().frameTime;
+    public void update(float frameTime) {
 
         switch(curState)
         {

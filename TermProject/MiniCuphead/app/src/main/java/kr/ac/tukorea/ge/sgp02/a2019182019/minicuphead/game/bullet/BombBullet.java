@@ -25,8 +25,7 @@ public class BombBullet extends Bullet {
     }
 
     @Override
-    public void update() {
-        float frameTime = BaseGame.getInstance().frameTime;
+    public void update(float frameTime) {
         x -= dx * frameTime;
         y -= dy * frameTime;
         dy -=gravity*frameTime;

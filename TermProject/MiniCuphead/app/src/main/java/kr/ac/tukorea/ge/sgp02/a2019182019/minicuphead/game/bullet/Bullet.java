@@ -26,7 +26,7 @@ public class Bullet extends AnimSprite implements BoxCollidable , Recyclable {
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
 
     }
 

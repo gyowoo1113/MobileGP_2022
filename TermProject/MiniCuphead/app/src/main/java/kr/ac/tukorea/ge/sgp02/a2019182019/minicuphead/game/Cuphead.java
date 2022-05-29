@@ -50,8 +50,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
         MainGame.get().add(MainGame.Layer.ui, hpUI);
     }
 
-    public void update() {
-        float frameTime = BaseGame.getInstance().frameTime;
+    public void update(float frameTime) {
         elapsedTimeForFire += frameTime;
         if (elapsedTimeForFire > interval && isFire) {
             fire();

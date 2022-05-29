@@ -26,9 +26,8 @@ public class HandgunBullet extends Bullet{
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
         BaseGame game = BaseGame.getInstance();
-        float frameTime = game.frameTime;
         x -= dx * frameTime;
         y -= dy * frameTime;
 

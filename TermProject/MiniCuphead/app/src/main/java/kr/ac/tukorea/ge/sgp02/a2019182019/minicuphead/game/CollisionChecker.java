@@ -14,7 +14,7 @@ public class CollisionChecker implements GameObject {
     private static final String TAG = CollisionChecker.class.getSimpleName();
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
         MainGame game = MainGame.get();
         ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullet);
         ArrayList<GameObject> enemies = game.objectsAt(MainGame.Layer.enemy);
