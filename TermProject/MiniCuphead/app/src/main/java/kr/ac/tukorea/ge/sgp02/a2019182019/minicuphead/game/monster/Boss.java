@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.Gauge;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
@@ -32,6 +33,8 @@ public class Boss implements BoxCollidable, GameObject {
     private RectF boundingBox = new RectF();
     protected int life, maxlife;
     private boolean isToggle = false;
+    private Gauge gauge;
+    public static float size;
 
     private enum State{
         idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
@@ -92,7 +95,18 @@ public class Boss implements BoxCollidable, GameObject {
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
         currentSprite = states.get(curState.ordinal());
         interval = Metrics.floatValue(R.dimen.feather_fire_interval);
-        life = 2000;
+        life = maxlife = 2000;
+
+        size = states.get(State.idle.ordinal()).getDstRect().width();
+
+        gauge = new Gauge(
+                Metrics.size(R.dimen.fly_gauge_thickness_fg),
+                R.color.fly_gauge_fg,
+                Metrics.size(R.dimen.fly_gauge_thickness_bg),
+                R.color.fly_gauge_bg,
+                size * 0.9f
+        );
+        gauge.setValue(life / maxlife);
     }
 
     @Override
@@ -236,6 +250,8 @@ public class Boss implements BoxCollidable, GameObject {
     @Override
     public void draw(Canvas canvas) {
         currentSprite.draw(canvas);
+        gauge.setValue((float)life / maxlife);
+        gauge.draw(canvas, x, y + size*0.5f);
     }
 
     @Override
@@ -245,25 +261,9 @@ public class Boss implements BoxCollidable, GameObject {
 
     public boolean decreaseLife(int power) {
         life -= power;
-        setAlphaPercent();
+        gauge.setValue((float)life / maxlife);
         if (life <= 0) return true;
         return false;
     }
 
-    public void setAlphaPercent(){
-        int per = maxlife/5;
-
-        if (life > per*4) setAlpha(255-51);
-        else if (life > per*3) setAlpha(255 - 102);
-        else if (life > per*2) setAlpha(255 - 153);
-        else setAlpha(255 - 204);
-    }
-
-    private void setAlpha(int alpha) {
-        for (int i=0; i<State.COUNT.ordinal(); ++i)
-        {
-            AnimSprite anim = states.get(i);
-            anim.setAlpha(alpha);
-        }
-    }
 }
