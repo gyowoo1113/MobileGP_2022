@@ -1,8 +1,11 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster;
 
+import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.Gauge;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.BitmapPool;
@@ -28,6 +31,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     };
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = bitmapIds.length;
+    private Gauge gauge;
 
     public static Enemy get(int level, float y, float speed) {
         Enemy enemy = (Enemy) RecycleBin.get(Enemy.class);
@@ -55,6 +59,15 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         dx = speed;
         this.life = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
         this.maxlife = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;
+
+        gauge = new Gauge(
+                Metrics.size(R.dimen.fly_gauge_thickness_fg),
+                R.color.fly_gauge_fg,
+                Metrics.size(R.dimen.fly_gauge_thickness_bg),
+                R.color.fly_gauge_bg,
+                size * 0.9f
+        );
+        gauge.setValue(life / maxlife);
     }
 
     @Override
@@ -69,6 +82,13 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     }
 
     @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        gauge.setValue((float)life / maxlife);
+        gauge.draw(canvas, x, y + size*0.5f);
+    }
+
+    @Override
     public RectF getBoundingRect() {
         return boundingBox;
     }
@@ -80,17 +100,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     public boolean decreaseLife(int power) {
         life -= power;
-        setAlphaPercent();
+        gauge.setValue((float)life / maxlife);
         if (life <= 0) return true;
         return false;
-    }
-
-    public void setAlphaPercent(){
-        int per = maxlife/5;
-
-        if (life > per*4) setAlpha(255 - 51);
-        else if (life > per*3) setAlpha(255 - 102);
-        else if (life > per*2) setAlpha(255 - 153);
-        else setAlpha(255 - 204);
     }
 }

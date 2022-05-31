@@ -44,4 +44,6 @@
     <dimen name="hp_h">20dp</dimen>
     <dimen name="hp_y_offset">30dp</dimen>
     <dimen name="hp_x_offset">50dp</dimen>
+    <dimen name="fly_gauge_thickness_fg">3dp</dimen>
+    <dimen name="fly_gauge_thickness_bg">4dp</dimen>
 </resources>
