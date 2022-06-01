@@ -22,8 +22,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private boolean running;
     private int framesPerSecond;
 
+    public static Context context;
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         view = this;
     }
 
@@ -93,9 +96,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
         Context context = getContext();
         while (context instanceof ContextWrapper) {
             if (context instanceof Activity) {
-                return (Activity)context;
+                return (Activity) context;
             }
-            context = ((ContextWrapper)context).getBaseContext();
+            context = ((ContextWrapper) context).getBaseContext();
         }
         return null;
     }

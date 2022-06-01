@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead">
+    package="kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead" >
 
     <application
         android:allowBackup="true"
@@ -8,15 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MiniCuphead">
+        android:theme="@style/Theme.MiniCuphead" >
+        <activity
+            android:name=".app.ResultActivity"
+            android:exported="false" />
         <activity
             android:name=".app.GameActivity"
-            android:screenOrientation="landscape"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".app.MainActivity"
             android:exported="true"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

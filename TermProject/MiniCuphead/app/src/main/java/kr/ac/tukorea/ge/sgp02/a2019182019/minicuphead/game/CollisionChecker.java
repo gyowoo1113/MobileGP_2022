@@ -1,10 +1,14 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app.GameActivity;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app.ResultActivity;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHelper;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
@@ -103,7 +107,10 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = b1.decreaseLife(bullet.getPower());
                     if (dead) {
-                        game.remove(b1);
+                        Intent intent = new Intent(GameView.context, ResultActivity.class);
+                        //intent.putExtras(extras);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        GameView.context.startActivity(intent);
                     }
                     collided = true;
                     break;
