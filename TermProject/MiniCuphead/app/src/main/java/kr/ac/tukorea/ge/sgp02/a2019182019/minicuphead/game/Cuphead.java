@@ -34,7 +34,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
     private float godTime = 0;
 
     public Cuphead(float x, float y) {
-        super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,0);
+        super(x, y, R.dimen.cuphead_w,R.dimen.cuphead_h, R.mipmap.player_normal,false);
 
         fireInterval = Metrics.floatValue(R.dimen.cuphead_fire_interval);
         bombInterval = Metrics.floatValue(R.dimen.cuphead_bomb_interval);

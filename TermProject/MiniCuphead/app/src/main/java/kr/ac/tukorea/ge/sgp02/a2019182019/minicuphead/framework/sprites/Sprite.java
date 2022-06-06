@@ -1,11 +1,14 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.BitmapPool;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
@@ -35,14 +38,36 @@ public class Sprite implements GameObject {
         bitmap = BitmapPool.get(bitmapResId);
     }
 
-    public Sprite(float x, float y, int resWID, int resHID, int bitmapResId, int temp) {
+    public Sprite(float x, float y, float w, float h, int bitmapResId,boolean isSave) {
+        this.x = x;
+        this.y = y;
+        this.radius = w / 2;
+        this.w = w;
+        this.h = h;
+        dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+        if(isSave) {
+            bitmap = BitmapPool.get(bitmapResId);
+        }
+        else{
+            Resources res = GameView.view.getResources();
+            bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+        }
+    }
+
+    public Sprite(float x, float y, int resWID, int resHID, int bitmapResId, boolean isSave) {
         this.x = x;
         this.y = y;
         this.radius = w / 2;
         this.w = Metrics.size(resWID);
         this.h = Metrics.size(resHID);
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
-        bitmap = BitmapPool.get(bitmapResId);
+        if(isSave) {
+            bitmap = BitmapPool.get(bitmapResId);
+        }
+        else{
+            Resources res = GameView.view.getResources();
+            bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+        }
     }
 
     public void setDstRectWithRadius() {

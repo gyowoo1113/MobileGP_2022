@@ -12,14 +12,14 @@ public class Bullet extends AnimSprite implements BoxCollidable , Recyclable {
     protected RectF boundingRect = new RectF();
 
     protected Bullet(float x, float y ,int w, int h, int ResID) {
-        super(x, y, w,h, ResID, 10.0f,1);
+        super(x, y, w,h, ResID, 10.0f,1,true);
         this.x = x;
         this.y = y;
         angle = (float) (Math.PI * 2 - (Math.PI/2));
     }
 
     protected Bullet(float x, float y ,int w, int h, int ResID, float fps, int fc) {
-        super(x, y, w,h, ResID, fps,fc);
+        super(x, y, w,h, ResID, fps,fc,true);
         this.x = x;
         this.y = y;
         angle = (float) (Math.PI * 2 - (Math.PI/2));

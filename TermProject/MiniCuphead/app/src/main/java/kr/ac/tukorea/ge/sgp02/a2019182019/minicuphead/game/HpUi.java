@@ -11,7 +11,7 @@ public class HpUi extends Sprite {
     private final int imageHeight;
 
     public HpUi(float x, float y, int hp) {
-        super(x, y, R.dimen.hp_w,R.dimen.hp_h, R.mipmap.hp,0);
+        super(x, y, R.dimen.hp_w,R.dimen.hp_h, R.mipmap.hp,false);
 
         int imageWidth = bitmap.getWidth();
         this.imageWidth = imageWidth / 9;

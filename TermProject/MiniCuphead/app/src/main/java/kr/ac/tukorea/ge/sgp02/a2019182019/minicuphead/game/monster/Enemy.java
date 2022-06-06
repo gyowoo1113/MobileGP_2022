@@ -54,7 +54,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     }
 
     private Enemy(int level, float y, float speed) {
-        super(Metrics.width+size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16);
+        super(Metrics.width+size,y, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 16,true);
         this.level = level;
         dx = speed;
         this.life = (level == 1) ? NORMAL_MONSTER : TOUCH_MONSTER;

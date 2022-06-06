@@ -14,8 +14,9 @@ public class AnimSprite extends Sprite {
     private long createdOn;
     private int index = 0;
 
-    public AnimSprite(float x, float y, float w, float h, int bitmapResId, float framesPerSecond, int frameCount) {
-        super(x, y, w, h, bitmapResId);
+    public AnimSprite(float x, float y, float w, float h, int bitmapResId, float framesPerSecond,
+                      int frameCount, boolean isSave) {
+        super(x, y, w, h, bitmapResId,isSave);
         int imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
         this.framesPerSecond = framesPerSecond;
@@ -32,8 +33,9 @@ public class AnimSprite extends Sprite {
         angle = -(float) (Math.PI / 2);
     }
 
-    public AnimSprite(float x, float y, int resWID, int resHID, int bitmapResId, float framesPerSecond, int frameCount) {
-        super(x, y, resWID, resHID, bitmapResId,0);
+    public AnimSprite(float x, float y, int resWID, int resHID, int bitmapResId, float framesPerSecond,
+                      int frameCount, boolean isSave) {
+        super(x, y, resWID, resHID, bitmapResId,isSave);
         int imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
         this.framesPerSecond = framesPerSecond;

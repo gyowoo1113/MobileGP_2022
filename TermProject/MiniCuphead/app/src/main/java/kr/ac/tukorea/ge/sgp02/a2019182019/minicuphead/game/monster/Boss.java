@@ -89,7 +89,7 @@ public class Boss implements BoxCollidable, GameObject {
         this.y = y;
         for (int i=0; i<State.COUNT.ordinal(); ++i)
         {
-            AnimSprite state = new AnimSprite(x,y, State.w[i], State.h[i], State.resIds[i], State.fps[i], State.frameCount[i]);
+            AnimSprite state = new AnimSprite(x,y, State.w[i], State.h[i], State.resIds[i], State.fps[i], State.frameCount[i], false);
             states.add(state);
         }
         updateElapsedTime = Metrics.size(R.dimen.boss_update_speed);
