@@ -1,5 +1,6 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource;
 
+import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -20,6 +21,16 @@ public class Sound {
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
     }
+
+    public static void playMusic(Context context , int resId) {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+        mediaPlayer = MediaPlayer.create(context, resId);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+    }
+
     public static void stopMusic() {
         if (mediaPlayer == null) return;
         mediaPlayer.stop();
