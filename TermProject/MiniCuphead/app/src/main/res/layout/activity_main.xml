@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/title"
+    android:background="@mipmap/start_bg"
     tools:context=".app.MainActivity">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text=""
             android:padding="50dp"
-            android:textSize="50sp"
+            android:textSize="120sp"
             android:textStyle="bold"
             android:layout_marginBottom="30dp"
             />
@@ -29,7 +29,7 @@
             android:text="Start"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:onClick="onBtnStart"
             android:background="@drawable/title_button"
             android:paddingRight="10dp"
