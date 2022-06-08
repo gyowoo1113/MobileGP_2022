@@ -8,4 +8,20 @@
     android:background="@mipmap/winscreen_bg"
     tools:context=".app.ResultActivity">
 
+    <ImageView
+        android:id="@+id/cupheadImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/result_character_animation"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        />
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/result_title_animation"
+        android:layout_toRightOf="@id/cupheadImageView"
+        android:paddingHorizontal="10dp"
+        />
   </RelativeLayout>
