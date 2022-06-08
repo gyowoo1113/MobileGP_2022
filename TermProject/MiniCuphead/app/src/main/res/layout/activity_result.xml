@@ -24,4 +24,15 @@
         android:layout_toRightOf="@id/cupheadImageView"
         android:paddingHorizontal="10dp"
         />
+    <ImageView
+        android:id="@+id/board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/winscreen_board"
+        android:layout_alignParentBottom ="true"
+        android:layout_below="@+id/titleImageView"
+        android:layout_toRightOf="@id/cupheadImageView"
+        android:paddingBottom="30dp"
+        />
+
   </RelativeLayout>
