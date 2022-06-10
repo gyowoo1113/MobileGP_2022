@@ -9,30 +9,29 @@
     tools:context=".app.ResultActivity">
 
     <ImageView
-        android:id="@+id/cupheadImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/result_character_animation"
-        android:paddingTop="40dp"
-        android:paddingBottom="40dp"
-        />
-    <ImageView
         android:id="@+id/titleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/result_title_animation"
-        android:layout_toRightOf="@id/cupheadImageView"
         android:paddingHorizontal="10dp"
+        />
+    <ImageView
+        android:id="@+id/cupheadImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/result_character_animation"
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/titleImageView"
         />
     <ImageView
         android:id="@+id/board"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/winscreen_board"
-        android:layout_alignParentBottom ="true"
         android:layout_below="@+id/titleImageView"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/cupheadImageView"
         android:paddingBottom="30dp"
+        android:src="@mipmap/winscreen_board" />
         />
 
   </RelativeLayout>
