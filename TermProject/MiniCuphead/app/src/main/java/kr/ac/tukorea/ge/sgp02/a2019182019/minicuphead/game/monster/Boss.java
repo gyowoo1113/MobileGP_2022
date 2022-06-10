@@ -8,6 +8,7 @@ import java.util.Random;
 
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.Gauge;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.AnimSprite;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.BoxCollidable;
@@ -152,6 +153,8 @@ public class Boss implements BoxCollidable, GameObject {
     }
 
     private void handgunFire() {
+        Sound.playEffect(R.raw.handgun_sound,0);
+
         float dy = Metrics.size(R.dimen.handgun_speed_y);
         float[] vals = {dy,-dy,0};
 
@@ -187,6 +190,7 @@ public class Boss implements BoxCollidable, GameObject {
                     break;
 
                 case flap_intro:
+                    Sound.playLoopEffect(R.raw.flap_loop_sound);
                     setState(State.flap_loop);
                     break;
 
@@ -195,8 +199,12 @@ public class Boss implements BoxCollidable, GameObject {
                     break;
 
                 case handgun_outro:
+                    setState(State.idle);
+                    break;
+
                 case flap_outro:
                     setState(State.idle);
+                    Sound.stopLoopEffect(R.raw.flap_loop_sound);
                     break;
             }
         }
