@@ -22,9 +22,9 @@
             android:layout_gravity="left"
             android:onClick="onBtnStart"
             android:background="@drawable/title_button"
-            android:paddingRight="300dp"
-            android:paddingLeft="300dp"
-            android:paddingTop="70dp"
+            android:paddingRight="270dp"
+            android:paddingLeft="270dp"
+            android:paddingTop="50dp"
             android:paddingBottom="260dp"
             />
 
