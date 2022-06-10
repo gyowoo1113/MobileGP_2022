@@ -76,7 +76,7 @@ public class Cuphead extends Sprite implements BoxCollidable {
 
     public void fire() {
         if (isBomb)
-            Sound.playMusic(R.raw.player_plane_bomb);
+            Sound.playEffect(R.raw.player_plane_bomb,0);
 
         bulletToggle = !bulletToggle;
         float val = (bulletToggle) ? +heightVal : -heightVal;

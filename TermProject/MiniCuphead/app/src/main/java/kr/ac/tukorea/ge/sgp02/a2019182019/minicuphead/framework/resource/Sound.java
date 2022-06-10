@@ -46,7 +46,7 @@ public class Sound {
     }
 
     private static HashMap<Integer, Integer> soundIdMap = new HashMap<>();
-    public static void playEffect(int resId) {
+    public static void playEffect(int resId , int setLoop) {
         SoundPool pool = getSoundPool();
         int soundId;
         if (soundIdMap.containsKey(resId)) {
@@ -55,8 +55,21 @@ public class Sound {
             soundId = pool.load(GameView.view.getContext(), resId, 1);
             soundIdMap.put(resId, soundId);
         }
-        // int streamId =
-        pool.play(soundId, 1f, 1f, 1, 0, 1f);
+
+        pool.play(soundId, 1f, 1f, 1, setLoop, 1f);
+    }
+
+    public static void stopLoopEffect(int resId) {
+        SoundPool pool = getSoundPool();
+        int soundId;
+        if (soundIdMap.containsKey(resId)) {
+            soundId = soundIdMap.get(resId);
+        } else {
+            soundId = pool.load(GameView.view.getContext(), resId, 1);
+            soundIdMap.put(resId, soundId);
+        }
+
+        pool.stop(soundId);
     }
 
     private static SoundPool getSoundPool() {

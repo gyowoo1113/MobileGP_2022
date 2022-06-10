@@ -87,7 +87,7 @@ public class MainGame extends BaseGame {
                     setPlayerAction(x, y);
 
                     if(!cuphead.isBomb())
-                        Sound.playMusic(R.raw.player_plane_fire);
+                        Sound.playEffect(R.raw.player_plane_fire,1);
                     return true;
                 }
 
@@ -104,7 +104,9 @@ public class MainGame extends BaseGame {
 
             case MotionEvent.ACTION_UP:
                 initPlayerAction(x, y);
-                Sound.stopMusic();
+
+                if(!cuphead.isBomb())
+                    Sound.stopLoopEffect(R.raw.player_plane_fire);
                 isTouch = false;
         }
         return false;

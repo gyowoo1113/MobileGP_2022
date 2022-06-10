@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.BaseGame;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.MainGame;
 
 public class GameActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MainGame.get();
         setContentView(R.layout.activity_game);
+        Sound.playMusic(R.raw.game_bgm);
     }
 
     @Override
