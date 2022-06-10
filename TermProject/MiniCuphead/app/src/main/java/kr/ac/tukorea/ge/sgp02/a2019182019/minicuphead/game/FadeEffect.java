@@ -19,14 +19,15 @@ public class FadeEffect extends AnimSprite {
 
         Sound.stopLoopEffect(R.raw.player_plane_fire);
         Sound.stopLoopEffect(R.raw.flap_loop_sound);
-        Sound.playEffect(R.raw.knockout_bell,0);
-        Sound.playEffect(R.raw.announcer_knockout,0);
     }
 
     @Override
     public void update(float frameTime) {
-        if ( 17 == getIndex() + 1)
+        if ( 16 == getIndex() + 1)
         {
+            Sound.stopLoopEffect(R.raw.player_plane_fire);
+            Sound.stopLoopEffect(R.raw.flap_loop_sound);
+
             Intent intent = new Intent(GameView.context, ResultActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             GameView.context.startActivity(intent);
