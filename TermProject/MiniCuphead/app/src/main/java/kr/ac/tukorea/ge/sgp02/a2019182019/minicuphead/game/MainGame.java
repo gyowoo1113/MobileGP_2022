@@ -36,7 +36,7 @@ public class MainGame extends BaseGame {
     }
 
     public enum Layer {
-        bg1, bullet, enemy, player,boss_bullet,boss, bg2,ui, controller, COUNT
+        bg1, bullet, enemy, player,boss_bullet,boss, bg2,ui, controller,fade, COUNT
     }
     private Cuphead cuphead;
 

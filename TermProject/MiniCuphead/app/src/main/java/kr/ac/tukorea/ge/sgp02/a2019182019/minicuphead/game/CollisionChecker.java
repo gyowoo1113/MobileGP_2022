@@ -107,10 +107,8 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = b1.decreaseLife(bullet.getPower());
                     if (dead) {
-                        Intent intent = new Intent(GameView.context, ResultActivity.class);
-                        //intent.putExtras(extras);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        GameView.context.startActivity(intent);
+                        FadeEffect fade = new FadeEffect();
+                        MainGame.get().add(MainGame.Layer.fade, fade);
                     }
                     collided = true;
                     break;
