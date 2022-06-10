@@ -87,7 +87,7 @@ public class MainGame extends BaseGame {
                     setPlayerAction(x, y);
 
                     if(!cuphead.isBomb())
-                        Sound.playEffect(R.raw.player_plane_fire,1);
+                        Sound.playLoopEffect(R.raw.player_plane_fire);
                     return true;
                 }
 
