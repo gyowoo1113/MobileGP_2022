@@ -14,17 +14,22 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 public class ResultActivity extends AppCompatActivity {
     private ImageView cupheadImageView;
     private ImageView titleImageView;
+    private ImageView fadeImageView;
     private AnimationDrawable cupheadAnimationDrawable;
     private AnimationDrawable titleAnimationDrawable;
+    private AnimationDrawable fadeAnimationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        Sound.playMusic(ResultActivity.this,R.raw.result_bgm);
+        Sound.playMusic(ResultActivity.this, R.raw.result_bgm);
         cupheadImageView = findViewById(R.id.cupheadImageView);
-        titleImageView =  findViewById(R.id.titleImageView);
+        titleImageView = findViewById(R.id.titleImageView);
+        fadeImageView = findViewById(R.id.fadeImageView);
 
+        fadeAnimationDrawable = (AnimationDrawable) fadeImageView.getDrawable();
+        fadeAnimationDrawable.start();
         cupheadAnimationDrawable = (AnimationDrawable) cupheadImageView.getDrawable();
         cupheadAnimationDrawable.start();
         titleAnimationDrawable = (AnimationDrawable) titleImageView.getDrawable();
