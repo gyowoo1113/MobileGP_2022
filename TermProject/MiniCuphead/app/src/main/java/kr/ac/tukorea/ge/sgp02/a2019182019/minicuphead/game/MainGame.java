@@ -165,4 +165,36 @@ public class MainGame extends BaseGame {
     public static ImageView getFadeImageView() {
         return fadeImageView;
     }
+
+    private boolean isGameClear = false;
+    private int killMonsterNumber = 0;
+    private int killEventNumber = 0;
+
+    public boolean isGameClear() {
+        return isGameClear;
+    }
+
+    public void setGameClear(boolean gameClear) {
+        isGameClear = gameClear;
+    }
+
+    public int getPlayerHp(){
+        return cuphead.life;
+    }
+
+    public void updateMonsterKill(){
+        ++killMonsterNumber;
+    }
+
+    public void updateEventKill(){
+        ++killEventNumber;
+    }
+
+    public int getKillMonsterNumber() {
+        return killMonsterNumber;
+    }
+
+    public int getKillEventNumber() {
+        return killEventNumber;
+    }
 }

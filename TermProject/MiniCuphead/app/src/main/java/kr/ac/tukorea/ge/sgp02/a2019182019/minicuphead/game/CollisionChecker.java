@@ -51,7 +51,9 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
-
+                        MainGame.get().setGameClear(false);
+                        FadeEffect fade = new FadeEffect();
+                        MainGame.get().add(MainGame.Layer.fade, fade);
                     }
                     collided = true;
                     break;
@@ -79,7 +81,9 @@ public class CollisionChecker implements GameObject {
                     //Log.d(TAG, "collision!");
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
-
+                        MainGame.get().setGameClear(false);
+                        FadeEffect fade = new FadeEffect();
+                        MainGame.get().add(MainGame.Layer.fade, fade);
                     }
                     collided = true;
                     break;
@@ -107,6 +111,7 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = b1.decreaseLife(bullet.getPower());
                     if (dead) {
+                        MainGame.get().setGameClear(true);
                         FadeEffect fade = new FadeEffect();
                         MainGame.get().add(MainGame.Layer.fade, fade);
                     }
@@ -137,6 +142,7 @@ public class CollisionChecker implements GameObject {
             if (CollisionHelper.isPointInBox(enemy,x,y)) {
                 boolean dead = enemy.decreaseLife(1);
                 if (dead) {
+                    MainGame.get().updateEventKill();
                     game.remove(enemy);
                 }
                 MainGame.get().isTouch = false;
@@ -166,7 +172,9 @@ public class CollisionChecker implements GameObject {
                     //Log.d(TAG, "collision!");
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
-
+                        MainGame.get().setGameClear(false);
+                        FadeEffect fade = new FadeEffect();
+                        MainGame.get().add(MainGame.Layer.fade, fade);
                     }
                     collided = true;
                     break;
@@ -196,6 +204,7 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = enemy.decreaseLife(bullet.getPower());
                     if (dead) {
+                        MainGame.get().updateMonsterKill();
                         game.remove(enemy);
                     }
                     collided = true;
