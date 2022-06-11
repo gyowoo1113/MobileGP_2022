@@ -22,4 +22,10 @@
         android:backgroundTint="#AA93EAD1"
         tools:ignore="MissingConstraints,OnClick"
         />
+    <ImageView
+        android:id="@+id/fadeInGameImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fade_game_animation"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,6 +20,9 @@ public class GameActivity extends AppCompatActivity {
         MainGame.get();
         setContentView(R.layout.activity_game);
         Sound.playMusic(R.raw.game_bgm);
+
+        MainGame.get().setFadeImageView(findViewById(R.id.fadeInGameImageView));
+        MainGame.get().setFadeAnimationDrawable((AnimationDrawable) MainGame.get().getFadeImageView().getDrawable());
     }
 
     @Override

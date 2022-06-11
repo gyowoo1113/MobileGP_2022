@@ -1,6 +1,9 @@
 package kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -11,9 +14,14 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameO
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Metrics;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.RangeBox;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.CustomAnimationDrawableNew;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
 
 public class MainGame extends BaseGame {
+
+    private static ImageView fadeImageView;
+    private static AnimationDrawable fadeAnimationDrawable;
+
     private boolean isTouchPlayer = false;
     private RangeBox moveBoundingBox;
 
@@ -140,5 +148,21 @@ public class MainGame extends BaseGame {
 
     public void switchBullet() {
         cuphead.switchBullet();
+    }
+
+    public static AnimationDrawable getFadeAnimationDrawable() {
+        return fadeAnimationDrawable;
+    }
+
+    public void setFadeAnimationDrawable(AnimationDrawable fadeAnimationDrawable) {
+        this.fadeAnimationDrawable = fadeAnimationDrawable;
+    }
+
+    public void setFadeImageView(ImageView imageView) {
+        this.fadeImageView = imageView;
+    }
+
+    public static ImageView getFadeImageView() {
+        return fadeImageView;
     }
 }
