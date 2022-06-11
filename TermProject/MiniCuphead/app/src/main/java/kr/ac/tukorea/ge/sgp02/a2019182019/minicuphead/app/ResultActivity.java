@@ -46,5 +46,37 @@ public class ResultActivity extends AppCompatActivity {
         cupheadAnimationDrawable.start();
         titleAnimationDrawable = (AnimationDrawable) titleImageView.getDrawable();
         titleAnimationDrawable.start();
+
+        setParameter();
+
+    }
+
+    private void setParameter() {
+        boolean clear = getIntent().getExtras().getBoolean("boss");
+        int mon = getIntent().getExtras().getInt("monster");
+        int event = getIntent().getExtras().getInt("event");
+        int hp = getIntent().getExtras().getInt("player");
+
+        int success = (clear) ? 1 : 0;
+        bossTextView.setText("BOSS ....................... " + success + "/1");
+        monTextView.setText("MONSTER ............... " + mon);
+        eventTextView.setText("EVENT MONSTER ... " + event);
+        hpTextView.setText("LIFE ......................... " + hp + "/8");
+        setScore(calculateScore(clear,mon,event,hp));
+    }
+
+    private int calculateScore(boolean clear, int mon, int event, int hp){
+        int score = 0;
+        if (clear == false) return score;
+        ++score;
+        if (mon > 5) ++score;
+        if (event > 1) ++score;
+        if (hp > 5) ++score;
+        return score;
+    }
+
+    private void setScore(int score){
+        String rank[] = {"F","D","C","B","A"};
+        rankTextView.setText(rank[score]);
     }
 }

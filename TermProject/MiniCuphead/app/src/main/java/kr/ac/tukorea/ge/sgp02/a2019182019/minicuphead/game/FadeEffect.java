@@ -33,9 +33,7 @@ public class FadeEffect implements GameObject {
                         Sound.stopLoopEffect(R.raw.player_plane_fire);
                         Sound.stopLoopEffect(R.raw.flap_loop_sound);
 
-                        Intent intent = new Intent(GameView.context, ResultActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        GameView.context.startActivity(intent);
+                        switchResultActivity();
                     }
 
                     @Override
@@ -47,14 +45,25 @@ public class FadeEffect implements GameObject {
                 v.setBackgroundDrawable(cad);
                 cad.start();
             }
+
         });
-        
         MainGame.getFadeImageView().callOnClick();
     }
 
     @Override
     public void update(float frameTime) {
 
+    }
+
+    private void switchResultActivity() {
+        Intent intent = new Intent(GameView.context, ResultActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("boss",MainGame.get().isGameClear());
+        intent.putExtra("monster",MainGame.get().getKillMonsterNumber());
+        intent.putExtra("event",MainGame.get().getKillEventNumber());
+        intent.putExtra("player",MainGame.get().getPlayerHp());
+
+        GameView.context.startActivity(intent);
     }
 
     @Override
