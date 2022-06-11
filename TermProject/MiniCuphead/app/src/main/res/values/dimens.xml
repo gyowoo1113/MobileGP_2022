@@ -46,4 +46,5 @@
     <dimen name="hp_x_offset">50dp</dimen>
     <dimen name="fly_gauge_thickness_fg">3dp</dimen>
     <dimen name="fly_gauge_thickness_bg">4dp</dimen>
+    <dimen name="boss_death_h">350dp</dimen>
 </resources>

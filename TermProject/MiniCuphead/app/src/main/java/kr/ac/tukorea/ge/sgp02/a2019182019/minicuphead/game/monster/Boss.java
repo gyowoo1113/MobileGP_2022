@@ -38,13 +38,14 @@ public class Boss implements BoxCollidable, GameObject {
     public static float size;
 
     private enum State{
-        idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,COUNT;
+        idle,handgun,handgun_outro,flap_intro,flap_loop,flap_outro,death,COUNT;
         static float[] w = {
                 Metrics.size(R.dimen.boss_idle_w),
                 Metrics.size(R.dimen.boss_idle_w),
                 Metrics.size(R.dimen.boss_idle_w),
                 Metrics.size(R.dimen.boss_flap_w),
                 Metrics.size(R.dimen.boss_flap_w),
+                Metrics.size(R.dimen.boss_idle_w),
                 Metrics.size(R.dimen.boss_idle_w),
         };
 
@@ -55,6 +56,7 @@ public class Boss implements BoxCollidable, GameObject {
                 Metrics.size(R.dimen.boss_flap_h),
                 Metrics.size(R.dimen.boss_flap_h),
                 Metrics.size(R.dimen.boss_idle_h),
+                Metrics.size(R.dimen.boss_death_h),
         };
 
         static int[] resIds = {
@@ -64,6 +66,7 @@ public class Boss implements BoxCollidable, GameObject {
                 R.mipmap.boss_attack_flap_intro,
                 R.mipmap.boss_attack_flap_loop,
                 R.mipmap.boss_attack_flap_outro,
+                R.mipmap.boss_death
         };
 
         static float[] fps = {
@@ -73,6 +76,7 @@ public class Boss implements BoxCollidable, GameObject {
                 12.0f,
                 9.0f,
                 12.0f,
+                4.0f
         };
 
         static int[] frameCount = {
@@ -82,6 +86,7 @@ public class Boss implements BoxCollidable, GameObject {
                 9,
                 9,
                 3,
+                29,
         };
     }
 
@@ -227,8 +232,8 @@ public class Boss implements BoxCollidable, GameObject {
         return State.frameCount[curState.ordinal()] == currentSprite.getIndex() + 1;
     }
 
-    private void setState(State handgun_outro) {
-        curState = handgun_outro;
+    private void setState(State state) {
+        curState = state;
         currentSprite = states.get(curState.ordinal());
         currentSprite.setCreatedOn(System.currentTimeMillis());
         currentSprite.setIndex(0);
@@ -270,8 +275,9 @@ public class Boss implements BoxCollidable, GameObject {
     public boolean decreaseLife(int power) {
         life -= power;
         gauge.setValue((float)life / maxlife);
-        if (life <= 0) return true;
+        if (life <= 0){
+            setState(State.death);
+            return true;}
         return false;
     }
-
 }
