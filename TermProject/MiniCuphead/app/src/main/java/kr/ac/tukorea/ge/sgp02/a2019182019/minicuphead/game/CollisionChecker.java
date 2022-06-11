@@ -5,11 +5,13 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.R;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app.GameActivity;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.app.ResultActivity;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.CollisionHelper;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.game.GameView;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.interfaces.GameObject;
+import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.resource.Sound;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.bullet.Bullet;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Enemy;
@@ -51,6 +53,7 @@ public class CollisionChecker implements GameObject {
                     game.remove(bullet);
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
+                        Sound.playEffect(R.raw.announcer_player_fail,0);
                         MainGame.get().setGameClear(false);
                         FadeEffect fade = new FadeEffect();
                         MainGame.get().add(MainGame.Layer.fade, fade);
@@ -81,6 +84,7 @@ public class CollisionChecker implements GameObject {
                     //Log.d(TAG, "collision!");
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
+                        Sound.playEffect(R.raw.announcer_player_fail,0);
                         MainGame.get().setGameClear(false);
                         FadeEffect fade = new FadeEffect();
                         MainGame.get().add(MainGame.Layer.fade, fade);
@@ -112,6 +116,7 @@ public class CollisionChecker implements GameObject {
                     boolean dead = b1.decreaseLife(bullet.getPower());
                     if (dead) {
                         MainGame.get().setGameClear(true);
+                        Sound.playEffect(R.raw.announcer_knockout,0);
                         FadeEffect fade = new FadeEffect();
                         MainGame.get().add(MainGame.Layer.fade, fade);
                     }
@@ -172,6 +177,7 @@ public class CollisionChecker implements GameObject {
                     //Log.d(TAG, "collision!");
                     boolean dead = cuphead.decreaseLife(1);
                     if (dead) {
+                        Sound.playEffect(R.raw.announcer_player_fail,0);
                         MainGame.get().setGameClear(false);
                         FadeEffect fade = new FadeEffect();
                         MainGame.get().add(MainGame.Layer.fade, fade);
