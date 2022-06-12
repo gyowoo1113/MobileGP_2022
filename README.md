@@ -9,14 +9,27 @@
     
 ----------------------------------
 
-## 진행 상황
+## 개발 계획 및 진척도
 |주차|구현항목|세부내용|진행도|
 |:------:|:---:|:---:|:---:|
 |1주차|리소스|배경·오브젝트·사운드·리소스 수집·편집|100%|
 |2주차|화면,플레이어|횡스크롤 화면 구현, 플레이어 이동 구현|100%|
 |3주차|플레이어|기본공격(1·2),특수공격, 공격 전환버튼|80%|
-|4주차|몬스터,충돌체크|일반·특수 몬스터 구현, 오브젝트 충돌체크|90%|
-|5주차|보스|보스 2가지 패턴 구현|0%|
+|4주차|몬스터,충돌체크|일반·특수 몬스터 구현, 오브젝트 충돌체크|100%|
+|5주차|1~4주차 미구현 내용 보완|특수공격, HP UI|50%|
+|6주차|보스|보스 2가지 패턴 구현|100%|
+|7주차|화면전환|시작,메인게임,종료화면 전환,랭크 띄우기|100%|
+|8주차|사운드|배경 및 오브젝트에 대한 사운드 추가|70%|
+|9주차|최종점검|1~8주차 구현내용 최종점검|80%|
+
+-----------------------------------
+
+### 미구현·미완성 항목 정리
+
+    1. 미구현: 추가구현 항목
+        - 특수 공격, 특수공격 사용을 위한 MP 추가 미구현
+    2. 미완성: 사운드 추가
+        - 보스 패턴1, 몬스터 사망, 게임시작 사운드 미구현
 
 ----------------------------------
 
@@ -27,94 +40,57 @@
 
 -----------------------------------
 
-## 목표 변경(일정 변경)
+## 사용기술·차용·직접 개발한 것
 
-|주차|구현항목|세부내용|
-|:------:|:---:|:---:|
-|5주차|중간점검|1~4주차 미구현 항목 보완|
-|6주차|보스|보스 2가지 패턴 구현|
-|7주차|화면전환|시작·메인·종료 화면 전환, (추가구현)종료 시 랭크 띄우기|
+    1. 참고한 것
+        - drawable로 frame animation 구현하기
+            : https://developer.android.com/guide
+        - animation-list 종료 시 이벤트 발동하는 방법 (stackoverflow)
+            : 화면전환 애니메이션에 사용되었으나 버그 존재
+            
+    2. 수업내용에서 차용한 것
+        - EnemyGenerator
+            : 프로젝트에 맞추어 생성 주기·방법 변형
+        - Sound
+            : mediaPlayer도 중복해서 재생 가능하도록 변형
+        - Gague 
+            : 기존 계획 :: Alpha값 사용하여 체력 표현
+              - 기존 계획대로 구현하였음
+              - 그러나 테스트 결과 시각적으로 보기엔 게이지바가 더 좋다고 판단하여 변경
+              
+    3. 직접 개발한 것
+        - Boss
+            - Boss는 현재 State에 맞는 프레임 애니메이션을 진행함
+            - 각 State마다 루프 횟수를 설정, 횟수만큼 루프하면 State 변경
+            - 공격 시 Handgun/Feather Bullet을 발사
+        - Bullet
+            : Bomb, Handgun, Feather Bullet
+              포물선/3방향으로 한번에 발사/ 360˚ 광범위하게 발사
+        - Player 이동
+            : RangeBox로 플레이어 이동범위를 제한
+              RangeBox가 플레이어를 따라서 이동하도록 업데이트
+              
+              
 
+-----------------------------------------
 
-#### 변경사유
+## 아쉬운점
 
-    미구현 상태인 플레이어 특수공격·몬스터 HP 구현 후 보스구현 진행할 예정
-    -> 7주차 일정이었던 중간 점검을 5주차로 변경
+* 하고 싶었지만 못 한 것들
+    * 조이스틱 구현
+        * 플레이어 이동 범위를 제한하면서 부자연스러운 움직임이 발생
+        * 터치/조이스틱 이동방식을 선택하도록 변경하고 싶었으나 시간이 부족했음
         
+* 해결하지 못한 문제/버그
+    1. 화면전환 애니메이션 : 끝난 후 바로 화면전환이 안됨
+    2. 결과화면 TextView 배치 : 해상도에 따라 Text가 보드판을 벗어나는 버그 존재
 
----------------------------------------
-
-## MainGame에 등장하는 GameObject 설명
-
-#### 전체 구성도
-
-![screensh](/TermProject/Resource/flow_.png)
-
-#### class 
-
-* Bullet
-    * 구성    
-        * ![screensh](/TermProject/Resource/bullet.png)
-        
-    * 상호작용
-        1. 플레이어 -> Bullet 발사
-        2. 몬스터 -> 공격, 충돌검사
-
-* Cuphead(Player)
-    * 구성 (동작 구성)
-        1. 터치다운 => Box/Point 충돌검사 성공
-            * 이동범위(RangeBox) 갱신
-            * 플레이어 좌표 갱신·총알 발사 활성화
-        2. 화면 드래그
-            * 제한된 범위 내에서 이동
-        3. 터치업
-            * 이동범위(RangeBox) 갱신
-            * 플레이어 좌표 갱신·총알 발사 비활성화
-    * 상호작용
-        1. 화면터치 -> 이동처리, 총알발사
-        
-* Enemy
-    * 구성
-        - level에 따라 충돌처리를 다르게 함
-            * level 1 : 총알과 충돌처리
-            * level 2 : 화면 터치로 충돌처리
-                * 터치다운 상태에서만 충돌검사 진행
-    * 상호작용
-        1. 총알 -> 충돌검사
-        2. 화면터치 -> 충돌검사    
-        
-        
-#### 핵심코드
-
-* 공격 유형(isBomb)에 따라 BombBullet/NormalBullet class를 호출하여 bullet을 생성한다. 
-
-        * Cuphead의 fire() 일부
-            Bullet bullet = (isBomb) ? BombBullet.get(x, y) : NormalBullet.get(x, y + val);
-            MainGame.getInstance().add(MainGame.Layer.bullet, bullet);
-        
-        
-gravity로 dy값을 점점 감소시킨다. 
-dy는 양수값으로 시작하기 때문에, 화면에서 총알은 위로 상승하다가 서서히 추락한다.
-    => 포물선 궤도를 표현
-        
-        public void update() {
-            float frameTime = MainGame.getInstance().frameTime;
-            x -= dx * frameTime;
-            y -= dy * frameTime;
-            dy -=gravity*frameTime;    
+* 겪은 어려움
+    * 사용하는 노트북 사양 문제로 API 테스트 시 게임이 버벅거림
+    * 게임 버그인지 사양 문제인지 테스트 시 구분하기 힘들어 테스트에 어려움이 있었음
     
     
-터치다운 시, MainGame의 tx,ty를 갱신하고 isTouch를 true로 바꾼다.
-CollisionChecker는 isTouch가 true일 경우 tx,ty 값을 받아와 특정 몬스터와 충돌 검사를 한다.
         
-        * CollisionChecker의 update() 일부
-            if (!MainGame.getInstance().isTouch) return;
-            float x = MainGame.getInstance().tx;
-            float y = MainGame.getInstance().ty;
 
-            boolean collided = false;
-            if (CollisionHelper.isPointInBox(enemy,x,y)) {
-                game.remove(enemy);
-                collided = true;
-                break;
-            }
+              
+            
