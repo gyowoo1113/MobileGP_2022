@@ -38,28 +38,32 @@
         style="@style/boardTextStyle"
         android:layout_below="@+id/titleImageView"
         android:text="BOSS ....................... 1/1"
-        android:paddingTop="30dp"
+        android:paddingTop="15sp"
+        android:autoSizeTextType="uniform"
         />
     <TextView
         android:id="@+id/monsterTextView"
         android:layout_below="@+id/bossTextView"
         style="@style/boardTextStyle"
         android:text="MONSTER ............... 1/1"
-        android:paddingTop="10dp"
+        android:paddingTop="1sp"
+        android:autoSizeTextType="uniform"
         />
     <TextView
         android:id="@+id/eventTextView"
         android:layout_below="@+id/monsterTextView"
         style="@style/boardTextStyle"
         android:text="EVENT MONSTER ... 1/1"
-        android:paddingTop="10dp"
+        android:paddingTop="1sp"
+        android:autoSizeTextType="uniform"
         />
     <TextView
         android:id="@+id/hpTextView"
         android:layout_below="@+id/eventTextView"
         style="@style/boardTextStyle"
         android:text="LIFE ......................... 1/1"
-        android:paddingTop="10dp"
+        android:paddingTop="1sp"
+        android:autoSizeTextType="uniform"
         />
 
     <ImageView
@@ -74,10 +78,17 @@
         android:layout_below="@+id/LineImageView"
         style="@style/boardTextStyle"
         android:text="A"
-        android:paddingTop="5dp"
+        android:paddingTop="3sp"
         android:textSize="30sp"
         android:textColor="#DCA502"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        />
+    <TextView
+        android:layout_below="@+id/ScoreTextView"
+        android:layout_toRightOf="@+id/cupheadImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
     <ImageView
@@ -85,6 +96,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/fade_animation"
-        />
+        android:scaleType="centerCrop"/>
   </RelativeLayout>
 

@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:onClick="onSwitchBtn"
         android:text="Attack Switch"
+        android:autoSizeTextType="uniform"
         android:textColor="@color/black"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,5 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/fade_game_animation"
+        android:scaleType="centerCrop"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
