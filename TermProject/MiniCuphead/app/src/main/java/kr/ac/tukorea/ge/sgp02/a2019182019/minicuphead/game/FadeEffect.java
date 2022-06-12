@@ -19,6 +19,9 @@ import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.framework.sprites.CustomAn
 import kr.ac.tukorea.ge.sgp02.a2019182019.minicuphead.game.monster.Boss;
 
 public class FadeEffect implements GameObject {
+
+    static boolean isFadeStart = false;
+
     public FadeEffect() {
         Sound.stopLoopEffect(R.raw.player_plane_fire);
         Sound.stopLoopEffect(R.raw.flap_loop_sound);
@@ -43,8 +46,11 @@ public class FadeEffect implements GameObject {
                     }
                 };
 
-                v.setBackgroundDrawable(cad);
-                cad.start();
+                if (isFadeStart == false){
+                    v.setBackgroundDrawable(cad);
+                    cad.start();
+                    isFadeStart = true;
+                }
             }
 
         });
