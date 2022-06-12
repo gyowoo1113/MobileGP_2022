@@ -10,7 +10,7 @@
     <item name="cuphead_bomb_interval" type="dimen" format="float">1.0</item>
     <item name="feather_fire_interval" type="dimen" format="float">0.3</item>
     <dimen name="bullet_gravity">5000dp</dimen>
-    <dimen name="bullet_upper_speed">500dp</dimen>
+    <dimen name="bullet_upper_speed">250dp</dimen>
     <dimen name="bomb_bullet_radius">10dp</dimen>
     <dimen name="enemy_initial_speed">50dp</dimen>
     <dimen name="bg_speed_1">20dp</dimen>

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.MiniCuphead" >
         <activity
             android:name=".app.ResultActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".app.GameActivity"
             android:exported="false"

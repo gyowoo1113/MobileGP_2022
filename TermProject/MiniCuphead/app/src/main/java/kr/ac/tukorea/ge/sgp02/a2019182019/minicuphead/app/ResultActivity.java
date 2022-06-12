@@ -69,9 +69,9 @@ public class ResultActivity extends AppCompatActivity {
         int score = 0;
         if (clear == false) return score;
         ++score;
-        if (mon > 5) ++score;
-        if (event > 1) ++score;
-        if (hp > 5) ++score;
+        if (mon >= 5) ++score;
+        if (event > 0) ++score;
+        if (hp >= 5) ++score;
         return score;
     }
 
