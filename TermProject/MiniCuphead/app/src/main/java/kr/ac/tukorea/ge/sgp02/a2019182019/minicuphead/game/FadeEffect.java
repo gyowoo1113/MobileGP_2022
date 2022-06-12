@@ -25,8 +25,7 @@ public class FadeEffect implements GameObject {
     public FadeEffect() {
         Sound.stopLoopEffect(R.raw.player_plane_fire);
         Sound.stopLoopEffect(R.raw.flap_loop_sound);
-        Sound.stopMusic();
-        Sound.playEffect(R.raw.knockout_bell,0);
+        Sound.playMusic(R.raw.knockout_bell);
 
         //MainGame.getFadeAnimationDrawable().start();
         MainGame.getFadeImageView().setOnClickListener(new View.OnClickListener() {
